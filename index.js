@@ -29,15 +29,15 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 //testing the server
-app.get('/', (req, res) => {
-    // res.send("all ok");
-    res.render("pages/dashboard");
-})
+// app.get('/', (req, res) => {
+//     // res.send("all ok");
+//     res.render("pages/dashboard");
+// });
 
 //bring all routes
 const hrRouter = require('./routes/hrDb');
 //routes handler
-// app.use('/', hrRouter);
+app.use('/', hrRouter);
 
 //set up the public folder
 app.use(express.static('./public'));
