@@ -14,5 +14,5 @@ const training_schema = new mongoose.Schema({
 
 });
 
-var emp_training = mongoose.model('emp_training', training_schema);
+var emp_training = mongoose.model('empTraining', training_schema);
 module.exports = emp_training;

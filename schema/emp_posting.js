@@ -11,5 +11,5 @@ const posting_schema = new mongoose.Schema({
     district: String,
 });
 
-var emp_posting = mongoose.model('emp_posting', posting_schema);
+var emp_posting = mongoose.model('empPosting', posting_schema);
 module.exports = emp_posting;

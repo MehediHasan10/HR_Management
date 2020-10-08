@@ -10,8 +10,9 @@
                 <!--Start MultiStep Form -->
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3">
-                        <form id="msform">
+                        <form id="msform" method="post" action="/addInfoForm">
                             <!-- progressbar -->
+
                             <ul id="progressbar">
                                 <li class="active"></li>
                                 <li></li>
@@ -25,9 +26,10 @@
                                 <li></li>
                                 <li></li>
                             </ul>
+
                             <!-- fieldsets -->
 
-                            <!-- Basic Info -->
+                            <!-- Basic Info(1) -->
                             <fieldset>
                                 <h2 class="fs-title"">Employee Basic Information</h2>
 
@@ -39,7 +41,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="f_name">Father's Name</label>
-                                            <input name="lname"></input>
+                                            <input name="f_name"></input>
                                         </div>
 
                                         <div class="col-md-6">
@@ -50,20 +52,20 @@
 
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label for="deg">Designation</label>
-                                            <input type="text" name="deg" ></input>
+                                            <label for="emp_deg">Designation</label>
+                                            <input type="text" name="emp_deg" ></input>
                                         </div>
 
                                         <div class="col-md-6">
-                                            <label for="id">National ID</label>
-                                            <input type="text" name="id"></input>
+                                            <label for="n_id">National ID</label>
+                                            <input type="text" name="n_id"></input>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-4">
                                             <label for="reg">Religion</label>
-                                            <select name="" required>
+                                            <select name="reg" >
                                                 <option value="" disabled selected hidden>Choose a Religion</option>
                                                 <option value="">Islam</option>
                                                 <option value="">Hindu</option>
@@ -75,7 +77,7 @@
 
                                         <div class="col-md-4">
                                             <label for="gen">Gender</label>
-                                            <select name="" required>
+                                            <select name="gen" >
                                                 <option value="" disabled selected hidden>Choose a Gender</option>
                                                 <option value="">Male</option>
                                                 <option value="">Female</option>
@@ -92,7 +94,7 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <label for="blood">Blood Group</label>
-                                            <select name="" required>
+                                            <select name="blood" required>
                                                 <option value="" disabled selected hidden>Choose Here</option>
                                                 <option value="">A+</option>
                                                 <option value="">AB+</option>
@@ -108,7 +110,7 @@
 
                                         <div class="col-md-4">
                                             <label for="district">District</label>
-                                            <select name="" required>
+                                            <select name="district" required>
                                                 <option value="" disabled selected hidden>Choose a District</option>
                                                 <option value="কক্সবাজার">কক্সবাজার</option>
                                                 <option value="কিশোরগঞ্জ">কিশোরগঞ্জ</option>
@@ -178,8 +180,8 @@
                                         </div>
 
                                         <div class="col-md-4">
-                                            <label for="Marital_Status">Marital Status</label>
-                                            <select name="" required>
+                                            <label for="marital_Status">Marital Status</label>
+                                            <select name="marital_Status" required>
                                                 <option value="" disabled selected hidden>Choose Here</option>
                                                 <option value="">Married</option>
                                                 <option value="">Unmarried</option>
@@ -206,7 +208,7 @@
                                 
                             </fieldset>
 
-                            <!-- Spouse Info -->
+                            <!-- Spouse Info(2) -->
                             <fieldset>
                                 <h2 class="fs-title">Employee Spouse Information</h2>
 
@@ -222,15 +224,15 @@
                                         </div>
 
                                         <div class="col-md-6">
-                                            <label for="deg">Employee Spouse Designation</label>
-                                            <input type="text" name="deg" ></input>
+                                            <label for="s_deg">Employee Spouse Designation</label>
+                                            <input type="text" name="s_deg" ></input>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label for="org">Employee Spouse Organization</label>
-                                            <input type="text" name="org" ></input>
+                                            <label for="s_org">Employee Spouse Organization</label>
+                                            <input type="text" name="s_org" ></input>
                                         </div>
 
                                         <div class="col-md-6">
@@ -241,8 +243,8 @@
 
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label for="district">Spouse Home District</label>
-                                            <select name="" required>
+                                            <label for="s_district">Spouse Home District</label>
+                                            <select name="">
                                                 <option value="" disabled selected hidden>Choose a District</option>
                                                 <option value="কক্সবাজার">কক্সবাজার</option>
                                                 <option value="কিশোরগঞ্জ">কিশোরগঞ্জ</option>
@@ -312,8 +314,8 @@
                                         </div>
 
                                         <div class="col-md-6">
-                                            <label for="phone">Personal Phone Number</label>
-                                            <input type="text" name="phone"></input>
+                                            <label for="s_phone">Personal Phone Number</label>
+                                            <input type="text" name="s_phone"></input>
                                         </div>
                                     </div>
                                 </div>
@@ -323,41 +325,42 @@
                                 <input type="button" name="next" class="next action-button" value="Next"/>
                             </fieldset>
 
-                            <!-- Address Info -->
+                            <!-- Address Info(3) -->
                             <fieldset>
                                 <h2 class="fs-title">Employee Address Information</h2>
                                 <h2 class="fs-title">Present Address</h2>
 
+                                <!-- Present Address -->
                                 <div class="text-left">
 
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label for="house">Village/House & Road</label>
-                                            <input type="text" name="house"/>
+                                            <label for="pre_house">Village/House & Road</label>
+                                            <input type="text" name="pre_house"/>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="post">Post-Office</label>
-                                            <input type="text" name="post"/>
+                                            <label for="pre_postOffice">Post-Office</label>
+                                            <input type="text" name="pre_postOffice"/>
                                         </div>
                                         <div class="col-md-4">
                                             
-                                        <label for="police">Police Station</label>
-                                        <input type="text" name="police"/>
+                                        <label for="pre_policeStation">Police Station</label>
+                                        <input type="text" name="pre_policeStation"/>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label for="district">District</label>
-                                            <input type="text" name="district"/>
+                                            <label for="pre_district">District</label>
+                                            <input type="text" name="pre_district"/>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="upazilla">Upazila</label>
-                                            <input type="text" name="upazilla"/>
+                                            <label for="pre_upazilla">Upazila</label>
+                                            <input type="text" name="pre_upazilla"/>
                                         </div>
                                         <div class="col-md-4">
                                             <label for="telephone">Resident Telephone</label>
-                                            <input type="text" name="telephone"/>
+                                            <input type="text" name="pre_telephone"/>
                                         </div>
                                     </div>
                                 
@@ -365,36 +368,37 @@
 
                                 <h2 class="fs-title">Permanent Address</h2>
 
+                                <!-- Permanent Address -->
                                 <div class="text-left">
 
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label for="house">Village/House & Road</label>
-                                            <input type="text" name="house"/>
+                                            <label for="per_house">Village/House & Road</label>
+                                            <input type="text" name="per_house"/>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="post">Post-Office</label>
-                                            <input type="text" name="post"/>
+                                            <label for="per_postOffice">Post-Office</label>
+                                            <input type="text" name="per_postOffice"/>
                                         </div>
                                         <div class="col-md-4">
                                             
-                                        <label for="police">Police Station</label>
-                                        <input type="text" name="police"/>
+                                        <label for="per_policeStation">Police Station</label>
+                                        <input type="text" name="per_policeStation"/>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label for="district">District</label>
-                                            <input type="text" name="district"/>
+                                            <label for="per_district">District</label>
+                                            <input type="text" name="per_district"/>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="upazilla">Upazila</label>
-                                            <input type="text" name="upazilla"/>
+                                            <label for="per_upazilla">Upazila</label>
+                                            <input type="text" name="per_upazilla"/>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="telephone">Resident Telephone</label>
-                                            <input type="text" name="telephone"/>
+                                            <label for="per_telephone">Resident Telephone</label>
+                                            <input type="text" name="per_telephone"/>
                                         </div>
                                     </div>
                                 
@@ -404,30 +408,30 @@
                                 <input type="button" name="next" class="next action-button" value="Next"/>
                             </fieldset>
                             
-                            <!-- child info -->
+                            <!-- child info(4) -->
                             <fieldset>
                                 <h2 class="fs-title">Employee Child Information</h2>
 
                                 <div class="text-left">
-                                    <label for="name">Child Name</label>
-                                    <input type="text" name="name"/>
+                                    <label for="c_name">Child Name</label>
+                                    <input type="text" name="c_name"/>
 
-                                    <label for="gender">Gender</label>
-                                    <select name="" required>
+                                    <label for="c_gender">Gender</label>
+                                    <select name="c_gender">
                                         <option value="" >Male</option>
                                         <option value="" >Female</option>
                                         <option value="" >Others</option>
                                     </select>
 
-                                    <label for="dob">Date of Birth</label>
-                                    <input type="date" name="dob"/>
+                                    <label for="c_dob">Date of Birth</label>
+                                    <input type="date" name="c_dob"/>
                                 </div>
 
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                                 <input type="button" name="next" class="next action-button" value="Next"/>
                             </fieldset>
 
-                            <!-- first joining info -->
+                            <!-- first joining info(5) -->
                             <fieldset>
                                 <h2 class="fs-title">Employee First Joining Information</h2>
 
@@ -435,43 +439,44 @@
 
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label for="date">First Joining Date</label>
-                                            <input type="date" name="date"/>
+                                            <label for="j_date">First Joining Date</label>
+                                            <input type="date" name="j_date"/>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="rank">Rank/Class</label>
-                                            <input type="text" name="rank"/>
+                                            <label for="j_rank">Rank/Class</label>
+                                            <input type="text" name="j_rank"/>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="f_deg">First Designation</label>
-                                            <input type="text" name="f_deg"/>
+                                            <label for="first_deg">First Designation</label>
+                                            <input type="text" name="first_deg"/>
                                         </div>
                                     </div>
 
-                                    <h2 class="fs-subtitle">First Posting Place</h2>
+                                    <h2 class="fs-title">First Posting Place</h2>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label for="district">District</label>
-                                            <input type="date" name="district"/>
+                                            <label for="j_district">District</label>
+                                            <input type="date" name="j_district"/>
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="upazilla">Upazilla</label>
-                                            <input type="date" name="upazilla"/>
+                                            <label for="j_upazilla">Upazilla</label>
+                                            <input type="date" name="j_upazilla"/>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label for="nature">Job Nature</label>
-                                            <select name="" required>
+                                            <label for="job_nature">Job Nature</label>
+                                            <select name="job_nature" required>
+                                                <option value="" disabled selected hidden>Choose a Nature</option>
                                                 <option value="" >Revenue</option>
                                                 <option value="" >Development</option>
                                             </select>
                                         </div>
 
                                         <div class="col-md-6">
-                                            <label for="grade">Grade</label>
-                                            <input type="text" name="grade">
+                                            <label for="j_grade">Grade</label>
+                                            <input type="text" name="j_grade">
                                         </div>
                                     </div>
 
@@ -481,12 +486,12 @@
                                             <input type="date" name="prl"/>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="go">G.O Date</label>
-                                            <input type="date" name="go"/>
+                                            <label for="j_go">G.O Date</label>
+                                            <input type="date" name="j_go"/>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="confirmation">Confirmation On Date</label>
-                                            <input type="date" name="confirmation"/>
+                                            <label for="confirmation_date">Confirmation On Date</label>
+                                            <input type="date" name="confirmation_date"/>
                                         </div>
                                     </div>
 
@@ -495,6 +500,238 @@
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                                 <input type="button" name="next" class="next action-button" value="Next"/>
                             </fieldset>
+
+                            <!-- educational information(6) -->
+                            <fieldset>
+                                <h2 class="fs-title">Educational Information</h2>
+                                
+                                <div class="text-left">
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="e_deg">Degree</label>
+                                            <input type="text" name="e_deg" />
+                                        </div>
+    
+                                        <div class="col-md-6">
+                                            <label for="e_grp">Group/Department</label>
+                                            <input type="text" name="e_grp" />
+                                        </div>
+                                    </div>
+
+                                    <label for="e_institution">Educational Institute</label>
+                                    <input type="text" name="e_institution" />
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="e_board">Board</label>
+                                            <input type="text" name="e_board" />
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label for="e_result">Result</label>
+                                            <input type="text" name="e_result" />
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label for="pass_year">Passing Year</label>
+                                            <input type="text" name="pass_year" />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                                <input type="button" name="next" class="next action-button" value="Next"/>
+
+                            </fieldset>
+
+                            <!-- Employee Training(7) -->
+                            <fieldset>
+                                <h2 class="fs-title">Training Information</h2>
+                                <div class="text-left">
+
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <label for="t_type">Training Type</label>
+                                            <select name="t_type" >
+                                                <option value="" disabled selected hidden>Choose a Type</option>
+                                                <option value="">Local</option>
+                                                <option value="">Foreign</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label for="t_course">Course Title</label>
+                                            <input type="text" name="t_course" />
+                                        </div>
+                                    </div>
+
+                                    <label for="t_institution">Institution</label>
+                                    <input type="text" name="t_institution" />
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="t_country">Country</label>
+                                            <input type="text" name="t_country" />
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label for="t_start">Starting Date</label>
+                                            <input type="date" name="t_start" />
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label for="t_end">Ending Date</label>
+                                            <input type="date" name="t_end" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="t_grade">Grade</label>
+                                            <input type="text" name="t_grade" />
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label for="t_position">Position</label>
+                                            <input type="text" name="t_position" />
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                                <input type="button" name="next" class="next action-button" value="Next"/>    
+                            </fieldset>
+                            
+                            <!-- Employee Posting(8) -->
+                            <fieldset>
+                                <h2 class="fs-title">Posting Workstation</h2>
+                                <div class="text-left">
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="deg">Designation</label>
+                                            <input type="text" name="deg" />
+                                        </div>
+                                        <div class="col-md-8">
+                                            <label for="office">Office Name</label>
+                                            <input type="text" name="office" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="from">From Date</label>    
+                                            <input type="date" name="from" />                                        
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="to">To Date</label>    
+                                            <input type="date" name="to" />                                        
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="upazilla">Upazilla</label>
+                                            <input type="text" name="upazilla" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="district">District</label>
+                                            <input type="text" name="district" />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                                <input type="button" name="next" class="next action-button" value="Next"/>
+                            </fieldset>
+
+                            <!-- Promotion Statements(9) -->
+                            <fieldset>
+                                <h2 class="fs-title">Promotion Statements</h2>
+                                <div class="text-left">
+
+                                    <label for="deg">Promoted Designation</label>
+                                    <input type="text" name="deg" />
+
+                                    <label for="nature">Promotion Nature</label>
+                                    <input type="text" name="nature" />
+
+                                    <label for="date">Promotion Date</label>
+                                    <input type="date" name="date" />
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="date">G.O. Date</label>
+                                            <input type="date" name="date" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="date">G.O. Number</label>
+                                            <input type="date" name="date" />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                                <input type="button" name="next" class="next action-button" value="Next"/>
+                            </fieldset>
+                        
+                            <!-- Employee Publication(10)  -->
+                            <fieldset>
+                                <h2 class="fs-title">Employee Publications</h2>
+                                <div class="text-left">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="type">Publication Type</label>
+                                            <input type="text" name="type" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="type">Publication Date</label>
+                                            <input type="date" name="type" />
+                                        </div>
+                                    </div>
+
+                                    <label for="des">Designation</label>
+                                    <textarea name="des"></textarea>
+                                </div>
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                                <input type="button" name="next" class="next action-button" value="Next"/>
+                            </fieldset>
+
+                            <!-- Disciplinary Action(11) -->
+                            <fieldset>
+                                <h2 class="fs-title">Employee Disciplinary Action</h2>
+
+                                <div class="text-left">
+                                    <label for="occurance">Occurance</label>
+                                    <textarea name="occurance"></textarea>
+
+                                    <label for="occ_date">Occuring Date</label>
+                                    <input type="date" name="occ_date" />
+
+                                    <label for="action">Action & Punishment</label>
+                                    <textarea name="action"></textarea>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="memo_no">Memo No.</label>
+                                            <input type="text" name="memo_no" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="memo_date">Memo Date</label>
+                                            <input type="date" name="memo_date" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                                <input type="submit" value="Submit" class="submit action-button" name="submit" />
+                            </fieldset>
+
                         </form>
                     </div>
                 </div>

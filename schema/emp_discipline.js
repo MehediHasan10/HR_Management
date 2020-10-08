@@ -9,5 +9,5 @@ const discipline_Schema = new mongoose.Schema({
     memo_date: Date,
 });
 
-var emp_discipline = mongoose.model('emp_discipline', discipline_Schema);
+var emp_discipline = mongoose.model('empDiscipline', discipline_Schema);
 module.exports = emp_discipline;

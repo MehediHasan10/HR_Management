@@ -10,5 +10,5 @@ const promotion_schema = new mongoose.Schema({
     GO_date: Date,
 });
 
-var emp_promotion = mongoose.model('emp_promotion', promotion_schema);
+var emp_promotion = mongoose.model('empPromotion', promotion_schema);
 module.exports = emp_promotion;
