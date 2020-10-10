@@ -10,7 +10,7 @@
                 <!--Start MultiStep Form -->
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3">
-                        <form id="msform" method="post" action="/addInfoForm">
+                        <form id="msform" method="POST" action="/addInfoForm">
                             <!-- progressbar -->
 
                             <ul id="progressbar">
@@ -612,34 +612,34 @@
 
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label for="deg">Designation</label>
-                                            <input type="text" name="deg" />
+                                            <label for="p_deg">Designation</label>
+                                            <input type="text" name="p_deg" />
                                         </div>
                                         <div class="col-md-8">
-                                            <label for="office">Office Name</label>
-                                            <input type="text" name="office" />
+                                            <label for="p_office">Office Name</label>
+                                            <input type="text" name="p_office" />
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label for="from">From Date</label>    
-                                            <input type="date" name="from" />                                        
+                                            <label for="p_from_date">From Date</label>    
+                                            <input type="date" name="p_from_date" />                                        
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="to">To Date</label>    
-                                            <input type="date" name="to" />                                        
+                                            <label for="p_to_date">To Date</label>    
+                                            <input type="date" name="p_to_date" />                                        
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label for="upazilla">Upazilla</label>
-                                            <input type="text" name="upazilla" />
+                                            <label for="p_upazilla">Upazilla</label>
+                                            <input type="text" name="p_upazilla" />
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="district">District</label>
-                                            <input type="text" name="district" />
+                                            <label for="p_district">District</label>
+                                            <input type="text" name="p_district" />
                                         </div>
                                     </div>
 
@@ -654,23 +654,23 @@
                                 <h2 class="fs-title">Promotion Statements</h2>
                                 <div class="text-left">
 
-                                    <label for="deg">Promoted Designation</label>
-                                    <input type="text" name="deg" />
+                                    <label for="pro_deg">Promoted Designation</label>
+                                    <input type="text" name="pro_deg" />
 
-                                    <label for="nature">Promotion Nature</label>
-                                    <input type="text" name="nature" />
+                                    <label for="pro_nature">Promotion Nature</label>
+                                    <input type="text" name="pro_nature" />
 
-                                    <label for="date">Promotion Date</label>
-                                    <input type="date" name="date" />
+                                    <label for="pro_date">Promotion Date</label>
+                                    <input type="date" name="pro_date" />
 
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label for="date">G.O. Date</label>
-                                            <input type="date" name="date" />
+                                            <label for="go_date">G.O. Date</label>
+                                            <input type="date" name="go_date" />
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="date">G.O. Number</label>
-                                            <input type="date" name="date" />
+                                            <label for="go_number">G.O. Number</label>
+                                            <input type="date" name="go_number" />
                                         </div>
                                     </div>
 
@@ -686,17 +686,17 @@
                                 <div class="text-left">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label for="type">Publication Type</label>
-                                            <input type="text" name="type" />
+                                            <label for="pub_type">Publication Type</label>
+                                            <input type="text" name="pub_type" />
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="type">Publication Date</label>
-                                            <input type="date" name="type" />
+                                            <label for="pub_date">Publication Date</label>
+                                            <input type="date" name="pub_date" />
                                         </div>
                                     </div>
 
-                                    <label for="des">Designation</label>
-                                    <textarea name="des"></textarea>
+                                    <label for="pub_des">Designation</label>
+                                    <textarea name="pub_des"></textarea>
                                 </div>
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                                 <input type="button" name="next" class="next action-button" value="Next"/>
@@ -713,8 +713,8 @@
                                     <label for="occ_date">Occuring Date</label>
                                     <input type="date" name="occ_date" />
 
-                                    <label for="action">Action & Punishment</label>
-                                    <textarea name="action"></textarea>
+                                    <label for="occ_action">Action & Punishment</label>
+                                    <textarea name="occ_action"></textarea>
 
                                     <div class="row">
                                         <div class="col-md-6">
@@ -729,9 +729,9 @@
                                 </div>
 
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                                <input type="submit" value="Submit" class="submit action-button" name="submit" />
+                                <input type="submit" name="submit" value="Submit" />
+                            
                             </fieldset>
-
                         </form>
                     </div>
                 </div>

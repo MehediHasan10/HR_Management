@@ -14,6 +14,7 @@ const FirstJoinInfo = require('../schema/emp_f_join');
 
 //route  -  GET /addInfoForm
 router.get('/addInfoForm', async (req, res) => {
+    // console.log("get route");
     try{
         res.render('pages/infoForm');
     } catch(err){
@@ -117,11 +118,56 @@ router.post('/addInfoForm', async (req, res, next) => {
         position: req.body.t_position
     });
 
-    //
+    //instance of "Posting" class(8)
+    const posting = new Posting({
+        posting_deg: req.body.p_deg,
+        posting_office: req.body.p_office,
+        from_date: req.body.p_from_date,
+        to_date: req.body.p_to_date,
+        upazilla: req.body.p_upazilla,
+        district: req.body.p_district,
+    });
+
+    //instance of "Promotion" class(9)
+    const promotion = new Promotion({
+        promotion_designation: req.body.pro_deg,
+        promotion_nature: req.body.pro_nature,
+        promotion_date: req.body.pro_date,
+        go_date: req.body.go_date,
+        go_number: req.body.go_number
+
+    });
+
+    //instance of "Publication" class(10)
+    const publictional = new Publication({
+        publication_type: req.body.pub_type,
+        publication_date: req.body.pub_date,
+        description: req.body.pub_des
+    });
+
+    //instance of "Discipline" class(11)
+    const discipline = new Discipline({
+        occurance: req.body.occurance,
+        occurance_date: req.body.occ_date,
+        occurance_action: req.body.occ_action,
+        memo_no: req.body.memo_no,
+        memo_date: req.body.memo_date
+    });
 
     try {
         const empData = await basicInfo.save();
-        console.log(empData);
+        const spouseData = await spouse.save();
+        const addressData = await address.save();
+        const childrenData = await children.save();
+        const firstJoinInfoData = await firstJoinInfo.save();
+        const eduInfoData = await eduInfo.save(); 
+        const trainingData = await training.save();
+        const postingData = await posting.save();
+        const promotionData = await promotion.save();
+        const publictionalData = await publictional.save();
+        const disciplineData = await discipline.save();
+
+        // console.log(empData);
     } catch (err) {
         console.log(err);
     }
