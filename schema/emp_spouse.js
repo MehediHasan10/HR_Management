@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const spouseInfo_Schema = mongoose.Schema({
+const spouseInfo_Schema = new mongoose.Schema({
 
     //spouse info(2)
     spouseName: String,

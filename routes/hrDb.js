@@ -14,9 +14,9 @@ const FirstJoinInfo = require('../schema/emp_f_join');
 
 //route  -  GET /addInfoForm
 router.get('/addInfoForm', async (req, res) => {
-    // console.log("get route");
+    console.log("get route");
     try{
-        res.render('pages/infoForm');
+        // res.render('pages/test');
     } catch(err){
         console.log(err);
     }
@@ -25,6 +25,7 @@ router.get('/addInfoForm', async (req, res) => {
 
 //route  -  POST /addInfoForm
 router.post('/addInfoForm', async (req, res, next) => {
+
 
     console.log("hi");
     //instance of "BasicInfo" class(1)
@@ -172,5 +173,36 @@ router.post('/addInfoForm', async (req, res, next) => {
         console.log(err);
     }
 })
+
+
+//route  -  GET /test
+router.get('/test', async (req, res) => {
+    console.log("get route");
+    try{
+        res.render('pages/test');
+    } catch(err){
+        console.log(err);
+    }
+});
+
+//route  -  POST /test
+router.post('/test', async (req, res) => {
+    console.log("post route");
+    console.log(req.body);
+
+    const basicInfo = new BasicInfo({
+        employee_name: req.body.emp_name,
+    });
+
+    try{
+        const empData = await basicInfo.save();
+        console.log(empData);
+        res.render('pages/test');
+        // res.send("hello");
+    } catch(err){
+        console.log(err);
+    }
+});
+
 
 module.exports = router;

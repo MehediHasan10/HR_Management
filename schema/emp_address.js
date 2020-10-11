@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const empAddress_Schema = mongoose.Schema({
+const empAddress_Schema = new mongoose.Schema({
 
         //address info(3)
         present_house: String,

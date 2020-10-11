@@ -7,6 +7,7 @@ const app = express();
 
 //parsing the json data
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 //mongo config and connection
 const url = "mongodb+srv://el06:test1234@cluster0.a9rlb.mongodb.net/hrdb";

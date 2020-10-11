@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const childInfo_Schema = mongoose.Schema({
+const childInfo_Schema = new mongoose.Schema({
 
     //employee child info(4)
     child_name: String,
