@@ -9,4 +9,4 @@ const publication_Schema = new mongoose.Schema({
 });
 
 var emp_publication = mongoose.model('empPublication', publication_Schema);
-mongoose.exports = emp_publication;
+module.exports = emp_publication;

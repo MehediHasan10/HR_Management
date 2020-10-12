@@ -14,6 +14,8 @@ const basicInfo_Schema = new mongoose.Schema({
     bloodGroup: String,
     homeDistrict: String,
     maritalStatus: String,
+    email: String,
+    phone: String
 
 });
 

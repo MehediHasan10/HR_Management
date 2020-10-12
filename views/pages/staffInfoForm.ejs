@@ -1,0 +1,661 @@
+<%- include('../template/header') -%>
+
+<div class="wrapper">
+    <%- include('../template/staffSidebar') -%>
+    <div class="main-panel">
+        <%- include('../template/navbar') -%>
+        <div class="content">
+            <div class="container-fluid">
+            <!-- your content here -->
+                <!--Start MultiStep Form -->
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <form id="msform" method="get" action="/addInfoForm">
+                            <!-- progressbar -->
+
+                            <ul id="progressbar" style="padding-left: 100px;">
+                                <li class="active"></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+
+                            <!-- fieldsets -->
+
+                            <!-- Basic Info(1) -->
+                            <fieldset>
+                                <h2 class="fs-title">Staffs Basic Information</h2>
+
+                                <div class="text-left">
+
+                                    <label for="emp_name">Employee Name</label>
+                                    <input type="text" name="emp_name"/>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="f_name">Father's Name</label>
+                                            <input name="f_name"></input>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label for="m_name">Mother's Name</label>
+                                            <input type="text" name="m_name"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="emp_deg">Designation</label>
+                                            <input type="text" name="emp_deg" ></input>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label for="n_id">National ID</label>
+                                            <input type="text" name="n_id"></input>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="reg">Religion</label>
+                                            <select name="reg" >
+                                                <option value="" disabled selected hidden>Choose a Religion</option>
+                                                <option value="">Islam</option>
+                                                <option value="">Hindu</option>
+                                                <option value="">Christian</option>
+                                                <option value="">Buddha</option>
+                                                <option value="">Others</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label for="gen">Gender</label>
+                                            <select name="gen" >
+                                                <option value="" disabled selected hidden>Choose a Gender</option>
+                                                <option value="">Male</option>
+                                                <option value="">Female</option>
+                                                <option value="">Others</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label for="dob">Date of Birth</label>
+                                            <input type="date" name="dob" placeholder="Date of Birth"></input>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="blood">Blood Group</label>
+                                            <select name="blood" required>
+                                                <option value="" disabled selected hidden>Choose Here</option>
+                                                <option value="">A+</option>
+                                                <option value="">AB+</option>
+                                                <option value="">B+</option>
+                                                <option value="">0+</option>
+                                                <option value="">A-</option>
+                                                <option value="">AB-</option>
+                                                <option value="">B-</option>
+                                                <option value="">0-</option>
+                                                <option value="">Others</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label for="district">District</label>
+                                            <select name="district" required>
+                                                <option value="" disabled selected hidden>Choose a District</option>
+                                                <option value="কক্সবাজার">কক্সবাজার</option>
+                                                <option value="কিশোরগঞ্জ">কিশোরগঞ্জ</option>
+                                                <option value="কুড়িগ্রাম">কুড়িগ্রাম</option>
+                                                <option value="কুমিল্লা">কুমিল্লা</option>
+                                                <option value="কুষ্টিয়া">কুষ্টিয়া</option>
+                                                <option value="খাগড়াছড়ি">খাগড়াছড়ি</option>
+                                                <option value="খুলনা">খুলনা</option>
+                                                <option value="গাইবান্ধা">গাইবান্ধা</option>
+                                                <option value="গাজীপুর">গাজীপুর</option>
+                                                <option value="গোপালগঞ্জ">গোপালগঞ্জ</option>
+                                                <option value="চট্টগ্রাম">চট্টগ্রাম</option>
+                                                <option value="চাঁদপুর">চাঁদপুর</option>
+                                                <option value="চাঁপাইনবাবগঞ্জ">চাঁপাইনবাবগঞ্জ</option>
+                                                <option value="চুয়াডাঙ্গা">চুয়াডাঙ্গা</option>
+                                                <option value="জয়পুরহাট">জয়পুরহাট</option>
+                                                <option value="জামালপুর">জামালপুর</option>
+                                                <option value="ঝালকাঠি">ঝালকাঠি</option>
+                                                <option value="ঝিনাইদহ">ঝিনাইদহ</option>
+                                                <option value="টাঙ্গাইল">টাঙ্গাইল</option>
+                                                <option value="ঠাকুরগাঁও">ঠাকুরগাঁও</option>
+                                                <option value="ঢাকা">ঢাকা</option>
+                                                <option value="দিনাজপুর">দিনাজপুর</option>
+                                                <option value="নওগাঁ">নওগাঁ</option>
+                                                <option value="নড়াইল">নড়াইল</option>
+                                                <option value="নরসিংদি">নরসিংদি</option>
+                                                <option value="নাটোর">নাটোর</option>
+                                                <option value="নারায়ণগঞ্জ">নারায়ণগঞ্জ</option>
+                                                <option value="নীলফামারি">নীলফামারি</option>
+                                                <option value="নেত্রকোনা">নেত্রকোনা</option>
+                                                <option value="নোয়াখালি">নোয়াখালি</option>
+                                                <option value="পঞ্চগড়">পঞ্চগড়</option>
+                                                <option value="পটুয়াখালি">পটুয়াখালি</option>
+                                                <option value="পাবনা">পাবনা</option>
+                                                <option value="পিরোজপুর">পিরোজপুর</option>
+                                                <option value="ফরিদপুর">ফরিদপুর</option>
+                                                <option value="ফেনী">ফেনী</option>
+                                                <option value="বগুড়া">বগুড়া</option>
+                                                <option value="বরগুনা">বরগুনা</option>
+                                                <option value="বরিশাল">বরিশাল</option>
+                                                <option value="বাগেরহাট">বাগেরহাট</option>
+                                                <option value="বান্দরবান">বান্দরবান</option>
+                                                <option value="ব্রাহ্মণবাড়িয়া">ব্রাহ্মণবাড়িয়া</option>
+                                                <option value="ভোলা">ভোলা</option>
+                                                <option value="ময়মনসিংহ">ময়মনসিংহ</option>
+                                                <option value="মাগুরা">মাগুরা</option>
+                                                <option value="মাদারিপুর">মাদারিপুর</option>
+                                                <option value="মানিকগঞ্জ">মানিকগঞ্জ</option>
+                                                <option value="মুন্সিগঞ্জ">মুন্সিগঞ্জ</option>
+                                                <option value="মেহেরপুর">মেহেরপুর</option>
+                                                <option value="মৌলভীবাজার">মৌলভীবাজার</option>
+                                                <option value="যশোর">যশোর</option>
+                                                <option value="রংপুর">রংপুর</option>
+                                                <option value="রাঙ্গামাটি">রাঙ্গামাটি</option>
+                                                <option value="রাজবাড়ি">রাজবাড়ি</option>
+                                                <option value="রাজশাহী">রাজশাহী</option>
+                                                <option value="লক্ষ্মীপুর">লক্ষ্মীপুর</option>
+                                                <option value="লালমনিরহাট">লালমনিরহাট</option>
+                                                <option value="শরিয়তপুর">শরিয়তপুর</option>
+                                                <option value="শেরপুর">শেরপুর</option>
+                                                <option value="সাতক্ষীরা">সাতক্ষীরা</option>
+                                                <option value="সিরাজগঞ্জ">সিরাজগঞ্জ</option>
+                                                <option value="সিলেট">সিলেট</option>
+                                                <option value="সুনামগঞ্জ">সুনামগঞ্জ</option>
+                                                <option value="হবিগঞ্জ">হবিগঞ্জ</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label for="marital_Status">Marital Status</label>
+                                            <select name="marital_Status" required>
+                                                <option value="" disabled selected hidden>Choose Here</option>
+                                                <option value="">Married</option>
+                                                <option value="">Unmarried</option>
+                                                <option value="">Widowed</option>
+                                                <option value="">Divorced</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="email">Employee Email</label>
+                                            <input type="text" name="email"/>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label for="phone">Employee Phone</label>
+                                            <input type="text" name="phone"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <input type="button" name="next" class="next action-button" value="Next"/>
+                                
+                            </fieldset>
+
+                            <!-- Spouse Info(2) -->
+                            <fieldset>
+                                <h2 class="fs-title">Employee Spouse Information</h2>
+
+                                <div class="text-left">
+
+                                    <label for="emp_spouse_name">Employee Spouse Name</label>
+                                    <input type="text" name="emp_spouse_name"/>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="ocp">Employee Spouse Occupation</label>
+                                            <input type="text" name="ocp" ></input>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label for="s_deg">Employee Spouse Designation</label>
+                                            <input type="text" name="s_deg" ></input>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="s_org">Employee Spouse Organization</label>
+                                            <input type="text" name="s_org" ></input>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label for="org_address">Organization Address</label>
+                                            <input type="text" name="org_address" ></input>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="s_district">Spouse Home District</label>
+                                            <select name="">
+                                                <option value="" disabled selected hidden>Choose a District</option>
+                                                <option value="কক্সবাজার">কক্সবাজার</option>
+                                                <option value="কিশোরগঞ্জ">কিশোরগঞ্জ</option>
+                                                <option value="কুড়িগ্রাম">কুড়িগ্রাম</option>
+                                                <option value="কুমিল্লা">কুমিল্লা</option>
+                                                <option value="কুষ্টিয়া">কুষ্টিয়া</option>
+                                                <option value="খাগড়াছড়ি">খাগড়াছড়ি</option>
+                                                <option value="খুলনা">খুলনা</option>
+                                                <option value="গাইবান্ধা">গাইবান্ধা</option>
+                                                <option value="গাজীপুর">গাজীপুর</option>
+                                                <option value="গোপালগঞ্জ">গোপালগঞ্জ</option>
+                                                <option value="চট্টগ্রাম">চট্টগ্রাম</option>
+                                                <option value="চাঁদপুর">চাঁদপুর</option>
+                                                <option value="চাঁপাইনবাবগঞ্জ">চাঁপাইনবাবগঞ্জ</option>
+                                                <option value="চুয়াডাঙ্গা">চুয়াডাঙ্গা</option>
+                                                <option value="জয়পুরহাট">জয়পুরহাট</option>
+                                                <option value="জামালপুর">জামালপুর</option>
+                                                <option value="ঝালকাঠি">ঝালকাঠি</option>
+                                                <option value="ঝিনাইদহ">ঝিনাইদহ</option>
+                                                <option value="টাঙ্গাইল">টাঙ্গাইল</option>
+                                                <option value="ঠাকুরগাঁও">ঠাকুরগাঁও</option>
+                                                <option value="ঢাকা">ঢাকা</option>
+                                                <option value="দিনাজপুর">দিনাজপুর</option>
+                                                <option value="নওগাঁ">নওগাঁ</option>
+                                                <option value="নড়াইল">নড়াইল</option>
+                                                <option value="নরসিংদি">নরসিংদি</option>
+                                                <option value="নাটোর">নাটোর</option>
+                                                <option value="নারায়ণগঞ্জ">নারায়ণগঞ্জ</option>
+                                                <option value="নীলফামারি">নীলফামারি</option>
+                                                <option value="নেত্রকোনা">নেত্রকোনা</option>
+                                                <option value="নোয়াখালি">নোয়াখালি</option>
+                                                <option value="পঞ্চগড়">পঞ্চগড়</option>
+                                                <option value="পটুয়াখালি">পটুয়াখালি</option>
+                                                <option value="পাবনা">পাবনা</option>
+                                                <option value="পিরোজপুর">পিরোজপুর</option>
+                                                <option value="ফরিদপুর">ফরিদপুর</option>
+                                                <option value="ফেনী">ফেনী</option>
+                                                <option value="বগুড়া">বগুড়া</option>
+                                                <option value="বরগুনা">বরগুনা</option>
+                                                <option value="বরিশাল">বরিশাল</option>
+                                                <option value="বাগেরহাট">বাগেরহাট</option>
+                                                <option value="বান্দরবান">বান্দরবান</option>
+                                                <option value="ব্রাহ্মণবাড়িয়া">ব্রাহ্মণবাড়িয়া</option>
+                                                <option value="ভোলা">ভোলা</option>
+                                                <option value="ময়মনসিংহ">ময়মনসিংহ</option>
+                                                <option value="মাগুরা">মাগুরা</option>
+                                                <option value="মাদারিপুর">মাদারিপুর</option>
+                                                <option value="মানিকগঞ্জ">মানিকগঞ্জ</option>
+                                                <option value="মুন্সিগঞ্জ">মুন্সিগঞ্জ</option>
+                                                <option value="মেহেরপুর">মেহেরপুর</option>
+                                                <option value="মৌলভীবাজার">মৌলভীবাজার</option>
+                                                <option value="যশোর">যশোর</option>
+                                                <option value="রংপুর">রংপুর</option>
+                                                <option value="রাঙ্গামাটি">রাঙ্গামাটি</option>
+                                                <option value="রাজবাড়ি">রাজবাড়ি</option>
+                                                <option value="রাজশাহী">রাজশাহী</option>
+                                                <option value="লক্ষ্মীপুর">লক্ষ্মীপুর</option>
+                                                <option value="লালমনিরহাট">লালমনিরহাট</option>
+                                                <option value="শরিয়তপুর">শরিয়তপুর</option>
+                                                <option value="শেরপুর">শেরপুর</option>
+                                                <option value="সাতক্ষীরা">সাতক্ষীরা</option>
+                                                <option value="সিরাজগঞ্জ">সিরাজগঞ্জ</option>
+                                                <option value="সিলেট">সিলেট</option>
+                                                <option value="সুনামগঞ্জ">সুনামগঞ্জ</option>
+                                                <option value="হবিগঞ্জ">হবিগঞ্জ</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label for="s_phone">Personal Phone Number</label>
+                                            <input type="text" name="s_phone"></input>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                                <input type="button" name="next" class="next action-button" value="Next"/>
+                            </fieldset>
+
+                            <!-- Address Info(3) -->
+                            <fieldset>
+                                <h2 class="fs-title">Employee Address Information</h2>
+                                <h2 class="fs-title">Present Address</h2>
+
+                                <!-- Present Address -->
+                                <div class="text-left">
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="pre_house">Village/House & Road</label>
+                                            <input type="text" name="pre_house"/>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="pre_postOffice">Post-Office</label>
+                                            <input type="text" name="pre_postOffice"/>
+                                        </div>
+                                        <div class="col-md-4">
+                                            
+                                        <label for="pre_policeStation">Police Station</label>
+                                        <input type="text" name="pre_policeStation"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="pre_district">District</label>
+                                            <input type="text" name="pre_district"/>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="pre_upazilla">Upazila</label>
+                                            <input type="text" name="pre_upazilla"/>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="telephone">Resident Telephone</label>
+                                            <input type="text" name="pre_telephone"/>
+                                        </div>
+                                    </div>
+                                
+                                </div>
+
+                                <h2 class="fs-title">Permanent Address</h2>
+
+                                <!-- Permanent Address -->
+                                <div class="text-left">
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="per_house">Village/House & Road</label>
+                                            <input type="text" name="per_house"/>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="per_postOffice">Post-Office</label>
+                                            <input type="text" name="per_postOffice"/>
+                                        </div>
+                                        <div class="col-md-4">
+                                            
+                                        <label for="per_policeStation">Police Station</label>
+                                        <input type="text" name="per_policeStation"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="per_district">District</label>
+                                            <input type="text" name="per_district"/>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="per_upazilla">Upazila</label>
+                                            <input type="text" name="per_upazilla"/>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="per_telephone">Resident Telephone</label>
+                                            <input type="text" name="per_telephone"/>
+                                        </div>
+                                    </div>
+                                
+                                </div>
+
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                                <input type="button" name="next" class="next action-button" value="Next"/>
+                            </fieldset>
+                            
+                            <!-- child info(4) -->
+                            <fieldset>
+                                <h2 class="fs-title">Employee Child Information</h2>
+
+                                <div class="text-left">
+                                    <label for="c_name">Child Name</label>
+                                    <input type="text" name="c_name"/>
+
+                                    <label for="c_gender">Gender</label>
+                                    <select name="c_gender">
+                                        <option value="" >Male</option>
+                                        <option value="" >Female</option>
+                                        <option value="" >Others</option>
+                                    </select>
+
+                                    <label for="c_dob">Date of Birth</label>
+                                    <input type="date" name="c_dob"/>
+                                </div>
+
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                                <input type="button" name="next" class="next action-button" value="Next"/>
+                            </fieldset>
+
+                            <!-- first joining info(5) -->
+                            <fieldset>
+                                <h2 class="fs-title">Employee First Joining Information</h2>
+
+                                <div class="text-left">
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="j_date">First Joining Date</label>
+                                            <input type="date" name="j_date"/>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="j_rank">Rank/Class</label>
+                                            <input type="text" name="j_rank"/>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="first_deg">First Designation</label>
+                                            <input type="text" name="first_deg"/>
+                                        </div>
+                                    </div>
+
+                                    <h2 class="fs-title">First Posting Place</h2>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="j_district">District</label>
+                                            <input type="date" name="j_district"/>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="j_upazilla">Upazilla</label>
+                                            <input type="date" name="j_upazilla"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="job_nature">Job Nature</label>
+                                            <select name="job_nature" required>
+                                                <option value="" disabled selected hidden>Choose a Nature</option>
+                                                <option value="" >Revenue</option>
+                                                <option value="" >Development</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label for="j_grade">Grade</label>
+                                            <input type="text" name="j_grade">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="prl">PRL Date</label>
+                                            <input type="date" name="prl"/>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="j_go">G.O Date</label>
+                                            <input type="date" name="j_go"/>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="confirmation_date">Confirmation On Date</label>
+                                            <input type="date" name="confirmation_date"/>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                                <input type="button" name="next" class="next action-button" value="Next"/>
+                            </fieldset>
+
+                            <!-- educational information(6) -->
+                            <fieldset>
+                                <h2 class="fs-title">Educational Information</h2>
+                                
+                                <div class="text-left">
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="e_deg">Degree</label>
+                                            <input type="text" name="e_deg" />
+                                        </div>
+    
+                                        <div class="col-md-6">
+                                            <label for="e_grp">Group/Department</label>
+                                            <input type="text" name="e_grp" />
+                                        </div>
+                                    </div>
+
+                                    <label for="e_institution">Educational Institute</label>
+                                    <input type="text" name="e_institution" />
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="e_board">Board</label>
+                                            <input type="text" name="e_board" />
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label for="e_result">Result</label>
+                                            <input type="text" name="e_result" />
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label for="pass_year">Passing Year</label>
+                                            <input type="text" name="pass_year" />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                                <input type="button" name="next" class="next action-button" value="Next"/>
+
+                            </fieldset> 
+                            
+                            <!-- Employee Posting(8) -->
+                            <fieldset>
+                                <h2 class="fs-title">Posting Workstation</h2>
+                                <div class="text-left">
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="p_deg">Designation</label>
+                                            <input type="text" name="p_deg" />
+                                        </div>
+                                        <div class="col-md-8">
+                                            <label for="p_office">Office Name</label>
+                                            <input type="text" name="p_office" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="p_from_date">From Date</label>    
+                                            <input type="date" name="p_from_date" />                                        
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="p_to_date">To Date</label>    
+                                            <input type="date" name="p_to_date" />                                        
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="p_upazilla">Upazilla</label>
+                                            <input type="text" name="p_upazilla" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="p_district">District</label>
+                                            <input type="text" name="p_district" />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                                <input type="button" name="next" class="next action-button" value="Next"/>
+                            </fieldset>
+
+                            <!-- Promotion Statements(9) -->
+                            <fieldset>
+                                <h2 class="fs-title">Promotion Statements</h2>
+                                <div class="text-left">
+
+                                    <label for="pro_deg">Promoted Designation</label>
+                                    <input type="text" name="pro_deg" />
+
+                                    <label for="pro_nature">Promotion Nature</label>
+                                    <input type="text" name="pro_nature" />
+
+                                    <label for="pro_date">Promotion Date</label>
+                                    <input type="date" name="pro_date" />
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="go_date">G.O. Date</label>
+                                            <input type="date" name="go_date" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="go_number">G.O. Number</label>
+                                            <input type="date" name="go_number" />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                                <input type="button" name="next" class="next action-button" value="Next"/>
+                            </fieldset>
+
+                            <!-- Disciplinary Action(11) -->
+                            <fieldset>
+                                <h2 class="fs-title">Employee Disciplinary Action</h2>
+
+                                <div class="text-left">
+                                    <label for="occurance">Occurance</label>
+                                    <textarea name="occurance"></textarea>
+
+                                    <label for="occ_date">Occuring Date</label>
+                                    <input type="date" name="occ_date" />
+
+                                    <label for="occ_action">Action & Punishment</label>
+                                    <textarea name="occ_action"></textarea>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="memo_no">Memo No.</label>
+                                            <input type="text" name="memo_no" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="memo_date">Memo Date</label>
+                                            <input type="date" name="memo_date" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                                <input class="button" id="submit" type="submit" name="submit" value="Submit" />
+                            
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+                <!-- End of MultiStep Form -->
+            </div>
+        </div>
+        <%- include('../template/footer') -%>
+    </div>
+</div>
+<%- include('../template/footerlink') -%>
