@@ -10,8 +10,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 //mongo config and connection
-const url = "mongodb+srv://el06:test1234@cluster0.a9rlb.mongodb.net/hrdb";
+// const url = "mongodb+srv://el06:test1234@cluster0.a9rlb.mongodb.net/hrdb";
+const url = "mongodb://localhost:27017/hRDataBase";
 mongoose.connect(url, { 
+
     useNewUrlParser: true,
     useFindAndModify: true,
     useUnifiedTopology: true
