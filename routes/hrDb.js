@@ -8,6 +8,8 @@ router.get('/', (req, res) => {
     res.render("pages/landing");
 });
 
+
+//Officials Information Form
 //route  -  GET /addInfoForm (Officials)
 router.get('/addInfoForm',(req, res) => {
     // console.log("get route");
@@ -127,16 +129,17 @@ router.post('/addInfoForm', async (req, res) => {
 
     });
 
-    console.log(officialsInfo);
+    // console.log(officialsInfo);
     try{
         const officialsData = await officialsInfo.save();
-        res.render('pages/offInfoForm');
+        // res.render('pages/offInfoForm');
     } catch(err){
         console.log(err);
     }
 });
 
 
+//Staffs Information Form
 //route  -  GET /staffInfoForm (stuff)
 router.get('/staffInfoForm', async (req, res) => {
     // console.log("get route");
@@ -147,6 +150,8 @@ router.get('/staffInfoForm', async (req, res) => {
     }
 });
 
+
+//Information Table
 //route  -  GET /officialsTable (Officials)
 router.get('/officialsTable', async (req, res) => {
     // console.log("get route");
@@ -158,5 +163,16 @@ router.get('/officialsTable', async (req, res) => {
     }
 });
 
+
+//Officials Actions
+//@route  -  GET /showDetails (Officials)
+router.get('/showDetails/:id', async (req, res) => {
+    try {
+        const detailedData = await OfficialsInfo.findById(req.params.id);
+        res.render('pages/actions/officials/showDetails', {output:detailedData});
+    } catch (err) {
+        console.log(err);
+    }
+})
 module.exports = router;
 
