@@ -1,16 +1,17 @@
-<%- include('../template/header') -%>
+<%- include('../../../template/header') -%>
 
 <div class="wrapper">
-    <%- include('../template/sidebar') -%>
+    <%- include('../../../template/sidebar') -%>
     <div class="main-panel">
-        <%- include('../template/navbar') -%>
+        <%- include('../../../template/navbar') -%>
         <div class="content">
             <div class="container-fluid">
             <!-- your content here -->
+
                 <!--Start MultiStep Form -->
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3">
-                        <form action="/addInfoForm" id="msform" method="post"  role="form">
+                        <form action="/editDetails/<%= output.id %>" id="msform" method="post" role="form">
                             <!-- progressbar -->
 
                             <ul id="progressbar">
@@ -36,37 +37,37 @@
                                 <div class="text-left">
 
                                     <label for="emp_name">Employee Name</label>
-                                    <input type="text" name="emp_name"/>
+                                    <input type="text" name="emp_name" value="<%= output.basicInfo.employeeName %>" />
 
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="f_name">Father's Name</label>
-                                            <input name="f_name"></input>
+                                            <input type="text" name="f_name" value="<%= output.basicInfo.fatherName %>" />
                                         </div>
 
                                         <div class="col-md-6">
                                             <label for="m_name">Mother's Name</label>
-                                            <input type="text" name="m_name"/>
+                                            <input type="text" name="m_name" value="<%= output.basicInfo.motherName %>" />
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="emp_deg">Designation</label>
-                                            <input type="text" name="emp_deg" ></input>
+                                            <input type="text" name="emp_deg" value="<%= output.basicInfo.designation %>" />
                                         </div>
 
                                         <div class="col-md-6">
                                             <label for="n_id">National ID</label>
-                                            <input type="text" name="n_id"></input>
+                                            <input type="text" name="n_id" value="<%= output.basicInfo.nationalID %>"/>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-4">
                                             <label for="reg">Religion</label>
-                                            <select name="reg" >
-                                                <option value="" disabled selected hidden>Choose a Religion</option>
+                                            <select name="reg" value="<%= output.basicInfo.religion %>">
+                                                
                                                 <option value="Islam">Islam</option>
                                                 <option value="Hindu">Hindu</option>
                                                 <option value="Christian">Christian</option>
@@ -77,8 +78,8 @@
 
                                         <div class="col-md-4">
                                             <label for="gen">Gender</label>
-                                            <select name="gen" >
-                                                <option value="" disabled selected hidden>Choose a Gender</option>
+                                            <select name="gen" value="<%= output.basicInfo.gender %>">
+                                                
                                                 <option value="Male">Male</option>
                                                 <option value="Female">Female</option>
                                                 <option value="Others">Others</option>
@@ -87,15 +88,15 @@
 
                                         <div class="col-md-4">
                                             <label for="dob">Date of Birth</label>
-                                            <input type="date" name="dob" placeholder="Date of Birth"></input>
+                                            <input type="date" name="dob"  value="<%= output.basicInfo.dateOfbirth.toISOString().split('T')[0] %>"/>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-4">
                                             <label for="blood">Blood Group</label>
-                                            <select name="blood" >
-                                                <option value="" disabled selected hidden>Choose Here</option>
+                                            <select name="blood" value="<%= output.basicInfo.bloodGroup %>" >
+
                                                 <option value="A+">A+</option>
                                                 <option value="AB+">AB+</option>
                                                 <option value="B+">B+</option>
@@ -110,8 +111,8 @@
 
                                         <div class="col-md-4">
                                             <label for="district">District</label>
-                                            <select name="district" >
-                                                <option value="" disabled selected hidden>Choose a District</option>
+                                            <select name="district" value="<%= output.basicInfo.homeDistrict %>">
+
                                                 <option value="কক্সবাজার">কক্সবাজার</option>
                                                 <option value="কিশোরগঞ্জ">কিশোরগঞ্জ</option>
                                                 <option value="কুড়িগ্রাম">কুড়িগ্রাম</option>
@@ -181,8 +182,8 @@
 
                                         <div class="col-md-4">
                                             <label for="marital_Status">Marital Status</label>
-                                            <select name="marital_Status" >
-                                                <option value="" disabled selected hidden>Choose Here</option>
+                                            <select name="marital_Status" value="<%= output.basicInfo.maritalStatus %>">
+                                                
                                                 <option value="Married">Married</option>
                                                 <option value="Unmarried">Unmarried</option>
                                                 <option value="Widowed">Widowed</option>
@@ -194,12 +195,12 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="email">Employee Email</label>
-                                            <input type="text" name="email"/>
+                                            <input type="text" name="email" value="<%= output.basicInfo.email %>"/>
                                         </div>
 
                                         <div class="col-md-6">
                                             <label for="phone">Employee Phone</label>
-                                            <input type="text" name="phone"/>
+                                            <input type="text" name="phone" value="<%= output.basicInfo.phone %>"/>
                                         </div>
                                     </div>
                                 </div>
@@ -215,37 +216,37 @@
                                 <div class="text-left">
 
                                     <label for="emp_spouse_name">Employee Spouse Name</label>
-                                    <input type="text" name="emp_spouse_name"/>
+                                    <input type="text" name="emp_spouse_name" value="<%= output.spouseInfo.spouseName %>"/>
 
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="s_ocp">Employee Spouse Occupation</label>
-                                            <input type="text" name="s_ocp" ></input>
+                                            <input type="text" name="s_ocp" value="<%= output.spouseInfo.spouseOccupation %>"/>
                                         </div>
 
                                         <div class="col-md-6">
                                             <label for="s_deg">Employee Spouse Designation</label>
-                                            <input type="text" name="s_deg" ></input>
+                                            <input type="text" name="s_deg" value="<%= output.spouseInfo.spouseDesignation %>" />
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="s_org">Employee Spouse Organization</label>
-                                            <input type="text" name="s_org" ></input>
+                                            <input type="text" name="s_org" value="<%= output.spouseInfo.spouseOrganization %>" />
                                         </div>
 
                                         <div class="col-md-6">
                                             <label for="org_address">Organization Address</label>
-                                            <input type="text" name="org_address" ></input>
+                                            <input type="text" name="org_address" value="<%= output.spouseInfo.spouseOrganizationAddress %>"/>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="s_district">Spouse Home District</label>
-                                            <select name="s_district">
-                                                <option value="" disabled selected hidden>Choose a District</option>
+                                            <select name="s_district" value="<%= output.spouseInfo.spouseHomeDistrict %>">
+                                                
                                                 <option value="কক্সবাজার">কক্সবাজার</option>
                                                 <option value="কিশোরগঞ্জ">কিশোরগঞ্জ</option>
                                                 <option value="কুড়িগ্রাম">কুড়িগ্রাম</option>
@@ -315,7 +316,7 @@
 
                                         <div class="col-md-6">
                                             <label for="s_phone">Personal Phone Number</label>
-                                            <input type="text" name="s_phone"></input>
+                                            <input type="text" name="s_phone" value="<%= output.spouseInfo.spousePhoneNo %>">
                                         </div>
                                     </div>
                                 </div>
@@ -332,14 +333,14 @@
 
                                 <!-- Present Address -->
                                 <div class="text-left">                                   
-                                    <textarea name="presentAddress"></textarea>
+                                    <textarea name="presentAddress"><%= output.address.present_address %></textarea>
                                 </div>
 
                                 <h2 class="fs-title">Detailed Permanent Address</h2>
 
                                 <!-- Permanent Address -->
                                 <div class="text-left">
-                                    <textarea name="permanentAddress"></textarea>
+                                    <textarea name="permanentAddress"><%= output.address.permanent_address %></textarea>
                                 </div>
 
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
@@ -350,22 +351,25 @@
                             <fieldset>
                                 <h2 class="fs-title">Employee Child Information</h2>
 
-                                <div class="text-left">
-                                    <label for="c_name">Child Name</label>
-                                    <input type="text" name="c_name"/>
+                                <% output.childInfo.forEach((entry) => { %>
 
-                                    <label for="c_gender">Gender</label>
-                                    <select name="c_gender">
-                                        <option value="" disabled selected hidden>Choose a Gender</option>
-                                        <option value="Male" >Male</option>
-                                        <option value="Female" >Female</option>
-                                        <option value="Others" >Others</option>
-                                    </select>
+                                    <div class="text-left">
+                                        <label for="c_name">Child Name</label>
+                                        <input type="text" name="c_name" value="<%= entry.child_name %>" />
 
-                                    <label for="c_dob">Date of Birth</label>
-                                    <input type="date" name="c_dob"/>
-                                </div>
+                                        <label for="c_gender">Gender</label>
+                                        <select name="c_gender" value="<%= entry.child_gender %>">
+                                            
+                                            <option value="Male" >Male</option>
+                                            <option value="Female" >Female</option>
+                                            <option value="Others" >Others</option>
+                                        </select>
 
+                                        <label for="c_dob">Date of Birth</label>
+                                        <input type="date" name="c_dob" value="<%= entry.child_dateOfBirth.toISOString().split('T')[0] %>"/>
+                                    </div>
+
+                                <% }); %>
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                                 <input type="button" name="next" class="next action-button" value="Next"/>
                             </fieldset>
@@ -379,15 +383,15 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <label for="j_date">First Joining Date</label>
-                                            <input type="date" name="j_date"/>
+                                            <input type="date" name="j_date" value="<%= output.firstJoinInfo.first_joining_date.toISOString().split('T')[0] %>" />
                                         </div>
                                         <div class="col-md-4">
                                             <label for="j_rank">Rank/Class</label>
-                                            <input type="text" name="j_rank"/>
+                                            <input type="text" name="j_rank" value="<%= output.firstJoinInfo.rank %>"/>
                                         </div>
                                         <div class="col-md-4">
                                             <label for="first_deg">First Designation</label>
-                                            <input type="text" name="first_deg"/>
+                                            <input type="text" name="first_deg" value="<%= output.firstJoinInfo.first_designation %>"/>
                                         </div>
                                     </div>
 
@@ -395,19 +399,19 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="j_district">District</label>
-                                            <input type="text" name="j_district"/>
+                                            <input type="text" name="j_district" value="<%= output.firstJoinInfo.first_posting_district %>"/>
                                         </div>
                                         <div class="col-md-6">
                                             <label for="j_upazilla">Upazilla</label>
-                                            <input type="text" name="j_upazilla"/>
+                                            <input type="text" name="j_upazilla" value="<%= output.firstJoinInfo.first_posting_upazilla %>"/>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="job_nature">Job Nature</label>
-                                            <select name="job_nature" >
-                                                <option value="" disabled selected hidden>Choose a Nature</option>
+                                            <select name="job_nature" value="<%= output.firstJoinInfo.job_nature %>" >
+                                                
                                                 <option value="Revenue" >Revenue</option>
                                                 <option value="Development" >Development</option>
                                             </select>
@@ -415,22 +419,22 @@
 
                                         <div class="col-md-6">
                                             <label for="j_grade">Grade</label>
-                                            <input type="text" name="j_grade">
+                                            <input type="text" name="j_grade" value="<%= output.firstJoinInfo.grade %>">
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-4">
                                             <label for="prl">PRL Date</label>
-                                            <input type="date" name="prl"/>
+                                            <input type="date" name="prl" value="<%= output.firstJoinInfo.PRL_date.toISOString().split('T')[0] %>"/>
                                         </div>
                                         <div class="col-md-4">
                                             <label for="j_go">G.O Date</label>
-                                            <input type="date" name="j_go"/>
+                                            <input type="date" name="j_go" value="<%= output.firstJoinInfo.GO_date.toISOString().split('T')[0] %>"/>
                                         </div>
                                         <div class="col-md-4">
                                             <label for="confirmation_date">Confirmation On Date</label>
-                                            <input type="date" name="confirmation_date"/>
+                                            <input type="date" name="confirmation_date" value="<%= output.firstJoinInfo.confirmation_date.toISOString().split('T')[0] %>"/>
                                         </div>
                                     </div>
 
@@ -444,41 +448,42 @@
                             <fieldset>
                                 <h2 class="fs-title">Educational Information</h2>
                                 
-                                <div class="text-left">
+                                <% output.eduInfo.forEach((entry) => { %>
+                                    <div class="text-left">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="e_deg">Degree</label>
+                                                <input type="text" name="e_deg" value="<%= entry.degree %>" />
+                                            </div>
+        
+                                            <div class="col-md-6">
+                                                <label for="e_grp">Group/Department</label>
+                                                <input type="text" name="e_grp" value="<%= entry.group %>" />
+                                            </div>
+                                        </div>
 
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="e_deg">Degree</label>
-                                            <input type="text" name="e_deg" />
+                                        <label for="e_institution">Educational Institute</label>
+                                        <input type="text" name="e_institution" value="<%= entry.institute %>" />
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label for="e_board">Board</label>
+                                                <input type="text" name="e_board" value="<%= entry.board %>"/>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label for="e_result">Result</label>
+                                                <input type="text" name="e_result" value="<%= entry.results %>"/>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label for="pass_year">Passing Year</label>
+                                                <input type="text" name="pass_year" value="<%= entry.passing_years %>"/>
+                                            </div>
                                         </div>
-    
-                                        <div class="col-md-6">
-                                            <label for="e_grp">Group/Department</label>
-                                            <input type="text" name="e_grp" />
-                                        </div>
+
                                     </div>
-
-                                    <label for="e_institution">Educational Institute</label>
-                                    <input type="text" name="e_institution" />
-
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <label for="e_board">Board</label>
-                                            <input type="text" name="e_board" />
-                                        </div>
-
-                                        <div class="col-md-4">
-                                            <label for="e_result">Result</label>
-                                            <input type="text" name="e_result" />
-                                        </div>
-
-                                        <div class="col-md-4">
-                                            <label for="pass_year">Passing Year</label>
-                                            <input type="text" name="pass_year" />
-                                        </div>
-                                    </div>
-
-                                </div>
+                                <% }); %>
 
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                                 <input type="button" name="next" class="next action-button" value="Next"/>
@@ -488,58 +493,59 @@
                             <!-- Employee Training(7) -->
                             <fieldset>
                                 <h2 class="fs-title">Training Information</h2>
-                                <div class="text-left">
+                                    <% output.trainingInfo.forEach((entry) => { %>
+                                    <div class="text-left">
 
-                                    <div class="row">
-                                        <div class="col-md-8">
-                                            <label for="t_type">Training Type</label>
-                                            <select name="t_type" >
-                                                <option value="" disabled selected hidden>Choose a Type</option>
-                                                <option value="Local">Local</option>
-                                                <option value="Foreign">Foreign</option>
-                                            </select>
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <label for="t_type">Training Type</label>
+                                                <select name="t_type" value="<%= entry.training_type %>">
+                                                    
+                                                    <option value="Local">Local</option>
+                                                    <option value="Foreign">Foreign</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label for="t_course">Course Title</label>
+                                                <input type="text" name="t_course" value="<%= entry.course_title %>"/>
+                                            </div>
                                         </div>
 
-                                        <div class="col-md-4">
-                                            <label for="t_course">Course Title</label>
-                                            <input type="text" name="t_course" />
+                                        <label for="t_institution">Institution</label>
+                                        <input type="text" name="t_institution" value="<%= entry.institution_name %>"/>
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label for="t_country">Country</label>
+                                                <input type="text" name="t_country" value="<%= entry.country %>"/>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label for="t_start">Starting Date</label>
+                                                <input type="date" name="t_start" value="<%= entry.start_date.toISOString().split('T')[0] %>"/>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label for="t_end">Ending Date</label>
+                                                <input type="date" name="t_end" value="<%= entry.end_date.toISOString().split('T')[0] %>"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="t_grade">Grade</label>
+                                                <input type="text" name="t_grade" value="<%= entry.grade %>"/>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label for="t_position">Position</label>
+                                                <input type="text" name="t_position" value="<%= entry.position %>"/>
+                                            </div>
+
                                         </div>
                                     </div>
-
-                                    <label for="t_institution">Institution</label>
-                                    <input type="text" name="t_institution" />
-
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <label for="t_country">Country</label>
-                                            <input type="text" name="t_country" />
-                                        </div>
-
-                                        <div class="col-md-4">
-                                            <label for="t_start">Starting Date</label>
-                                            <input type="date" name="t_start" />
-                                        </div>
-
-                                        <div class="col-md-4">
-                                            <label for="t_end">Ending Date</label>
-                                            <input type="date" name="t_end" />
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="t_grade">Grade</label>
-                                            <input type="text" name="t_grade" />
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <label for="t_position">Position</label>
-                                            <input type="text" name="t_position" />
-                                        </div>
-
-                                    </div>
-                                </div>
-
+                                <% }); %>
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                                 <input type="button" name="next" class="next action-button" value="Next"/>    
                             </fieldset>
@@ -547,43 +553,45 @@
                             <!-- Employee Posting(8) -->
                             <fieldset>
                                 <h2 class="fs-title">Posting Workstation</h2>
-                                <div class="text-left">
 
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <label for="p_deg">Designation</label>
-                                            <input type="text" name="p_deg" />
+                                <% output.postingInfo.forEach((entry) => { %>
+                                    <div class="text-left">
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label for="p_deg">Designation</label>
+                                                <input type="text" name="p_deg" value="<%= entry.designation %>"/>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <label for="p_office">Office Name</label>
+                                                <input type="text" name="p_office" value="<%= entry.office_name %>"/>
+                                            </div>
                                         </div>
-                                        <div class="col-md-8">
-                                            <label for="p_office">Office Name</label>
-                                            <input type="text" name="p_office" />
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="p_from_date">From Date</label>    
+                                                <input type="date" name="p_from_date" value="<%= entry.from_date.toISOString().split('T')[0] %>" >                                        
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="p_to_date">To Date</label>    
+                                                <input type="date" name="p_to_date" value="<%= entry.to_date.toISOString().split('T')[0] %>"/>                                        
+                                            </div>
                                         </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="p_upazilla">Upazilla</label>
+                                                <input type="text" name="p_upazilla" value="<%= entry.upazilla %>"/>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="p_district">District</label>
+                                                <input type="text" name="p_district" value="<%= entry.district %>"/>
+                                            </div>
+                                        </div>
+
                                     </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="p_from_date">From Date</label>    
-                                            <input type="date" name="p_from_date" />                                        
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="p_to_date">To Date</label>    
-                                            <input type="date" name="p_to_date" />                                        
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="p_upazilla">Upazilla</label>
-                                            <input type="text" name="p_upazilla" />
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="p_district">District</label>
-                                            <input type="text" name="p_district" />
-                                        </div>
-                                    </div>
-
-                                </div>
-
+                                <% }); %>
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                                 <input type="button" name="next" class="next action-button" value="Next"/>
                             </fieldset>
@@ -591,30 +599,32 @@
                             <!-- Promotion Statements(9) -->
                             <fieldset>
                                 <h2 class="fs-title">Promotion Statements</h2>
-                                <div class="text-left">
 
-                                    <label for="pro_deg">Promoted Designation</label>
-                                    <input type="text" name="pro_deg" />
+                                <% output.promotionInfo.forEach((entry) => { %>
+                                    <div class="text-left">
 
-                                    <label for="pro_nature">Promotion Nature</label>
-                                    <input type="text" name="pro_nature" />
+                                        <label for="pro_deg">Promoted Designation</label>
+                                        <input type="text" name="pro_deg" value="<%= entry.promoted_designation %>"/>
 
-                                    <label for="pro_date">Promotion Date</label>
-                                    <input type="date" name="pro_date" />
+                                        <label for="pro_nature">Promotion Nature</label>
+                                        <input type="text" name="pro_nature" value="<%= entry.promotion_nature %>"/>
 
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="go_date">G.O. Date</label>
-                                            <input type="date" name="go_date" />
+                                        <label for="pro_date">Promotion Date</label>
+                                        <input type="date" name="pro_date" value="<%= entry.promotion_date.toISOString().split('T')[0] %>"/>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="go_date">G.O. Date</label>
+                                                <input type="date" name="go_date" value="<%= entry.GO_date.toISOString().split('T')[0] %>"/>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="go_number">G.O. Number</label>
+                                                <input type="string" name="go_number" value="<%= entry.GO_number %>"/>
+                                            </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <label for="go_number">G.O. Number</label>
-                                            <input type="string" name="go_number" />
-                                        </div>
+
                                     </div>
-
-                                </div>
-
+                                <% }); %>
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                                 <input type="button" name="next" class="next action-button" value="Next"/>
                             </fieldset>
@@ -622,21 +632,24 @@
                             <!-- Employee Publication(10)  -->
                             <fieldset>
                                 <h2 class="fs-title">Employee Publications</h2>
-                                <div class="text-left">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="pub_type">Publication Type</label>
-                                            <input type="text" name="pub_type" />
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="pub_date">Publication Date</label>
-                                            <input type="date" name="pub_date" />
-                                        </div>
-                                    </div>
 
-                                    <label for="pub_des">Description</label>
-                                    <textarea name="pub_des"></textarea>
-                                </div>
+                                <% output.publicationInfo.forEach((entry) => { %>
+                                    <div class="text-left">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="pub_type">Publication Type</label>
+                                                <input type="text" name="pub_type" value="<%= entry.pub_type %>"/>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="pub_date">Publication Date</label>
+                                                <input type="date" name="pub_date" value="<%= entry.date.toISOString().split('T')[0] %>"/>
+                                            </div>
+                                        </div>
+
+                                        <label for="pub_des">Description</label>
+                                        <textarea name="pub_des"><%= entry.description %></textarea>
+                                    </div>
+                                <% }); %>
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                                 <input type="button" name="next" class="next action-button" value="Next"/>
                             </fieldset>
@@ -645,39 +658,41 @@
                             <fieldset>
                                 <h2 class="fs-title">Employee Disciplinary Action</h2>
 
-                                <div class="text-left">
-                                    <label for="occurance">Occurance</label>
-                                    <textarea name="occurance"></textarea>
+                                <% output.disciplineInfo.forEach((entry) => { %>
+                                    <div class="text-left">
+                                        <label for="occurance">Occurance</label>
+                                        <textarea name="occurance"><%= entry.occurance %></textarea>
 
-                                    <label for="occ_date">Occuring Date</label>
-                                    <input type="date" name="occ_date" />
+                                        <label for="occ_date">Occuring Date</label>
+                                        <input type="date" name="occ_date" value="<%= entry.occuring_date.toISOString().split('T')[0] %>"/>
 
-                                    <label for="occ_action">Action & Punishment</label>
-                                    <textarea name="occ_action"></textarea>
+                                        <label for="occ_action">Action & Punishment</label>
+                                        <textarea name="occ_action"><%= entry.action %></textarea>
 
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="memo_no">Memo No.</label>
-                                            <input type="text" name="memo_no" />
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="memo_date">Memo Date</label>
-                                            <input type="date" name="memo_date" />
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="memo_no">Memo No.</label>
+                                                <input type="text" name="memo_no" value="<%= entry.memo_No %>"/>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="memo_date">Memo Date</label>
+                                                <input type="date" name="memo_date" value="<%= entry.memo_date.toISOString().split('T')[0] %>"/>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-
+                                <% }); %>
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                                <input type="submit" name="submit" value="submit" class="btn btn-primary" style="background-color: #ee0979;">
+                                <input type="submit" name="submit" value="Update" class="btn btn-primary" style="background-color: #ee0979;">
                             
                             </fieldset>
                         </form>
                     </div>
                 </div>
                 <!-- End of MultiStep Form -->
+                
             </div>
         </div>
-        <%- include('../template/footer') -%>
+        <%- include('../../../template/footer') -%>
     </div>
 </div>
-<%- include('../template/footerlink') -%>
+<%- include('../../../template/footerlink') -%>
