@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
-const OfficialsInfo = require('../schema/officials/officials')
+const OfficialsInfo = require('../schema/officials/officials');
+const StaffsInfo = require('../schema/staffs/staffs');
 
 //@route  -  GET  / (landing page)
 router.get('/', (req, res) => {
@@ -9,8 +10,9 @@ router.get('/', (req, res) => {
 });
 
 
-//Officials Information Form
-//@route  -  GET /addInfoForm (Officials)
+//Officials Information Form ------------------------------------------
+
+//@route  -  GET /addInfoForm 
 router.get('/addInfoForm',(req, res) => {
     // console.log("get route");
     try{
@@ -20,7 +22,7 @@ router.get('/addInfoForm',(req, res) => {
     }
 });
 
-//@route  -  POST /addInfoForm (Officials)
+//@route  -  POST /addInfoForm 
 router.post('/addInfoForm', async (req, res) => {
     
     const officialsInfo = new OfficialsInfo({
@@ -132,15 +134,16 @@ router.post('/addInfoForm', async (req, res) => {
     // console.log(officialsInfo);
     try{
         const officialsData = await officialsInfo.save();
-        res.render('pages/offInfoForm');
+        res.render('pages/forms/offInfoForm');
     } catch(err){
         console.log(err);
     }
 });
 
 
-//Staffs Information Form
-//@route  -  GET /staffInfoForm (stuff)
+//Staffs Information Form ---------------------------------------------
+
+//@route  -  GET /staffInfoForm 
 router.get('/addStaffInfoForm', async (req, res) => {
     // console.log("get route");
     try{
@@ -150,8 +153,108 @@ router.get('/addStaffInfoForm', async (req, res) => {
     }
 });
 
+//@route  -  POST /staffInfoForm
+router.post('/staffInfoForm', async (req, res) => {
 
-//Information Table
+    const staffsInfo = new StaffsInfo({
+        basicInfo: {
+            employeeName: req.body.emp_name,
+            fatherName: req.body.f_name,
+            motherName: req.body.m_name,
+            designation: req.body.emp_deg,
+            nationalID: req.body.n_id,
+            religion: req.body.reg,
+            gender: req.body.gen,
+            dateOfbirth: req.body.dob,
+            bloodGroup: req.body.blood,
+            homeDistrict: req.body.district,
+            maritalStatus: req.body.marital_Status,
+            email: req.body.email,
+            phone: req.body.phone
+        },
+
+        spouseInfo: {
+            spouseName: req.body.emp_spouse_name,
+            spouseOccupation: req.body.s_ocp,
+            spouseDesignation: req.body.s_deg,
+            spouseOrganization: req.body.s_org,
+            spouseOrganizationAddress: req.body.org_address,
+            spouseHomeDistrict: req.body.s_district,
+            spousePhoneNo: req.body.s_phone
+        },
+
+        address: {
+            //present address
+            present_address: req.body.presentAddress,
+            // permanent Address
+            permanent_address: req.body.permanentAddress
+        },
+
+        childInfo: [{
+            child_name: req.body.c_name,
+            child_gender: req.body.c_gender,
+            child_dateOfBirth: req.body.c_dob
+        }], 
+
+        firstJoinInfo:{
+            first_joining_date: req.body.j_date,
+            rank: req.body.j_rank,
+            first_designation: req.body.first_deg,
+            first_posting_district: req.body.j_district,
+            first_posting_upazilla: req.body.j_upazilla,
+            job_nature: req.body.job_nature,
+            grade: req.body.j_grade,
+            PRL_date: req.body.prl,
+            GO_date: req.body.j_go,
+            confirmation_date: req.body.confirmation_date
+        },
+
+        eduInfo: [{
+            degree: req.body.e_deg,
+            group: req.body.e_grp,
+            institute: req.body.e_institution,
+            board: req.body.e_board,
+            results: req.body.e_result,
+            passing_years: req.body.pass_year
+        }],
+
+        postingInfo: [{
+            designation: req.body.p_deg,
+            office_name: req.body.p_office,
+            from_date: req.body.p_from_date,
+            to_date: req.body.p_to_date,
+            upazilla: req.body.p_upazilla,
+            district: req.body.p_district
+        }],
+
+        promotionInfo: [{
+            promoted_designation: req.body.pro_deg,
+            promotion_nature: req.body.pro_nature,
+            promotion_date: req.body.pro_date,
+            GO_date: req.body.go_date,
+            GO_number: req.body.go_number
+        }],
+
+        disciplineInfo: [{
+            occurance: req.body.occurance,
+            occuring_date: req.body.occ_date,
+            action: req.body.occ_action,
+            memo_No: req.body.memo_no,
+            memo_date: req.body.memo_date
+        }]
+    });
+
+    try {
+        const staffsData = await staffsInfo.save();
+        res.render('pages/forms/staffInfoForm');
+    } catch (err) {
+        console.log(err);
+    }
+})
+
+
+//Information Table ---------------------------------------------------
+
 //@route  -  GET /officialsTable (Officials)
 router.get('/officialsTable', async (req, res) => {
     // console.log("get route");
@@ -163,8 +266,20 @@ router.get('/officialsTable', async (req, res) => {
     }
 });
 
+//@route  -  GET /staffsTable (Staffs)
+router.get('/staffsTable', async (req, res) => {
+    // console.log("get route");
+    try{
+        const tableData = await StaffsInfo.find();
+        res.render('pages/table/staffsTable', {output:tableData});
+    } catch(err){
+        console.log(err);
+    }
+});
 
-//Officials Actions
+
+//Officials Actions  ------------------------------------------------------------
+
 //@route  -  GET /showDetails/:id 
 router.get('/showDetails/:id', async (req, res) => {
     try {
@@ -300,10 +415,10 @@ router.post('/editDetails/:id', async (req, res) => {
     } catch (err) {
         console.log(err);
     }
-})
+});
 
 //@route  -  GET /DELETE /:id
-router.get('/deleteEmployee/:id', async (req, res) => {
+router.get('/deleteOfficials/:id', async (req, res) => {
     try{
         const deleteData = await OfficialsInfo.findById(req.params.id);
         const deleteDataById = await deleteData.remove();
@@ -311,7 +426,139 @@ router.get('/deleteEmployee/:id', async (req, res) => {
     } catch (err) {
         console.log(err);
     }
-})
+});
+
+
+//Staffs Actions  ------------------------------------------------------------
+
+//@route  -  GET /showStaffDetails/:id 
+router.get('/showStaffDetails/:id', async (req, res) => {
+    try {
+        const detailedData = await StaffsInfo.findById(req.params.id);
+        res.render('pages/actions/staffs/showStaffDetails', {output:detailedData});
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+//@route  -  GET /editStaffDetails/:id
+router.get('/editStaffDetails/:id', async (req, res) => {
+    try {
+        const editData = await StaffsInfo.findById(req.params.id);
+        res.render('pages/actions/staffs/editStaffDetails', {output:editData});
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+//@route  -  POST /editStaffDetails/:id
+router.post('/editStaffDetails/:id', async (req, res) => {
+    try {
+        const editData = await StaffsInfo.findById(req.params.id);
+
+        // Basic Info
+        editData.basicInfo.employeeName = req.body.emp_name;
+        editData.basicInfo.fatherName = req.body.f_name;
+        editData.basicInfo.motherName = req.body.m_name;
+        editData.basicInfo.designation = req.body.emp_deg;
+        editData.basicInfo.nationalID = req.body.n_id;
+        editData.basicInfo.religion = req.body.reg;
+        editData.basicInfo.gender = req.body.gen;
+        editData.basicInfo.dateOfbirth = req.body.dob;
+        editData.basicInfo.bloodGroup = req.body.blood;
+        editData.basicInfo.homeDistrict = req.body.district;
+        editData.basicInfo.maritalStatus = req.body.marital_Status;
+        editData.basicInfo.email = req.body.email;
+        editData.basicInfo.phone = req.body.phone;
+
+        // Spouse Info
+        editData.spouseInfo.spouseName = req.body.emp_spouse_name;
+        editData.spouseInfo.spouseOccupation = req.body.s_ocp;
+        editData.spouseInfo.spouseDesignation = req.body.s_deg;
+        editData.spouseInfo.spouseOrganization = req.body.s_org;
+        editData.spouseInfo.spouseOrganizationAddress = req.body.org_address;
+        editData.spouseInfo.spouseHomeDistrict = req.body.s_district;
+        editData.spouseInfo.spousePhoneNo = req.body.s_phone;
+
+        // Address Information
+        editData.address.present_address = req.body.presentAddress;
+        editData.address.permanent_address = req.body.permanentAddress;
+
+        //Child Information
+        editData.childInfo.forEach((entry) => {
+            entry.child_name = req.body.c_name;
+            entry.child_gender = req.body.c_gender;
+            entry.child_dateOfBirth = req.body.c_dob;
+        });
+
+        //First Joining Info
+        editData.firstJoinInfo.first_joining_date = req.body.j_date;
+        editData.firstJoinInfo.rank = req.body.j_rank;
+        editData.firstJoinInfo.first_designation = req.body.first_deg;
+        editData.firstJoinInfo.first_posting_district = req.body.j_district;
+        editData.firstJoinInfo.first_posting_upazilla = req.body.j_upazilla;
+        editData.firstJoinInfo.job_nature = req.body.j_nature;
+        editData.firstJoinInfo.grade = req.body.j_grade;
+        editData.firstJoinInfo.PRL_date = req.body.prl;
+        editData.firstJoinInfo.GO_date = req.body.j_go;
+        editData.firstJoinInfo.confirmation_date = req.body.confirmation_date;
+
+        //Education Information
+        editData.eduInfo.forEach((entry) => {
+            entry.degree = req.body.e_deg;
+            entry.group =req.body.e_grp;
+            entry.institute = req.body.e_institution;
+            entry.board = req.body.e_board;
+            entry.results = req.body.e_result;
+            entry.passing_years = req.body.pass_year;
+        });
+
+        //Posting Information
+        editData.postingInfo.forEach((entry) => {
+            entry.designation = req.body.p_deg;
+            entry.office_name = req.body.p_office;
+            entry.from_date = req.body.p_from_date;
+            entry.to_date = req.body.p_to_date;
+            entry.upazilla = req.body.p_upazilla;
+            entry.district = req.body.p_district;
+        });
+
+        // Promotion Info
+        editData.promotionInfo.forEach((entry) => {
+            entry.promoted_designation = req.body.pro_deg;
+            entry.promotion_nature = req.body.pro_nature;
+            entry.promotion_date = req.body.pro_date;
+            entry.GO_date = req.body.go_date;
+            entry.GO_number = req.body.go_number;
+        });
+
+        //Discipline Information
+        editData.disciplineInfo.forEach((entry) => {
+            entry.occurance = req.body.occurance;
+            entry.occuring_date = req.body.occ_date;
+            entry.action = req.body.occ_action;
+            entry.memo_No = req.body.memo_no;
+            entry.memo_date = req.body.memo_date;
+        });
+
+        const editDataById = await editData.save();
+
+        res.redirect('/staffsTable');
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+//@route  -  GET /DELETE /:id
+router.get('/deleteStaffs/:id', async (req, res) => {
+    try{
+        const deleteData = await StaffsInfo.findById(req.params.id);
+        const deleteDataById = await deleteData.remove();
+        res.redirect('/staffsTable');
+    } catch (err) {
+        console.log(err);
+    }
+});
 
 module.exports = router;
 

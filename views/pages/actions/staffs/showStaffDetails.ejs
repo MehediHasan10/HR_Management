@@ -1,0 +1,124 @@
+<%- include('../../../template/header') -%>
+
+<div class="wrapper">
+    <%- include('../../../template/staffSidebar') -%>
+    <div class="main-panel">
+        <%- include('../../../template/navbar') -%>
+        <div class="content">
+            <div class="container-fluid">
+            <!-- your content here -->
+                <div class="container" style="color:white">
+                    <h1 class="text-center" style='margin-top:0.5em; font-weight:bold;'>Detailed Information</h1>
+                    <br>
+
+                    <!-- Employee Basic Information -->
+                    <h2 style="font-weight:bold;">Employee Basic Information</h2>
+
+                    <h3>Employee Name : </h3> <p><%= output.basicInfo.employeeName %></p>
+                    <h3>Employee's Father Name : </h3> <p><%= output.basicInfo.fatherName %></p>
+                    <h3>Employee's Mother Name : </h3> <p><%= output.basicInfo.motherName %></p>
+                    <h3>Designation : </h3> <p><%= output.basicInfo.designation %></p>
+                    <h3>National ID : </h3> <p><%= output.basicInfo.nationalID %></p>
+                    <h3>Religion : </h3> <p><%= output.basicInfo.religion %></p>
+                    <h3>Gender : </h3> <p><%= output.basicInfo.gender %></p>
+                    <h3>Date of Birth : </h3> <p><%= output.basicInfo.dateOfbirth.toISOString().split('T')[0] %></p>
+                    <h3>Blood Group : </h3> <p><%= output.basicInfo.bloodGroup %></p>
+                    <h3>Home District : </h3> <p><%= output.basicInfo.homeDistrict %></p>
+                    <h3>Marital Status : </h3> <p><%= output.basicInfo.maritalStatus %></p>
+                    <h3>Email : </h3> <p><%= output.basicInfo.email %></p>
+                    <h3>Phone : </h3> <p><%= output.basicInfo.phone %></p>
+
+                    <!-- Spouse Information -->
+                    <h2 style="font-weight:bold;">Employee's Spouse Information</h2>
+
+                    <h3>Spouse Name : </h3> <p><%= output.spouseInfo.spouseName %></p>
+                    <h3>Home District : </h3> <p><%= output.spouseInfo.spouseHomeDistrict %></p>
+                    <h3>Occupation : </h3> <p><%= output.spouseInfo.spouseOccupation %></p>
+                    <h3>Designation : </h3> <p><%= output.spouseInfo.spouseDesignation %></p>
+                    <h3>Organization : </h3> <p><%= output.spouseInfo.spouseOrganization %></p>
+                    <h3>Organization Address : </h3> <p><%= output.spouseInfo.spouseOrganizationAddress %></p>
+                    <h3>Phone : </h3> <p><%= output.spouseInfo.spousePhoneNo %></p>
+
+                    <!-- Address -->
+                    <h2 style="font-weight:bold;">Address Information</h2>
+
+                    <h3>Present Address : </h3> <p><%= output.address.present_address %></p>
+                    <h3>Permanent Address : </h3> <p><%= output.address.permanent_address %></p>
+
+                    <!-- Child Info -->
+                    <h2 style="font-weight:bold;">Employee's Child Information</h2>
+
+                    <% output.childInfo.forEach((entry) => { %>
+                        <h3>Child Name : </h3> <p><%= entry.child_name %></p>
+                        <h3>Gender : </h3> <p><%= entry.child_gender %></p>
+                        <h3>Date of Birth : </h3> <p><%= entry.child_dateOfBirth.toISOString().split('T')[0] %></p>
+                    <% }); %>
+
+                    <!-- First Joining Information -->
+                    <h2 style="font-weight:bold;">First Joining Information</h2>
+
+                    <h3>First Joining Date : </h3> <p><%= output.firstJoinInfo.first_joining_date.toISOString().split('T')[0] %></p>
+                    <h3>Rank : </h3> <p><%= output.firstJoinInfo.rank %></p>
+                    <h3>First Designation : </h3> <p><%= output.firstJoinInfo.first_designation %></p>
+                    <h3>First Posting District : </h3> <p><%= output.firstJoinInfo.first_posting_district %></p>
+                    <h3>First Posting Upazilla : </h3> <p><%= output.firstJoinInfo.first_posting_upazilla %></p>
+                    <h3>Job Nature : </h3> <p><%= output.firstJoinInfo.job_nature %></p>
+                    <h3>Grade : </h3> <p><%= output.firstJoinInfo.grade %></p>
+                    <h3>PRL Date : </h3> <p><%= output.firstJoinInfo.PRL_date.toISOString().split('T')[0] %></p>
+                    <h3>GO Date : </h3> <p><%= output.firstJoinInfo.GO_date.toISOString().split('T')[0] %></p>
+                    <h3>Confirmation Date : </h3> <p><%= output.firstJoinInfo.confirmation_date.toISOString().split('T')[0] %></p>
+                    
+                    <!-- Education Information -->
+                    <h2 style="font-weight:bold;">Employee's Education Information</h2>
+
+                    <% output.eduInfo.forEach((entry) => { %>
+                        <h3>Degree: </h3> <p><%= entry.degree %></p>
+                        <h3>Group : </h3> <p><%= entry.group %></p>
+                        <h3>Institute : </h3> <p><%= entry.institute %></p>
+                        <h3>Board : </h3> <p><%= entry.board %></p>
+                        <h3>Results : </h3> <p><%= entry.results %></p>
+                        <h3>Passing Years : </h3> <p><%= entry.passing_years %></p>
+                    <% }); %>
+
+                    <!-- Posting Information -->
+                    <h2 style="font-weight:bold;">Employee's Posting Information</h2>
+
+                    <% output.postingInfo.forEach((entry) => { %>
+                        <h3>Designation: </h3> <p><%= entry.designation %></p>
+                        <h3>Office Name : </h3> <p><%= entry.office_name %></p>
+                        <h3>From Date : </h3> <p><%= entry.from_date.toISOString().split('T')[0] %></p>
+                        <h3>To Date : </h3> <p><%= entry.to_date.toISOString().split('T')[0] %></p>
+                        <h3>District : </h3> <p><%= entry.district %></p>
+                        <h3>Upazilla : </h3> <p><%= entry.upazilla %></p>
+                    <% }); %>
+                    
+                    <!-- Promotion Information -->
+                    <h2 style="font-weight:bold;">Employee's Promotion Information</h2>
+
+                    <% output.promotionInfo.forEach((entry) => { %>
+                        <h3>Designation : </h3> <p><%= entry.promoted_designation %></p>
+                        <h3>Promotion Nature : </h3> <p><%= entry.promotion_nature %></p>
+                        <h3>Promotion Date : </h3> <p><%= entry.promotion_date.toISOString().split('T')[0] %></p>
+                        <h3>G.0. Number : </h3> <p><%= entry.GO_number %></p>
+                        <h3>G.O. Date : </h3> <p><%= entry.GO_date.toISOString().split('T')[0] %></p>
+                    <% }); %>
+                    
+                    <!-- Disciplinary Information -->
+                    <h2 style="font-weight:bold;">Employee's Disciplinary Information</h2>
+
+                    <% output.disciplineInfo.forEach((entry) => { %>
+                        <h3>Occurance : </h3> <p><%= entry.occurance %></p>
+                        <h3>Occurance Date: </h3> <p><%= entry.occuring_date.toISOString().split('T')[0] %></p>
+                        <h3>Action : </h3> <p><%= entry.action %></p>
+                        <h3>Memo No : </h3> <p><%= entry.memo_No %></p>
+                        <h3>Memo Date : </h3> <p><%= entry.memo_date.toISOString().split('T')[0] %></p>
+                    <% }); %>
+
+                </div>
+                
+            </div>
+        </div>
+        <%- include('../../../template/footer') -%>
+    </div>
+</div>
+<%- include('../../../template/footerlink') -%>
