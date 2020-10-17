@@ -8,7 +8,7 @@
             <div class="container-fluid">
               <!-- your content here -->
                 <div class="container">
-                    <h1 class="text-center" style='margin-top:1em'>Officials Information</h1>
+                    <h1 class="text-center" style='margin-top:1em; font-weight:bolder;'>Officials Information</h1>
                     <br>
                     
                     <% if(output.length > 0) { %>
@@ -34,7 +34,7 @@
                                                 <td>
                                                     <a href="/showDetails/<%= entry.id %>" class="btn btn-success" style="text-decoration:none;"><i class="fa fa-search-plus"></i> Open </a>
                                                     <a href="/editDetails/<%= entry.id %>" class="btn btn-primary" style="text-decoration:none;"> <i class="fa fa-edit"></i> Edit </a>
-                                                    <a href="#" class="btn btn-danger"  style="text-decoration:none;"> <i class="fa fa-trash"></i> Delete </a>
+                                                    <a href="/deleteEmployee/<%= entry.id %>" class="btn btn-danger"  style="text-decoration:none;"> <i class="fa fa-trash"></i> Delete </a>
                                                 </td>
                                             </tr>
                                         <% }); %>

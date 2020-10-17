@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 router.get('/addInfoForm',(req, res) => {
     // console.log("get route");
     try{
-        res.render('pages/offInfoForm');
+        res.render('pages/forms/offInfoForm');
     } catch(err){
         console.log(err);
     }
@@ -132,7 +132,7 @@ router.post('/addInfoForm', async (req, res) => {
     // console.log(officialsInfo);
     try{
         const officialsData = await officialsInfo.save();
-        // res.render('pages/offInfoForm');
+        res.render('pages/offInfoForm');
     } catch(err){
         console.log(err);
     }
@@ -141,10 +141,10 @@ router.post('/addInfoForm', async (req, res) => {
 
 //Staffs Information Form
 //@route  -  GET /staffInfoForm (stuff)
-router.get('/staffInfoForm', async (req, res) => {
+router.get('/addStaffInfoForm', async (req, res) => {
     // console.log("get route");
     try{
-        res.render('pages/staffInfoForm');
+        res.render('pages/forms/staffInfoForm');
     } catch(err){
         console.log(err);
     }
@@ -302,6 +302,16 @@ router.post('/editDetails/:id', async (req, res) => {
     }
 })
 
+//@route  -  GET /DELETE /:id
+router.get('/deleteEmployee/:id', async (req, res) => {
+    try{
+        const deleteData = await OfficialsInfo.findById(req.params.id);
+        const deleteDataById = await deleteData.remove();
+        res.redirect('/officialsTable');
+    } catch (err) {
+        console.log(err);
+    }
+})
 
 module.exports = router;
 
