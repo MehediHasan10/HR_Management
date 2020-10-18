@@ -14,7 +14,7 @@
  */
 /*     brand Colors              */
 .card {
-  font-size: .875rem;
+  font-size: 1.1em;
 }
 
 *,
@@ -16861,7 +16861,7 @@ thead.thead-inverse th,
 }
 
 .table-striped>tbody>tr:nth-of-type(odd) {
-  background-color: #f9f9f9;
+  background-color: #e5e8e5;
 }
 
 .table.table-hover tbody tr:hover {
@@ -19863,9 +19863,10 @@ Copyright (c) 2015 Daniel Eden
 
 .dark-edition .btn.btn-success {
   color: #fff;
-  background-color: #288c6c;
+  /* background-color: #288c6c; */
   border-color: #288c6c;
   box-shadow: 0 2px 2px 0 rgba(40, 140, 108, 0.14), 0 3px 1px -2px rgba(40, 140, 108, 0.2), 0 1px 5px 0 rgba(40, 140, 108, 0.12);
+  background: linear-gradient(60deg, #288c6c, #4ea752);;
 }
 
 .dark-edition .btn.btn-success:hover {
@@ -19953,9 +19954,10 @@ Copyright (c) 2015 Daniel Eden
 
 .dark-edition .btn.btn-danger {
   color: #fff;
-  background-color: #d22824;
+  /* background-color: #d22824; */
   border-color: #f44336;
   box-shadow: 0 2px 2px 0 rgba(210, 40, 36, 0.14), 0 3px 1px -2px rgba(210, 40, 36, 0.2), 0 1px 5px 0 rgba(210, 40, 36, 0.12);
+  background: linear-gradient(60deg, #d22824, #da3a36);
 }
 
 .dark-edition .btn.btn-danger:hover {

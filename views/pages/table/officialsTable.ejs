@@ -13,20 +13,22 @@
                     
                     <% if(output.length > 0) { %>
                         
-                        <table id="myTable" class="table table-striped table-bordered text-center" >
+                        <table id="myTable" class="table table-striped table-bordered" >
                                 <thead>
                                     <tr>
+                                        <th>Id</th>
                                         <th>Employee Name</th>
                                         <th>Designation</th>
                                         <th>National Id</th>
                                         <th>Phone Number</th>
-                                        <th>Action</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 
                                     <tbody>
                                         <% output.forEach((entry) => { %>
                                             <tr>
+                                                <td>1</td>
                                                 <td><%= entry.basicInfo.employeeName %></td>
                                                 <td><%= entry.basicInfo.designation %></td>
                                                 <td><%= entry.basicInfo.nationalID %></td>
