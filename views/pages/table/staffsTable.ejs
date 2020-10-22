@@ -28,12 +28,12 @@
                                     <tbody>
                                         <% output.forEach((entry) => { %>
                                             <tr>
-                                                <td>1</td>
+                                                <td></td>
                                                 <td><%= entry.basicInfo.employeeName %></td>
                                                 <td><%= entry.basicInfo.designation %></td>
                                                 <td><%= entry.basicInfo.nationalID %></td>
                                                 <td><%= entry.basicInfo.phone %></td>
-                                                <td>
+                                                <td class="text-center">
                                                     <a href="/showStaffDetails/<%= entry.id %>" class="btn btn-success" style="text-decoration:none;"><i class="fa fa-search-plus"></i> Open </a>
                                                     <a href="/editStaffDetails/<%= entry.id %>" class="btn btn-primary" style="text-decoration:none;"> <i class="fa fa-edit"></i> Edit </a>
                                                     <a href="/deleteStaffs/<%= entry.id %>" class="btn btn-danger"  style="text-decoration:none;"> <i class="fa fa-trash"></i> Delete </a>

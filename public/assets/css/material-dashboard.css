@@ -23,6 +23,14 @@
   box-sizing: border-box;
 }
 
+/*Table Serial Number*/
+tr td:first-child:before
+{
+  counter-increment: Serial;      /* Increment the Serial counter */
+  content: counter(Serial); /* Display the counter */
+}
+
+
 html {
   font-family: sans-serif;
   line-height: 1.15;
@@ -51,6 +59,8 @@ section {
 }
 
 body {
+  counter-reset: Serial; /*For Table serial number*/
+
   margin: 0;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   font-size: 1rem;

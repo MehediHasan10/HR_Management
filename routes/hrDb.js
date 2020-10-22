@@ -560,5 +560,26 @@ router.get('/deleteStaffs/:id', async (req, res) => {
     }
 });
 
+
+//Leave Management  ------------------------------
+
+//@route  -  GET /leaveTable (Officials)
+router.get('/officialsLeaveTable', (req, res) => {
+    try {
+        res.render('pages/leaveManagement/officialsLeave');
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+//@route  -  GET /leaveTable (Staffs)
+router.get('/staffsLeaveTable', (req, res) => {
+    try {
+        res.render('pages/leaveManagement/officialsLeave');
+    } catch (err) {
+        console.log(err);
+    }
+});
+
 module.exports = router;
 
