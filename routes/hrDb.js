@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 
 //Officials Information Form ------------------------------------------
 
-//@route  -  GET /addInfoForm 
+//@route  -  GET /addInfoForm
 router.get('/addInfoForm',(req, res) => {
     // console.log("get route");
     try{
@@ -22,10 +22,23 @@ router.get('/addInfoForm',(req, res) => {
     }
 });
 
-//@route  -  POST /addInfoForm 
+//@route  -  POST /addInfoForm
 router.post('/addInfoForm', async (req, res) => {
-    
+    console.log("form",req.body);
+
+    const childInformation = [];
+    for(var i = 0; i < req.body.c_name.length; i++){
+        var newEntry = {
+            child_name: req.body.c_name[i],
+            child_gender: req.body.c_gender[i],
+            child_dateOfBirth: req.body.c_dob[i]
+        }
+        childInformation.push(newEntry);
+    }
+    console.log(childInformation);
+
     const officialsInfo = new OfficialsInfo({
+
         basicInfo: {
             employeeName: req.body.emp_name,
             fatherName: req.body.f_name,
@@ -59,12 +72,8 @@ router.post('/addInfoForm', async (req, res) => {
             permanent_address: req.body.permanentAddress
         },
 
-        childInfo: [{
-            child_name: req.body.c_name,
-            child_gender: req.body.c_gender,
-            child_dateOfBirth: req.body.c_dob
-        }], 
-        
+        childInfo: childInformation,
+
         firstJoinInfo:{
             first_joining_date: req.body.j_date,
             rank: req.body.j_rank,
@@ -140,10 +149,9 @@ router.post('/addInfoForm', async (req, res) => {
     }
 });
 
-
 //Staffs Information Form ---------------------------------------------
 
-//@route  -  GET /staffInfoForm 
+//@route  -  GET /staffInfoForm
 router.get('/addStaffInfoForm', async (req, res) => {
     // console.log("get route");
     try{
@@ -194,7 +202,7 @@ router.post('/staffInfoForm', async (req, res) => {
             child_name: req.body.c_name,
             child_gender: req.body.c_gender,
             child_dateOfBirth: req.body.c_dob
-        }], 
+        }],
 
         firstJoinInfo:{
             first_joining_date: req.body.j_date,
@@ -252,7 +260,6 @@ router.post('/staffInfoForm', async (req, res) => {
     }
 })
 
-
 //Information Table ---------------------------------------------------
 
 //@route  -  GET /officialsTable (Officials)
@@ -280,7 +287,7 @@ router.get('/staffsTable', async (req, res) => {
 
 //Officials Actions  ------------------------------------------------------------
 
-//@route  -  GET /showDetails/:id 
+//@route  -  GET /showDetails/:id
 router.get('/showDetails/:id', async (req, res) => {
     try {
         const detailedData = await OfficialsInfo.findById(req.params.id);
@@ -431,7 +438,7 @@ router.get('/deleteOfficials/:id', async (req, res) => {
 
 //Staffs Actions  ------------------------------------------------------------
 
-//@route  -  GET /showStaffDetails/:id 
+//@route  -  GET /showStaffDetails/:id
 router.get('/showStaffDetails/:id', async (req, res) => {
     try {
         const detailedData = await StaffsInfo.findById(req.params.id);
@@ -582,4 +589,3 @@ router.get('/staffsLeaveTable', (req, res) => {
 });
 
 module.exports = router;
-
