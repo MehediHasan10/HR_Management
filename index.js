@@ -39,8 +39,10 @@ app.set("view engine", "ejs");
 
 //bring all routes
 const hrRouter = require('./routes/hrDb');
+const leaveRouter = require('./routes/leaveDb');
 //routes handler
 app.use('/', hrRouter);
+app.use('/leave', leaveRouter);
 
 //set up the public folder
 app.use(express.static('./public'));
