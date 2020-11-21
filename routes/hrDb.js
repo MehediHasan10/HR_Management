@@ -24,7 +24,7 @@ router.get('/addInfoForm',(req, res) => {
 
 //@route  -  POST /addInfoForm
 router.post('/addInfoForm', async (req, res) => {
-    console.log("form",req.body);
+    //console.log("form",req.body);
 
     const childInformation = [];
     for(var i = 0; i < req.body.c_name.length; i++){
@@ -35,7 +35,7 @@ router.post('/addInfoForm', async (req, res) => {
         }
         childInformation.push(newEntry);
     }
-    console.log(childInformation);
+    //console.log(childInformation);
 
     const officialsInfo = new OfficialsInfo({
 
@@ -267,7 +267,10 @@ router.get('/officialsTable', async (req, res) => {
     // console.log("get route");
     try{
         const tableData = await OfficialsInfo.find();
-        res.render('pages/table/officialsTable', {output:tableData});
+        res.render('pages/table/officialsTable', 
+        {
+            output:tableData
+        });
     } catch(err){
         console.log(err);
     }
@@ -291,7 +294,10 @@ router.get('/staffsTable', async (req, res) => {
 router.get('/showDetails/:id', async (req, res) => {
     try {
         const detailedData = await OfficialsInfo.findById(req.params.id);
-        res.render('pages/actions/officials/showDetails', {output:detailedData});
+        res.render('pages/actions/officials/showDetails', 
+        {
+            output:detailedData
+        });
     } catch (err) {
         console.log(err);
     }
@@ -573,7 +579,7 @@ router.get('/deleteStaffs/:id', async (req, res) => {
 //@route  -  GET /leaveTable (Officials)
 router.get('/officialsLeaveTable', (req, res) => {
     try {
-        res.render('pages/leaveManagement/officialsLeave');
+        // res.render('pages/leaveManagement/officialsLeave');
     } catch (err) {
         console.log(err);
     }
@@ -582,7 +588,7 @@ router.get('/officialsLeaveTable', (req, res) => {
 //@route  -  GET /leaveTable (Staffs)
 router.get('/staffsLeaveTable', (req, res) => {
     try {
-        res.render('pages/leaveManagement/officialsLeave');
+        // res.render('pages/leaveManagement/officialsLeave');
     } catch (err) {
         console.log(err);
     }

@@ -1,0 +1,74 @@
+<%- include('../../../template/header') -%>
+
+<div class="wrapper">
+    <%- include('../../../template/sidebar') -%>
+    <div class="main-panel">
+        <%- include('../../../template/navbar') -%>
+        <div class="content">
+            <div class="container-fluid">
+
+                <!-- your content here -->
+                
+
+                    <h1 class="text-center" style='margin-top:1em; font-weight:bolder;'>Add Leave Info</h1>
+                    <br>
+
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="text-center">
+                                <p> Employee Name: <%= offInfo.basicInfo.employeeName %></p>
+                                <p> Designation: <%= offInfo.basicInfo.designation %></p> 
+                                
+                            </h4>
+                            <!-- Leave Info Form -->
+                            <form action="/leave/addLeaveInfo/<%= offInfo.id %>" method="post">
+                                <input name="empId" type="hidden" value="<%= offInfo._id %>">
+
+                                <div class="form-group">
+                                    <label >Select Leave Type</label>
+                                    <select name="lType" class="form-control" id="exampleFormControlSelect1">
+                                        <% offLeave.forEach((entry) => { %>    
+
+                                            <option value="" disabled selected hidden> Choose Leave Type </option>
+                                            <option label="<%= entry.leaveType %>" value="<%= entry.id %>">                                
+                                                                                   
+                                        <% }); %>
+                                    </select>
+                                </div>
+
+                                <div class="form-group" class="row">
+                                    <div class="col-sm-6">
+                                        <label>From Date</label>
+                                        <input type="date" name="sDate">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label>To Date</label>
+                                        <input type="date" name="eDate">
+                                    </div>
+                                </div>
+
+
+                                <!-- <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Example textarea</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                </div> -->
+
+                                <div class="from-group">
+                                    <label>Duration of Leave</label>
+                                    <input type="number" name="leaveDuration">
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Submit</button>
+
+                            </form>
+                        </div>
+                    </div>
+                 
+                  
+            </div>
+        </div>
+        <%- include('../../../template/footer') -%>
+    </div>
+</div>
+<%- include('../../../template/footerlink') -%>
