@@ -99,9 +99,7 @@ router.post('/addLeaveInfo/:id', async (req, res) => {
 //route  -  GET /showLeaveInfo/:id
 router.get('/showLeaveInfo/:id', async (req, res) => {
     try{
-        // const officialsLeaveCount = await OfficialsLeaveCount.find({
-        //     Where: {emolyee: req.params.id}
-        // }).populate('employee');
+        
         const officialsInfo = await OfficialsInfo.findById(req.params.id);
         const officialsLeaveCount = await OfficialsLeaveCount.find(
             {

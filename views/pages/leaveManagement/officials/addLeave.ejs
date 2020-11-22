@@ -98,20 +98,20 @@
 
                                             offLeaveCount.forEach((entry2) => { 
                                                 
-                                                
                                                 if (entry2.leaveType._id == entry1.id) { 
                                                     let leaveCount = entry2.duration; 
-                                                    leave = leave + leaveCount; 
-                                                    
+                                                    leave = leave + leaveCount;
+                                                    remainLeave = entry1.estimatedLeave - leave;                                                     
                                                 } 
-
                                                 <!-- console.log(entry2.leaveType._id == entry1.id)  -->
-                                                <!-- console.log(leave); -->
-                                                
-
-                                            });
-                                            console.log("l",leave);                                             
-                                        });
+                                                <!-- console.log(leave) -->
+                                            });                                            
+                                            console.log(entry1.leaveType, ":", remainLeave) 
+                                                                                        
+                                            leave = 0
+                                            
+                                        });  
+                                                                          
                                     %>
 
                                 </div>
