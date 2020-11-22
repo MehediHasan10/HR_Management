@@ -1,0 +1,58 @@
+<%- include('../../../template/header') -%>
+
+<div class="wrapper">
+    <%- include('../../../template/sidebar') -%>
+    <div class="main-panel">
+        <%- include('../../../template/navbar') -%>
+        <div class="content">
+            <div class="container-fluid">
+
+                <!-- your content here -->
+
+                <div class="container" style="color:white">
+                    <h2 class="text-center" font-weight:bold;>Detailed Leave Information</h1>
+
+                        <div class="card">
+                            <div class="card-header card-header-primary">
+                                <h3 style="font-weight:bolder; text-align:center;"><%= offInfo.basicInfo.employeeName %></h3>
+                            </div>
+                            
+                            <div class="card-body" style="color:white;">
+                                <table id="myTable" class="table table-striped table-bordered " >
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Leave Type</th>
+                                            <th>From Date</th>
+                                            <th>To Date</th>
+                                            <th>Duration</th>
+                                            <!-- <th class="text-center">Action</th> -->
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody>
+                                        <% leaveCount.forEach((entry) => { %>
+                                            <tr>
+                                                <td></td>
+                                                <td><%= entry.leaveType.leaveType %></td>
+                                                <td><%= entry.startDate.toISOString().split('T')[0] %></td>
+                                                <td><%= entry.endDate.toISOString().split('T')[0] %></td>
+                                                <td><%= entry.duration %></td>
+                                            </tr>
+                                        <% }); %>
+                                    </tbody>
+                                        
+                                </table>
+                            </div>
+                                
+                        </div>
+                        
+
+                </div>
+
+            </div>
+        </div>
+        <%- include('../../../template/footer') -%>
+    </div>
+</div>
+<%- include('../../../template/footerlink') -%>

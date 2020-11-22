@@ -16,11 +16,13 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="text-center">
-                                <p> Employee Name: <%= offInfo.basicInfo.employeeName %></p>
-                                <p> Designation: <%= offInfo.basicInfo.designation %></p> 
-                                
-                            </h4>
+                            <div class="card-header card-header-primary">
+                                <h3 class="text-center">
+                                    <p>  <%= offInfo.basicInfo.employeeName %></p>
+                                    <p>  <%= offInfo.basicInfo.designation %></p> 
+                                    
+                                </h3>
+                            </div>
                             <!-- Leave Info Form -->
                             <form action="/leave/addLeaveInfo/<%= offInfo.id %>" method="post">
                                 <input name="empId" type="hidden" value="<%= offInfo._id %>">
@@ -62,6 +64,58 @@
                                 <button type="submit" class="btn btn-primary">Submit</button>
 
                             </form>
+
+
+                        </div>
+                    </div>
+
+                    <br> 
+                    <div class="row-fluid">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header card-header-primary">
+                                    <h2> Estimated Leave Duration </h2>
+                                </div>
+                                <div class="card-body">
+                                    <% offLeave.forEach((entry) => { %> 
+                                        <p>For <%= entry.leaveType %> : <%= entry.estimatedLeave %> days </p>
+                                        
+                                    <% }); %>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header card-header-primary">
+                                    <h2> Remaining Leave Duration </h2>
+                                </div>
+                                <div class="card-body">
+
+                                    <% 
+                                        var leave = 0;
+                                        offLeave.forEach((entry1) => { 
+
+                                            offLeaveCount.forEach((entry2) => { 
+                                                
+                                                
+                                                if (entry2.leaveType._id == entry1.id) { 
+                                                    let leaveCount = entry2.duration; 
+                                                    leave = leave + leaveCount; 
+                                                    
+                                                } 
+
+                                                <!-- console.log(entry2.leaveType._id == entry1.id)  -->
+                                                <!-- console.log(leave); -->
+                                                
+
+                                            });
+                                            console.log("l",leave);                                             
+                                        });
+                                    %>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                  

@@ -3,7 +3,7 @@ const router = require('express').Router();
 const OfficialsInfo = require('../schema/officials/officials');
 const OfficialsLeaveType = require('../schema/officials/leaveType');
 const OfficialsLeaveCount = require('../schema/officials/leaveCount');
-const { Logger } = require('mongodb');
+// const { Logger } = require('mongodb');
 
 //Officials Leave Type 
 
@@ -52,13 +52,23 @@ router.get('/addLeaveInfo/:id', async (req, res) => {
     try {
         const officialsInfo = await OfficialsInfo.findById(req.params.id);
         const officialsLeave = await OfficialsLeaveType.find();
-        const officialsLeaveCount = new OfficialsLeaveCount();
+        const officialsLeaveCount = await OfficialsLeaveCount.find(
+            {
+                employee: officialsInfo._id
+            })
+            
+
+        // console.log(typeof officialsLeave[0].id);
+        // console.log(typeof officialsLeaveCount[0].leaveType._id);
+        // console.log(officialsLeave[0].leaveType.id === officialsLeaveCount[0].id);
         // console.log(officialsLeave);
+
+        // console.log(officialsLeave[0].id == officialsLeaveCount[0].leaveType._id);
         res.render('pages/leaveManagement/officials/addLeave',
             { 
                 offInfo : officialsInfo,
                 offLeave: officialsLeave,
-                offLeaveCount: officialsLeaveCount    
+                offLeaveCount: officialsLeaveCount
             });
         
     } catch (err) {
@@ -89,10 +99,24 @@ router.post('/addLeaveInfo/:id', async (req, res) => {
 //route  -  GET /showLeaveInfo/:id
 router.get('/showLeaveInfo/:id', async (req, res) => {
     try{
-        const officialsLeaveCount = await OfficialsLeaveCount.find({
-            Where: {emolyee: req.params.id}
-        }).populate('employee');
-        
+        // const officialsLeaveCount = await OfficialsLeaveCount.find({
+        //     Where: {emolyee: req.params.id}
+        // }).populate('employee');
+        const officialsInfo = await OfficialsInfo.findById(req.params.id);
+        const officialsLeaveCount = await OfficialsLeaveCount.find(
+            {
+                employee: officialsInfo._id
+            })
+            .populate('leaveType');
+
+        // console.log(officialsInfo._id);
+        // console.log(officialsLeaveCount.employee);
+        res.render('pages/leaveManagement/officials/leaveDetails',
+            {
+                offInfo: officialsInfo,
+                leaveCount: officialsLeaveCount
+            });
+      
     }catch(err){
         console.log(err);
     }
