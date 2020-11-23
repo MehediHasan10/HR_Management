@@ -3,7 +3,6 @@ const router = require('express').Router();
 const OfficialsInfo = require('../schema/officials/officials');
 const OfficialsLeaveType = require('../schema/officials/leaveType');
 const OfficialsLeaveCount = require('../schema/officials/leaveCount');
-// const { Logger } = require('mongodb');
 
 //Officials Leave Type 
 
@@ -55,15 +54,8 @@ router.get('/addLeaveInfo/:id', async (req, res) => {
         const officialsLeaveCount = await OfficialsLeaveCount.find(
             {
                 employee: officialsInfo._id
-            })
+            });
             
-
-        // console.log(typeof officialsLeave[0].id);
-        // console.log(typeof officialsLeaveCount[0].leaveType._id);
-        // console.log(officialsLeave[0].leaveType.id === officialsLeaveCount[0].id);
-        // console.log(officialsLeave);
-
-        // console.log(officialsLeave[0].id == officialsLeaveCount[0].leaveType._id);
         res.render('pages/leaveManagement/officials/addLeave',
             { 
                 offInfo : officialsInfo,
@@ -107,8 +99,6 @@ router.get('/showLeaveInfo/:id', async (req, res) => {
             })
             .populate('leaveType');
 
-        // console.log(officialsInfo._id);
-        // console.log(officialsLeaveCount.employee);
         res.render('pages/leaveManagement/officials/leaveDetails',
             {
                 offInfo: officialsInfo,

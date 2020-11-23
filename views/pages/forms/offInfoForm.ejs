@@ -11,7 +11,7 @@
                 <br>
                 <!--Start MultiStep Form -->
                 <div class="row">
-                    <div class="col-md-6 col-md-offset-3">
+                    <div class="col-md-10 col-md-offset-1">
                         <form action="/addInfoForm" id="msform" method="post"  role="form">
                             <!-- progressbar -->
 
@@ -61,6 +61,20 @@
                                         <div class="col-md-6">
                                             <label for="n_id">National ID</label>
                                             <input type="text" name="n_id"></input>
+                                        </div>
+                                        
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label for="">Select Department</label>
+                                            <select name="dep">
+                                                
+                                                <% output.forEach((entry) => { %>
+                                                    <option value="" disabled selected hidden> Choose Department </option>
+                                                    <option label="<%= entry.departmentName %>" value="<%= entry.id %>">
+                                                <% }); %>
+                                            </select>
                                         </div>
                                     </div>
 

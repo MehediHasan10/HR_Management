@@ -14,7 +14,12 @@ const officials_schema = new mongoose.Schema({
         homeDistrict: String,
         maritalStatus: String,
         email: String,
-        phone: String
+        phone: String,
+        department: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: 'departmentDetails'
+        }
     },
     spouseInfo: {
         spouseName: String,

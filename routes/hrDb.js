@@ -2,10 +2,10 @@ const router = require('express').Router();
 
 const OfficialsInfo = require('../schema/officials/officials');
 const StaffsInfo = require('../schema/staffs/staffs');
+const DepDetails = require('../schema/departments/department');
 
 //@route  -  GET  / (landing page)
 router.get('/', (req, res) => {
-    // res.send("all ok");
     res.render("pages/landing");
 });
 
@@ -13,10 +13,15 @@ router.get('/', (req, res) => {
 //Officials Information Form ------------------------------------------
 
 //@route  -  GET /addInfoForm
-router.get('/addInfoForm',(req, res) => {
+router.get('/addInfoForm',async (req, res) => {
     // console.log("get route");
     try{
-        res.render('pages/forms/offInfoForm');
+        const depDetails = await DepDetails.find();
+        
+        res.render('pages/forms/offInfoForm',
+        {
+            output: depDetails
+        });
     } catch(err){
         console.log(err);
     }
@@ -45,6 +50,7 @@ router.post('/addInfoForm', async (req, res) => {
             motherName: req.body.m_name,
             designation: req.body.emp_deg,
             nationalID: req.body.n_id,
+            department: req.body.dep,
             religion: req.body.reg,
             gender: req.body.gen,
             dateOfbirth: req.body.dob,
@@ -143,7 +149,7 @@ router.post('/addInfoForm', async (req, res) => {
     // console.log(officialsInfo);
     try{
         const officialsData = await officialsInfo.save();
-        res.render('pages/forms/offInfoForm');
+        res.redirect('/addInfoForm');
     } catch(err){
         console.log(err);
     }
@@ -293,7 +299,11 @@ router.get('/staffsTable', async (req, res) => {
 //@route  -  GET /showDetails/:id
 router.get('/showDetails/:id', async (req, res) => {
     try {
-        const detailedData = await OfficialsInfo.findById(req.params.id);
+        const detailedData = await OfficialsInfo.findById(req.params.id)
+            .populate('basicInfo.department');
+
+        //console.log(detailedData);
+
         res.render('pages/actions/officials/showDetails', 
         {
             output:detailedData
@@ -306,12 +316,19 @@ router.get('/showDetails/:id', async (req, res) => {
 //@route  -  GET /editDetails/:id
 router.get('/editDetails/:id', async (req, res) => {
     try {
-        const editData = await OfficialsInfo.findById(req.params.id);
-        res.render('pages/actions/officials/editDetails', {output:editData});
+        const editData = await OfficialsInfo.findById(req.params.id)
+            .populate('basicInfo.department');
+            
+        console.log(editData);
+        res.render('pages/actions/officials/editDetails', 
+            {
+                output:editData
+            });
     } catch (err) {
         console.log(err);
     }
 });
+
 
 //@route  -  POST /editDetails/:id
 router.post('/editDetails/:id', async (req, res) => {
@@ -324,6 +341,7 @@ router.post('/editDetails/:id', async (req, res) => {
         editData.basicInfo.motherName = req.body.m_name;
         editData.basicInfo.designation = req.body.emp_deg;
         editData.basicInfo.nationalID = req.body.n_id;
+        editData.basicInfo.department = req.body.dep;
         editData.basicInfo.religion = req.body.reg;
         editData.basicInfo.gender = req.body.gen;
         editData.basicInfo.dateOfbirth = req.body.dob;
@@ -576,22 +594,5 @@ router.get('/deleteStaffs/:id', async (req, res) => {
 
 //Leave Management  ------------------------------
 
-//@route  -  GET /leaveTable (Officials)
-router.get('/officialsLeaveTable', (req, res) => {
-    try {
-        // res.render('pages/leaveManagement/officialsLeave');
-    } catch (err) {
-        console.log(err);
-    }
-});
-
-//@route  -  GET /leaveTable (Staffs)
-router.get('/staffsLeaveTable', (req, res) => {
-    try {
-        // res.render('pages/leaveManagement/officialsLeave');
-    } catch (err) {
-        console.log(err);
-    }
-});
 
 module.exports = router;

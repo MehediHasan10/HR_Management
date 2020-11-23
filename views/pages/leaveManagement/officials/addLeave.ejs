@@ -7,119 +7,128 @@
         <div class="content">
             <div class="container-fluid">
 
-                <!-- your content here -->
-                
+                <!-- your content here -->              
 
-                    <h1 class="text-center" style='margin-top:1em; font-weight:bolder;'>Add Leave Info</h1>
-                    <br>
+                <h1 class="text-center" style='font-weight:bolder;'>Add Leave Info</h1>
+                <br>
 
-                    <div class="card">
-                        <div class="card-body">
-
-                            <div class="card-header card-header-primary">
-                                <h3 class="text-center">
-                                    <p>  <%= offInfo.basicInfo.employeeName %></p>
-                                    <p>  <%= offInfo.basicInfo.designation %></p> 
-                                    
-                                </h3>
-                            </div>
-                            <!-- Leave Info Form -->
-                            <form action="/leave/addLeaveInfo/<%= offInfo.id %>" method="post">
-                                <input name="empId" type="hidden" value="<%= offInfo._id %>">
-
-                                <div class="form-group">
-                                    <label >Select Leave Type</label>
-                                    <select name="lType" class="form-control" id="exampleFormControlSelect1">
-                                        <% offLeave.forEach((entry) => { %>    
-
-                                            <option value="" disabled selected hidden> Choose Leave Type </option>
-                                            <option label="<%= entry.leaveType %>" value="<%= entry.id %>">                                
-                                                                                   
-                                        <% }); %>
-                                    </select>
-                                </div>
-
-                                <div class="form-group" class="row">
-                                    <div class="col-sm-6">
-                                        <label>From Date</label>
-                                        <input type="date" name="sDate">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label>To Date</label>
-                                        <input type="date" name="eDate">
-                                    </div>
-                                </div>
-
-
-                                <!-- <div class="form-group">
-                                <label for="exampleFormControlTextarea1">Example textarea</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                </div> -->
-
-                                <div class="from-group">
-                                    <label>Duration of Leave</label>
-                                    <input type="number" name="leaveDuration">
-                                </div>
-
-                                <button type="submit" class="btn btn-primary">Submit</button>
-
-                            </form>
-
-
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-header card-header-primary">
+                            <h3 class="text-center">
+                                <p> <%= offInfo.basicInfo.employeeName %> </p>
+                                <p> <%= offInfo.basicInfo.designation %> </p>                                    
+                            </h3>
                         </div>
-                    </div>
 
-                    <br> 
-                    <div class="row-fluid">
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-header card-header-primary">
-                                    <h2> Estimated Leave Duration </h2>
-                                </div>
-                                <div class="card-body">
-                                    <% offLeave.forEach((entry) => { %> 
-                                        <p>For <%= entry.leaveType %> : <%= entry.estimatedLeave %> days </p>
-                                        
+                        <!-- Leave Info Form -->
+                        <form action="/leave/addLeaveInfo/<%= offInfo.id %>" method="post">
+                            <input name="empId" type="hidden" value="<%= offInfo._id %>">
+                            <!-- Leave Type -->
+                            <div class="form-group">
+                                <label >Select Leave Type</label>
+                                <select name="lType" class="form-control" id="exampleFormControlSelect1">
+                                    <% offLeave.forEach((entry) => { %>    
+
+                                        <option value="" disabled selected hidden> Choose Leave Type </option>
+                                        <option label="<%= entry.leaveType %>" value="<%= entry.id %>">                                
+                                                                                
                                     <% }); %>
+                                </select>
+                            </div>
+                            <!-- Dates -->
+                            <div class="form-group" class="row">
+                                <!-- Starting Date -->
+                                <div class="col-sm-6">
+                                    <label>From Date</label>
+                                    <input type="date" name="sDate">
+                                </div>
+                                <!-- Ending Date -->
+                                <div class="col-sm-6">
+                                    <label>To Date</label>
+                                    <input type="date" name="eDate">
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-header card-header-primary">
-                                    <h2> Remaining Leave Duration </h2>
-                                </div>
-                                <div class="card-body">
+                            <!-- <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Example textarea</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div> -->
 
-                                    <% 
-                                        var leave = 0;
-                                        offLeave.forEach((entry1) => { 
+                            <!-- Leave Duration -->
+                            <div class="from-group">
+                                <label>Duration of Leave</label>
+                                <input type="number" name="leaveDuration">
+                            </div>
 
-                                            offLeaveCount.forEach((entry2) => { 
-                                                
-                                                if (entry2.leaveType._id == entry1.id) { 
-                                                    let leaveCount = entry2.duration; 
-                                                    leave = leave + leaveCount;
-                                                    remainLeave = entry1.estimatedLeave - leave;                                                     
-                                                } 
-                                                <!-- console.log(entry2.leaveType._id == entry1.id)  -->
-                                                <!-- console.log(leave) -->
-                                            });                                            
-                                            console.log(entry1.leaveType, ":", remainLeave) 
-                                                                                        
-                                            leave = 0
-                                            
-                                        });  
-                                                                          
-                                    %>
+                            <button type="submit" class="btn btn-primary">Submit</button>
 
-                                </div>
+                        </form>
+
+
+                    </div>
+                </div>
+
+                <br> 
+                <div class="row-fluid">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header card-header-primary">
+                                <h2> Estimated Leave Duration </h2>
+                            </div>
+                            <div class="card-body">
+                                <% offLeave.forEach((entry) => { %> 
+                                    <p>For <%= entry.leaveType %> : <%= entry.estimatedLeave %> days </p>
+                                    
+                                <% }); %>
                             </div>
                         </div>
                     </div>
-                 
-                  
+
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header card-header-primary">
+                                <h2> Used Leave Duration </h2>
+                            </div>
+                            <div class="card-body">
+
+                                <% 
+                                    var leave = 0;
+                                    var leaveType = [];
+                                    offLeave.forEach((entry1) => { 
+
+                                        offLeaveCount.forEach((entry2) => { 
+                                            
+                                            if (entry2.leaveType._id == entry1.id) { 
+                                                let leaveCount = entry2.duration; 
+                                                leave = leave + leaveCount;
+                                                                                                        
+                                            } 
+                                            
+                                        });                                            
+                                                                                                                            
+                                        var leaveTypeObj = {};
+                                        leaveTypeObj['type'] = entry1.leaveType;
+                                        leaveTypeObj['count'] = leave;
+
+                                        leaveType.push(leaveTypeObj)
+
+                                        leave = 0;
+                                        
+                                    });  
+                                    <!-- console.log(leaveType) -->
+                                                                        
+                                %>
+
+                                <% leaveType.forEach((entry) => { %>
+                                    <p> For <%= entry.type %> : <%= entry.count %> days</p>
+                                <% }); %>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                      
             </div>
         </div>
         <%- include('../../../template/footer') -%>
