@@ -4,7 +4,8 @@ const OfficialsInfo = require('../schema/officials/officials');
 const StaffsInfo = require('../schema/staffs/staffs');
 const DepDetails = require('../schema/departments/department');
 
-//@route  -  GET  / (landing page)
+//@route  -  GET  / 
+//landing page
 router.get('/', (req, res) => {
     res.render("pages/landing");
 });
@@ -13,11 +14,10 @@ router.get('/', (req, res) => {
 //Officials Information Form ------------------------------------------
 
 //@route  -  GET /addInfoForm
+//Form to get the employee information
 router.get('/addInfoForm',async (req, res) => {
-    // console.log("get route");
     try{
         const depDetails = await DepDetails.find();
-        
         res.render('pages/forms/offInfoForm',
         {
             output: depDetails
@@ -29,7 +29,6 @@ router.get('/addInfoForm',async (req, res) => {
 
 //@route  -  POST /addInfoForm
 router.post('/addInfoForm', async (req, res) => {
-    //console.log("form",req.body);
 
     const childInformation = [];
     for(var i = 0; i < req.body.c_name.length; i++){
@@ -41,6 +40,19 @@ router.post('/addInfoForm', async (req, res) => {
         childInformation.push(newEntry);
     }
     //console.log(childInformation);
+
+    const eduInformation = [];
+    for(var i = 0; i < req.body.e_deg.length; i++) {
+        var newEntry = {
+            degree: req.body.e_deg[i],
+            group: req.body.e_grp[i],
+            institute: req.body.e_institution[i],
+            board: req.body.e_board[i],
+            results: req.body.e_result[i],
+            passing_years: req.body.pass_year[i]
+        }
+        eduInformation.push(newEntry);
+    }
 
     const officialsInfo = new OfficialsInfo({
 
@@ -93,14 +105,7 @@ router.post('/addInfoForm', async (req, res) => {
             confirmation_date: req.body.confirmation_date
         },
 
-        eduInfo: [{
-            degree: req.body.e_deg,
-            group: req.body.e_grp,
-            institute: req.body.e_institution,
-            board: req.body.e_board,
-            results: req.body.e_result,
-            passing_years: req.body.pass_year
-        }],
+        eduInfo: eduInformation,
 
         trainingInfo: [{
             training_type: req.body.t_type,
@@ -269,18 +274,34 @@ router.post('/staffInfoForm', async (req, res) => {
 //Information Table ---------------------------------------------------
 
 //@route  -  GET /officialsTable (Officials)
-router.get('/officialsTable', async (req, res) => {
-    // console.log("get route");
+router.get('/officialsTable', async (req, res) => {  
     try{
-        const tableData = await OfficialsInfo.find();
-        res.render('pages/table/officialsTable', 
-        {
-            output:tableData
+        const depDetails = await DepDetails.find();
+        res.render('pages/department/showDepEmp', {
+            output : depDetails
         });
     } catch(err){
         console.log(err);
     }
 });
+
+//@route  -  GET /depEmp
+router.get('/depEmp/:id', async (req, res) => {
+    
+    try {
+        const officialsInfo = await OfficialsInfo.find(
+            {
+                'basicInfo.department': req.params.id
+            });
+
+        res.render('pages/table/officialsTable', 
+        {
+            output:officialsInfo
+        });
+    } catch (err) {
+        console.log(err);
+    }
+})
 
 //@route  -  GET /staffsTable (Staffs)
 router.get('/staffsTable', async (req, res) => {
@@ -316,10 +337,7 @@ router.get('/showDetails/:id', async (req, res) => {
 //@route  -  GET /editDetails/:id
 router.get('/editDetails/:id', async (req, res) => {
     try {
-        const editData = await OfficialsInfo.findById(req.params.id)
-            .populate('basicInfo.department');
-            
-        console.log(editData);
+        const editData = await OfficialsInfo.findById(req.params.id);
         res.render('pages/actions/officials/editDetails', 
             {
                 output:editData
@@ -328,7 +346,6 @@ router.get('/editDetails/:id', async (req, res) => {
         console.log(err);
     }
 });
-
 
 //@route  -  POST /editDetails/:id
 router.post('/editDetails/:id', async (req, res) => {
@@ -341,7 +358,7 @@ router.post('/editDetails/:id', async (req, res) => {
         editData.basicInfo.motherName = req.body.m_name;
         editData.basicInfo.designation = req.body.emp_deg;
         editData.basicInfo.nationalID = req.body.n_id;
-        editData.basicInfo.department = req.body.dep;
+        // editData.basicInfo.department = req.body.dep;
         editData.basicInfo.religion = req.body.reg;
         editData.basicInfo.gender = req.body.gen;
         editData.basicInfo.dateOfbirth = req.body.dob;
@@ -590,9 +607,6 @@ router.get('/deleteStaffs/:id', async (req, res) => {
         console.log(err);
     }
 });
-
-
-//Leave Management  ------------------------------
 
 
 module.exports = router;

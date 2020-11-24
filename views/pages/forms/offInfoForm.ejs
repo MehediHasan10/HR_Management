@@ -12,7 +12,7 @@
                 <!--Start MultiStep Form -->
                 <div class="row">
                     <div class="col-md-10 col-md-offset-1">
-                        <form action="/addInfoForm" id="msform" method="post"  role="form">
+                        <form action="/addInfoForm" id="msform" method="post" role="form">
                             <!-- progressbar -->
 
                             <ul id="progressbar">
@@ -462,7 +462,7 @@
                             <fieldset>
                                 <h2 class="fs-title">Educational Information</h2>
                                 
-                                <div class="text-left">
+                                <div class="text-left" id="dynamic_field2">
 
                                     <div class="row">
                                         <div class="col-md-6">
@@ -497,6 +497,8 @@
                                     </div>
 
                                 </div>
+
+                                <button type="button" name="addEdu" id="addEdu" class="btn btn-success">Add More Education Info</button>
 
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                                 <input type="button" name="next" class="next action-button" value="Next"/>
@@ -702,19 +704,37 @@
 
 <script>  
     $(document).ready(function(){  
-         var i=1;  
-         $('#addChild').click(function(){  
-              i++;  
 
-              $('#dynamic_field').append(
+        //Dynamic Child Jquery
+        var i=1;  
+        $('#addChild').click(function(){  
+            i++;  
+            $('#dynamic_field').append(
                 '<div id="row'+i+'"><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button><label for="c_name">Child Name</label><input type="text" name="c_name"/><label for="c_gender">Gender</label><select name="c_gender"><option value="" disabled selected hidden>Choose a Gender</option><option value="Male" >Male</option><option value="Female" >Female</option><option value="Others" >Others</option></select><label for="c_dob">Date of Birth</label><input type="date" name="c_dob"/></div>'
-              );  
-         });  
+            );  
+        });  
+        $(document).on('click', '.btn_remove', function(){  
+            var button_id = $(this).attr("id");   
+            $('#row'+button_id+'').remove();  
+        }); 
          
-         $(document).on('click', '.btn_remove', function(){  
-              var button_id = $(this).attr("id");   
-              $('#row'+button_id+'').remove();  
-         });  
+
+        //Dynamic Education Jquery
+        var j=1;
+        $('#addEdu').click(function(){
+            j++;
+            $('#dynamic_field2').append(
+                '<div id="row'+j+'"><button type="button" name="remove" id="'+j+'" class="btn btn-danger btn_remove2">X</button><div class="row"><div class="col-md-6"><label for="e_deg">Degree</label><input type="text" name="e_deg"/></div><div class="col-md-6"><label for="e_grp">Group/Department</label><input type="text" name="e_grp" /></div></div><label for="e_institution">Educational Institute</label><input type="text" name="e_institution" /><div class="row"><div class="col-md-4"><label for="e_board">Board</label><input type="text" name="e_board" /></div><div class="col-md-4"><label for="e_result">Result</label><input type="text" name="e_result" /></div><div class="col-md-4"><label for="pass_year">Passing Year</label><input type="text" name="pass_year" /></div></div>'
+            );
+        });
+        $(document).on('click', '.btn_remove2', function(){  
+            var button_id = $(this).attr("id");   
+            $('#row'+button_id+'').remove();  
+        });
+
+         
+
+
 
          $('#submit').click(function(){            
               $.ajax({  

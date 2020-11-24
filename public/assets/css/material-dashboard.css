@@ -79,6 +79,7 @@ hr {
   box-sizing: content-box;
   height: 0;
   overflow: visible;
+  border-top: 3px solid rgba(255, 255, 255, 0.1);
 }
 
 h1,

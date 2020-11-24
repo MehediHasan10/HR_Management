@@ -3,10 +3,12 @@ const router = require('express').Router();
 const OfficialsInfo = require('../schema/officials/officials');
 const OfficialsLeaveType = require('../schema/officials/leaveType');
 const OfficialsLeaveCount = require('../schema/officials/leaveCount');
+const DepDetails = require('../schema/departments/department');
 
-//Officials Leave Type 
+//---------------------Officials Leave Type----------------------------------- 
 
 //route  - GET /addLeaveType
+//API for adding Leave Types (Ex: Casual leave, Sick leave...)
 router.get('/addLeaveType', (req, res) => {
     try{
         res.render('pages/leaveManagement/officials/leaveType');
@@ -16,6 +18,7 @@ router.get('/addLeaveType', (req, res) => {
 }) ;
 
 //route  -  POST  /addLeaveType
+//API for adding Leave Types (Ex: Casual leave, Sick leave...)
 router.post('/addLeaveType', async (req,res) => {
     const leaveType = new OfficialsLeaveType({
         leaveType: req.body.lType,
@@ -31,22 +34,41 @@ router.post('/addLeaveType', async (req,res) => {
 });
 
 
-//Officials Leave Count 
+//-----------------------Officials Leave Count---------------------------------- 
 
 //route  -  GET /officialsLeaveInfo
+//This will get us to the "department" page to choose which dep's employee leave you're looking for.
 router.get('/officialsLeaveInfo', async (req, res) => {
     try{
-        const officialsInfo = await OfficialsInfo.find();
-        res.render('pages/leaveManagement/officials/leaveInfo',
-        {
-            officialsInfoOutput: officialsInfo
+        const depDetails = await DepDetails.find();
+        res.render('pages/department/showDepEmpLeave', {
+            output : depDetails
         });
-    }catch(err){
+    } catch(err){
+        console.log(err);
+    }
+});
+
+//route  -  GET /depEmpLeave
+// Department wise employee list (table).
+router.get('/depEmpLeave/:id', async (req, res) => {
+    try {
+        const officialsInfo = await OfficialsInfo.find(
+            {
+                'basicInfo.department': req.params.id
+            });
+
+        res.render('pages/leaveManagement/officials/leaveInfo',
+            {
+                officialsInfoOutput: officialsInfo
+            });
+    } catch (err) {
         console.log(err);
     }
 });
 
 //route  -  GET /addLeaveInfo/:id
+//API for adding Each employees leave information.
 router.get('/addLeaveInfo/:id', async (req, res) => {
     try {
         const officialsInfo = await OfficialsInfo.findById(req.params.id);
@@ -69,6 +91,7 @@ router.get('/addLeaveInfo/:id', async (req, res) => {
 });
 
 //route  -  POST /addLeaveInfo/:id
+//API for adding Each employees leave information.
 router.post('/addLeaveInfo/:id', async (req, res) => {
     // console.log(req.body.empId);
     const officialsLeaveCount = new OfficialsLeaveCount({
@@ -89,6 +112,7 @@ router.post('/addLeaveInfo/:id', async (req, res) => {
 });
 
 //route  -  GET /showLeaveInfo/:id
+//Employee wise  leave info list (table).
 router.get('/showLeaveInfo/:id', async (req, res) => {
     try{
         
