@@ -1,5 +1,7 @@
 const router = require('express').Router();
 
+const moment = require('moment');
+
 const OfficialsInfo = require('../schema/officials/officials');
 const StaffsInfo = require('../schema/staffs/staffs');
 const DepDetails = require('../schema/departments/department');
@@ -14,7 +16,7 @@ router.get('/', (req, res) => {
 //Officials Information Form ------------------------------------------
 
 //@route  -  GET /addInfoForm
-//Form to get the employee information
+//Form to post the employee information
 router.get('/addInfoForm',async (req, res) => {
     try{
         const depDetails = await DepDetails.find();
@@ -28,8 +30,11 @@ router.get('/addInfoForm',async (req, res) => {
 });
 
 //@route  -  POST /addInfoForm
+//Form to post the employee information
 router.post('/addInfoForm', async (req, res) => {
 
+    console.log(req.body.start_date);
+    //ChildInfo array for dynamic field                     
     const childInformation = [];
     for(var i = 0; i < req.body.c_name.length; i++){
         var newEntry = {
@@ -38,9 +43,9 @@ router.post('/addInfoForm', async (req, res) => {
             child_dateOfBirth: req.body.c_dob[i]
         }
         childInformation.push(newEntry);
-    }
-    //console.log(childInformation);
+    };
 
+    //EduInfo array for dynamic field
     const eduInformation = [];
     for(var i = 0; i < req.body.e_deg.length; i++) {
         var newEntry = {
@@ -52,7 +57,79 @@ router.post('/addInfoForm', async (req, res) => {
             passing_years: req.body.pass_year[i]
         }
         eduInformation.push(newEntry);
-    }
+    };
+
+    //TrainingInfo array for dynamic field
+    const trainingInformation = [];
+    for(var i = 0; i < req.body.t_type.length; i++){
+        var newEntry = {
+            training_type: req.body.t_type[i],
+            course_title: req.body.t_course[i],
+            institution_name: req.body.t_institution[i],
+            country: req.body.t_country[i],
+            start_date: req.body.t_start[i],
+            end_date: req.body.t_end[i],
+            grade: req.body.t_grade[i],
+            position: req.body.t_position[i]
+        }
+        trainingInformation.push(newEntry);
+        // console.log(trainingInformation);
+    };
+
+    //PostingInfo array for dynamic field
+    const postingInfo = [];
+    for (var i = 0; i < req.body.p_deg.length; i++){
+        var newEntry = {
+            designation: req.body.p_deg[i],
+            office_name: req.body.p_office[i],
+            from_date: req.body.p_from_date[i],
+            to_date: req.body.p_to_date[i],
+            upazilla: req.body.p_upazilla[i],
+            district: req.body.p_district[i]
+        }
+        postingInfo.push(newEntry);
+    };
+
+    //PromotionInfo array for dynamic field
+    const promotionInfo = [];
+    for (var i = 0; i < req.body.pro_deg.length; i++){
+        var newEntry = {
+            promoted_designation: req.body.pro_deg[i],
+            promotion_nature: req.body.pro_nature[i],
+            promotion_date: req.body.pro_date[i],
+            GO_number: req.body.go_number[i],
+            GO_date: req.body.go_date[i]
+        }
+        promotionInfo.push(newEntry);
+    };
+
+    //Publication array for dynamic field
+    const publicationInfo = [];
+    for (var i = 0; i < req.body.pub_type.length; i++){
+        var newEntry = {
+            pub_type: req.body.pub_type[i],
+            date: req.body.pub_date[i],
+            description: req.body.pub_des[i]
+           
+        }
+        publicationInfo.push(newEntry);
+    };
+
+    //Disciplinary Action array for dynamic field
+    const disciplineInfo = [];
+    for (var i = 0; i < req.body.occurance.length; i++){
+        var newEntry = {
+            occurance: req.body.occurance[i],
+            occuring_date: req.body.occ_date[i],
+            action: req.body.occ_action[i],
+            memo_No: req.body.memo_no[i],
+            memo_date: req.body.memo_date[i]
+           
+        }
+        disciplineInfo.push(newEntry);
+    };
+
+    // const retirementDate = moment(req.body.dob).add(7, 'y');
 
     const officialsInfo = new OfficialsInfo({
 
@@ -70,7 +147,10 @@ router.post('/addInfoForm', async (req, res) => {
             homeDistrict: req.body.district,
             maritalStatus: req.body.marital_Status,
             email: req.body.email,
-            phone: req.body.phone
+            phone: req.body.phone,
+            divison: req.body.divison,
+            section: req.body.section,
+            // dateOfRetirement: retirementDate
         },
 
         spouseInfo: {
@@ -107,51 +187,18 @@ router.post('/addInfoForm', async (req, res) => {
 
         eduInfo: eduInformation,
 
-        trainingInfo: [{
-            training_type: req.body.t_type,
-            course_title: req.body.t_course,
-            institution_name: req.body.t_institution,
-            country: req.body.t_country,
-            start_date: req.body.t_start,
-            end_date: req.body.t_end,
-            grade: req.body.t_grade,
-            position: req.body.t_position
-        }],
+        trainingInfo: trainingInformation,
 
-        postingInfo: [{
-            designation: req.body.p_deg,
-            office_name: req.body.p_office,
-            from_date: req.body.p_from_date,
-            to_date: req.body.p_to_date,
-            upazilla: req.body.p_upazilla,
-            district: req.body.p_district
-        }],
+        postingInfo: postingInfo,
 
-        promotionInfo: [{
-            promoted_designation: req.body.pro_deg,
-            promotion_nature: req.body.pro_nature,
-            promotion_date: req.body.pro_date,
-            GO_date: req.body.go_date,
-            GO_number: req.body.go_number
-        }],
+        promotionInfo: promotionInfo,
 
-        publicationInfo: [{
-            pub_type: req.body.pub_type,
-            date: req.body.pub_date,
-            description: req.body.pub_des
-        }],
+        publicationInfo: publicationInfo,
 
-        disciplineInfo: [{
-            occurance: req.body.occurance,
-            occuring_date: req.body.occ_date,
-            action: req.body.occ_action,
-            memo_No: req.body.memo_no,
-            memo_date: req.body.memo_date
-        }]
+        disciplineInfo: disciplineInfo
 
     });
 
-    // console.log(officialsInfo);
     try{
         const officialsData = await officialsInfo.save();
         res.redirect('/addInfoForm');
@@ -163,6 +210,7 @@ router.post('/addInfoForm', async (req, res) => {
 //Staffs Information Form ---------------------------------------------
 
 //@route  -  GET /staffInfoForm
+//Form to post the staffs information
 router.get('/addStaffInfoForm', async (req, res) => {
     // console.log("get route");
     try{
@@ -173,6 +221,7 @@ router.get('/addStaffInfoForm', async (req, res) => {
 });
 
 //@route  -  POST /staffInfoForm
+//Form to post the staffs information
 router.post('/staffInfoForm', async (req, res) => {
 
     const staffsInfo = new StaffsInfo({
@@ -271,9 +320,12 @@ router.post('/staffInfoForm', async (req, res) => {
     }
 })
 
+
 //Information Table ---------------------------------------------------
 
-//@route  -  GET /officialsTable (Officials)
+//@route  -  GET /officialsTable (Officials) 
+//*** Modified route ***
+//This route will lead to the RPGCL Division page 
 router.get('/officialsTable', async (req, res) => {  
     try{
         const depDetails = await DepDetails.find();
@@ -327,7 +379,8 @@ router.get('/showDetails/:id', async (req, res) => {
 
         res.render('pages/actions/officials/showDetails', 
         {
-            output:detailedData
+            output:detailedData,
+            moment: moment
         });
     } catch (err) {
         console.log(err);

@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+//*** I made a mistake while building the "department" model, which should be the "division" model. deivison-> department -> section. As it is too much to change all the department into divison, that is why in this code, department and divison are vice versa from the real world ! Happy mara !!!
+
 const officials_schema = new mongoose.Schema({
     basicInfo: {
         employeeName: String,
@@ -17,9 +19,12 @@ const officials_schema = new mongoose.Schema({
         phone: String,
         department: {
             type: mongoose.Schema.Types.ObjectId,
-            required: true,
             ref: 'departmentDetails'
-        }
+        },
+        divison: String,
+        section: String
+        // dateOfRetirement: Date
+
     },
     spouseInfo: {
         spouseName: String,

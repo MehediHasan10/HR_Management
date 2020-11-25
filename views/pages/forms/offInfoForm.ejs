@@ -66,16 +66,73 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-md-12">
-                                            <label for="">Select Department</label>
+
+                                        <div class="col-md-4">
+                                            <label for="dep">Select Division</label>
                                             <select name="dep">
                                                 
                                                 <% output.forEach((entry) => { %>
-                                                    <option value="" disabled selected hidden> Choose Department </option>
+                                                    <option value="" disabled selected hidden> Choose Division </option>
                                                     <option label="<%= entry.departmentName %>" value="<%= entry.id %>">
                                                 <% }); %>
                                             </select>
                                         </div>
+
+                                        <div class="col-md-4">
+                                            <label for="divison">Select Department</label>
+                                            <select name="divison">
+                                                <option value="" disabled selected hidden>Choose Department</option>
+                                                <option value="Human Resource">Human Resource</option>
+                                                <option value="Establishment">Establishment</option>
+                                                <option value="Services & Logistic">Services & Logistic</option>
+                                                <option value="Health Care">Health Care</option>
+                                                <option value="Company Affairs">Company Affairs</option>
+                                                <option value="PLant Operation">PLant Operation</option>
+                                                <option value="Marketing">Marketing</option>
+                                                <option value="Engineering Services">Engineering Services</option>
+                                                <option value="Ashuganj Condensate Handling">Ashuganj Condensate Handling</option>
+                                                <option value="CNG Sales and Service">CNG Sales and Service</option>
+                                                <option value="CNG Permission & Monitoring">CNG Permission & Monitoring</option>
+                                                <option value="Planning">Planning</option>
+                                                <option value="Development">Development</option>                                    
+                                            </select>                                               
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label for="section">Select Section</label>
+                                            <select name="section">
+                                                <option value="" disabled selected hidden>Choose Section</option>
+                                                <option value="Personnel">Personnel</option>
+                                                <option value="HRD">HRD</option>
+                                                <option value="Establishment">Establishment</option>
+                                                <option value="Procurement">Procurement</option>
+                                                <option value="Security, Estate & Services">Security, Estate & Services</option>
+                                                <option value="Store">Store</option>
+                                                <option value="Transport and Maintainance">Transport and Maintainance</option>
+                                                <option value="Board & Share">Board & Share</option>
+                                                <option value="Production">Production</option>
+                                                <option value="Field Admin">Field Admin</option>
+                                                <option value="Accounts">Accounts</option>
+                                                <option value="Marketing">Marketing</option>
+                                                <option value="Quality COntrol">Quality COntrol</option>
+                                                <option value="Environment and Safety">Environment and Safety</option>
+                                                <option value="Maintenance">Maintenance</option>
+                                                <option value="Ashuganj Condensate Handling">Ashuganj Condensate Handling</option>
+                                                <option value="Central Workshop">Central Workshop</option>
+                                                <option value="Zonal Workshop">Zonal Workshop</option>
+                                                <option value="Permission and Monitoring">Permission and Monitoring</option>
+                                                <option value="Planning">Planning</option>
+                                                <option value="ICT">ICT</option>
+                                                <option value="Development and In House Training">Development and In House Training</option>
+                                                <option value="General Accounts">General Accounts</option>
+                                                <option value="Payroll">Payroll</option>
+                                                <option value="Bill and Revenue">Bill and Revenue</option>
+                                                <option value="Cost and Insurance">Cost and Insurance</option>
+                                                <option value="Finance and Budget">Finance and Budget</option>
+
+                                            </select>      
+                                        </div>
+
                                     </div>
 
                                     <div class="row">
@@ -383,7 +440,7 @@
                                 </div>
 
                                 <button type="button" name="addChild" id="addChild" class="btn btn-success">Add More child Info</button>
-
+                                <br>
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                                 <input type="button" name="next" class="next action-button" value="Next"/>
                             </fieldset>
@@ -499,7 +556,7 @@
                                 </div>
 
                                 <button type="button" name="addEdu" id="addEdu" class="btn btn-success">Add More Education Info</button>
-
+                                <br>
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                                 <input type="button" name="next" class="next action-button" value="Next"/>
 
@@ -508,7 +565,7 @@
                             <!-- Employee Training(7) -->
                             <fieldset>
                                 <h2 class="fs-title">Training Information</h2>
-                                <div class="text-left">
+                                <div class="text-left" id="dynamic_field3">
 
                                     <div class="row">
                                         <div class="col-md-8">
@@ -558,8 +615,11 @@
                                         </div>
 
                                     </div>
+
                                 </div>
 
+                                <button type="button" name="addTraining" id="addTraining" class="btn btn-success">Add More Training Info</button>
+                                <br>
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                                 <input type="button" name="next" class="next action-button" value="Next"/>    
                             </fieldset>
@@ -567,7 +627,7 @@
                             <!-- Employee Posting(8) -->
                             <fieldset>
                                 <h2 class="fs-title">Posting Workstation</h2>
-                                <div class="text-left">
+                                <div class="text-left" id="dynamic_field4">
 
                                     <div class="row">
                                         <div class="col-md-4">
@@ -583,11 +643,11 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="p_from_date">From Date</label>    
-                                            <input type="date" name="p_from_date" />                                        
+                                            <input type="date" name="p_from_date"/>                                        
                                         </div>
                                         <div class="col-md-6">
                                             <label for="p_to_date">To Date</label>    
-                                            <input type="date" name="p_to_date" />                                        
+                                            <input type="date" name="p_to_date"/>                                        
                                         </div>
                                     </div>
 
@@ -604,6 +664,8 @@
 
                                 </div>
 
+                                <button type="button" name="addPosting" id="addPosting" class="btn btn-success">Add More Posting Info</button>
+                                <br>
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                                 <input type="button" name="next" class="next action-button" value="Next"/>
                             </fieldset>
@@ -611,7 +673,7 @@
                             <!-- Promotion Statements(9) -->
                             <fieldset>
                                 <h2 class="fs-title">Promotion Statements</h2>
-                                <div class="text-left">
+                                <div class="text-left" id="dynamic_field5">
 
                                     <label for="pro_deg">Promoted Designation</label>
                                     <input type="text" name="pro_deg" />
@@ -635,6 +697,8 @@
 
                                 </div>
 
+                                <button type="button" name="addPromotion" id="addPromotion" class="btn btn-success">Add More Promotion Info</button>
+                                <br>
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                                 <input type="button" name="next" class="next action-button" value="Next"/>
                             </fieldset>
@@ -642,7 +706,8 @@
                             <!-- Employee Publication(10)  -->
                             <fieldset>
                                 <h2 class="fs-title">Employee Publications</h2>
-                                <div class="text-left">
+                                <div class="text-left" id="dynamic_field6">
+
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="pub_type">Publication Type</label>
@@ -657,6 +722,9 @@
                                     <label for="pub_des">Description</label>
                                     <textarea name="pub_des"></textarea>
                                 </div>
+
+                                <button type="button" name="addPublication" id="addPublication" class="btn btn-success">Add More Publication Info</button>
+                                <br>
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                                 <input type="button" name="next" class="next action-button" value="Next"/>
                             </fieldset>
@@ -665,7 +733,8 @@
                             <fieldset>
                                 <h2 class="fs-title">Employee Disciplinary Action</h2>
 
-                                <div class="text-left">
+                                <div class="text-left" id="dynamic_field7">
+
                                     <label for="occurance">Occurance</label>
                                     <textarea name="occurance"></textarea>
 
@@ -685,8 +754,11 @@
                                             <input type="date" name="memo_date" />
                                         </div>
                                     </div>
+
                                 </div>
 
+                                <!-- <button type="button" name="addDiscipline" id="addDiscipline" class="btn btn-success">Add More Discipline Info</buttoDiscipline> -->
+                                <!-- <br> -->
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                                 <input type="submit" name="submit" value="submit" class="btn btn-primary" style="background-color: #ee0979; color: white; font-weight:bolder">
                             
@@ -706,11 +778,11 @@
     $(document).ready(function(){  
 
         //Dynamic Child Jquery
-        var i=1;  
+        var i = 1;  
         $('#addChild').click(function(){  
             i++;  
             $('#dynamic_field').append(
-                '<div id="row'+i+'"><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button><label for="c_name">Child Name</label><input type="text" name="c_name"/><label for="c_gender">Gender</label><select name="c_gender"><option value="" disabled selected hidden>Choose a Gender</option><option value="Male" >Male</option><option value="Female" >Female</option><option value="Others" >Others</option></select><label for="c_dob">Date of Birth</label><input type="date" name="c_dob"/></div>'
+                '<div id="row'+i+'"><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove" style="float:right;">X</button><br><label for="c_name">Child Name</label><input type="text" name="c_name"/><label for="c_gender">Gender</label><select name="c_gender"><option value="" disabled selected hidden>Choose a Gender</option><option value="Male" >Male</option><option value="Female" >Female</option><option value="Others" >Others</option></select><label for="c_dob">Date of Birth</label><input type="date" name="c_dob"/></div>'
             );  
         });  
         $(document).on('click', '.btn_remove', function(){  
@@ -718,13 +790,12 @@
             $('#row'+button_id+'').remove();  
         }); 
          
-
         //Dynamic Education Jquery
-        var j=1;
+        var j = 1;
         $('#addEdu').click(function(){
             j++;
             $('#dynamic_field2').append(
-                '<div id="row'+j+'"><button type="button" name="remove" id="'+j+'" class="btn btn-danger btn_remove2">X</button><div class="row"><div class="col-md-6"><label for="e_deg">Degree</label><input type="text" name="e_deg"/></div><div class="col-md-6"><label for="e_grp">Group/Department</label><input type="text" name="e_grp" /></div></div><label for="e_institution">Educational Institute</label><input type="text" name="e_institution" /><div class="row"><div class="col-md-4"><label for="e_board">Board</label><input type="text" name="e_board" /></div><div class="col-md-4"><label for="e_result">Result</label><input type="text" name="e_result" /></div><div class="col-md-4"><label for="pass_year">Passing Year</label><input type="text" name="pass_year" /></div></div>'
+                '<div id="row'+j+'"><button type="button" name="remove" id="'+j+'" class="btn btn-danger btn_remove2" style="float:right;">X</button><br><div class="row"><div class="col-md-6"><label for="e_deg">Degree</label><input type="text" name="e_deg"/></div><div class="col-md-6"><label for="e_grp">Group/Department</label><input type="text" name="e_grp" /></div></div><label for="e_institution">Educational Institute</label><input type="text" name="e_institution" /><div class="row"><div class="col-md-4"><label for="e_board">Board</label><input type="text" name="e_board" /></div><div class="col-md-4"><label for="e_result">Result</label><input type="text" name="e_result" /></div><div class="col-md-4"><label for="pass_year">Passing Year</label><input type="text" name="pass_year" /></div></div>'
             );
         });
         $(document).on('click', '.btn_remove2', function(){  
@@ -732,9 +803,70 @@
             $('#row'+button_id+'').remove();  
         });
 
-         
+        //Dynamic Training Jquery        
+        var k = 1;
+        $('#addTraining').click(function(){
+            k++;
+            $('#dynamic_field3').append(
+                '<div id="row'+k+'"><button type="button" name="remove" id="'+k+'" class="btn btn-danger btn_remove3" style="float:right;">X</button><br><div class="row"><div class="col-md-8"><label for="t_type">Training Type</label><select name="t_type" ><option value=""disabled selected hidden>Choose a Type</option><option value="Local">Local</option><option value="Foreign">Foreign</option></select></div><div class="col-md-4"><label for="t_course">Course Title</label><input type="text" name="t_course" /></div></div><label for="t_institution">Institution</label><input type="text" name="t_institution" /><div class="row"><div class="col-md-4"><label for="t_country">Country</label><input type="text" name="t_country" /></div><div class="col-md-4"><label for="t_start">Starting Date</label><input type="date" name="t_start" /></div><div class="col-md-4"><label for="t_end">Ending Date</label><input type="date" name="t_end" /></div></div><div class="row"><div class="col-md-6"><label for="t_grade">Grade</label><input type="text" name="t_grade" /></div><div class="col-md-6"><label for="t_position">Position</label><input type="text" name="t_position" /></div></div>'
+            );
+        });
+        $(document).on('click', '.btn_remove3', function(){  
+            var button_id = $(this).attr("id");   
+            $('#row'+button_id+'').remove();  
+        });
 
+        //Dynamic Posting Jquery        
+        var l = 1;
+        $('#addPosting').click(function(){
+            l++;
+            $('#dynamic_field4').append(
+                '<div id="row'+l+'"><button type="button" name="remove" id="'+l+'" class="btn btn-danger btn_remove4" style="float:right;">X</button><br><div class="row"><div class="col-md-4"><label for="p_deg">Designation</label><input type="text" name="p_deg" /></div><div class="col-md-8"><label for="p_office">Office Name</label><input type="text" name="p_office" /></div></div><div class="row"><div class="col-md-6"><label for="p_from_date">From Date</label><input type="date" name="p_from_date" /></div><div class="col-md-6"><label for="p_to_date">To Date</label><input type="date" name="p_to_date" /></div></div><div class="row"><div class="col-md-6"><label for="p_upazilla">Upazilla</label><input type="text" name="p_upazilla" /></div><div class="col-md-6"><label for="p_district">District</label><input type="text" name="p_district" /></div></div>'
+            );
+        });
+        $(document).on('click', '.btn_remove4', function(){  
+            var button_id = $(this).attr("id");   
+            $('#row'+button_id+'').remove();  
+        });  
 
+        //Dynamic Promotion Jquery
+        var m = 1;
+        $('#addPromotion').click(function(){
+            m++;
+            $('#dynamic_field5').append(
+                '<div id="row'+m+'"><button type="button" name="remove" id="'+m+'" class="btn btn-danger btn_remove5" style="float:right;">X</button><br><label for="pro_deg">Promoted Designation</label><input type="text" name="pro_deg" /><label for="pro_nature">Promotion Nature</label><input type="text" name="pro_nature" /><label for="pro_date">Promotion Date</label><input type="date" name="pro_date"/><div class="row"><div class="col-md-6"><label for="go_date">G.O. Date</label><input type="date" name="go_date" /></div><div class="col-md-6"><label for="go_number">G.O. Number</label><input type="string" name="go_number" /></div></div>'
+            );
+        });
+        $(document).on('click', '.btn_remove5', function(){  
+            var button_id = $(this).attr("id");   
+            $('#row'+button_id+'').remove();  
+        });
+
+        //Dynamic Publications Jquery
+        var n = 1;
+        $('#addPublication').click(function(){
+            n++;
+            $('#dynamic_field6').append(
+                '<div id="row'+n+'"><button type="button" name="remove" id="'+n+'" class="btn btn-danger btn_remove6" style="float:right;">X</button><br><div class="row"><div class="col-md-6"><label for="pub_type">Publication Type</label><input type="text" name="pub_type" /></div><div class="col-md-6"><label for="pub_date">Publication Date</label><input type="date" name="pub_date" /></div></div><label for="pub_des">Description</label><textarea name="pub_des"></textarea>'
+            );
+        });
+        $(document).on('click', '.btn_remove6', function(){  
+            var button_id = $(this).attr("id");   
+            $('#row'+button_id+'').remove();  
+        });  
+
+        //Dynamic Disciplinary Jquery
+        var o = 1;
+        $('#addDiscipline').click(function(){
+            o++;
+            $('#dynamic_field7').append(
+                '<div id="row'+o+'"><button type="button" name="remove" id="'+o+'" class="btn btn-danger btn_remove7" style="float:right;">X</button><br><label for="occurance">Occurance</label><textarea name="occurance"></textarea><label for="occ_date">Occuring Date</label><input type="date" name="occ_date" /><label for="occ_action">Action & Punishment</label><textarea name="occ_action"></textarea><div class="row"><div class="col-md-6"><label for="memo_no">Memo No.</label><input type="text" name="memo_no" /></div><div class="col-md-6"><label for="memo_date">Memo Date</label><input type="date" name="memo_date"/></div>'
+            );
+        });
+        $(document).on('click', '.btn_remove7', function(){  
+            var button_id = $(this).attr("id");   
+            $('#row'+button_id+'').remove();  
+        }); 
 
          $('#submit').click(function(){            
               $.ajax({  
