@@ -20,6 +20,7 @@ router.get('/', (req, res) => {
 router.get('/addInfoForm',async (req, res) => {
     try{
         const depDetails = await DepDetails.find();
+        
         res.render('pages/forms/offInfoForm',
         {
             output: depDetails
@@ -33,7 +34,7 @@ router.get('/addInfoForm',async (req, res) => {
 //Form to post the employee information
 router.post('/addInfoForm', async (req, res) => {
 
-    console.log(req.body.start_date);
+    console.log(req.body);
     //ChildInfo array for dynamic field                     
     const childInformation = [];
     for(var i = 0; i < req.body.c_name.length; i++){
@@ -61,7 +62,7 @@ router.post('/addInfoForm', async (req, res) => {
 
     //TrainingInfo array for dynamic field
     const trainingInformation = [];
-    for(var i = 0; i < req.body.t_type.length; i++){
+    for(var i = 0; i < req.body.t_course.length; i++){
         var newEntry = {
             training_type: req.body.t_type[i],
             course_title: req.body.t_course[i],
@@ -129,7 +130,11 @@ router.post('/addInfoForm', async (req, res) => {
         disciplineInfo.push(newEntry);
     };
 
-    // const retirementDate = moment(req.body.dob).add(7, 'y');
+    const retirementDate = moment(req.body.dob).add(59, 'y');
+    // var retireTime = moment(officialsInfo.basicInfo.dateOfRetirement);
+    var currentTime = moment();
+    var remainingTime = retirementDate.diff(currentTime, 'days')
+
 
     const officialsInfo = new OfficialsInfo({
 
@@ -150,7 +155,8 @@ router.post('/addInfoForm', async (req, res) => {
             phone: req.body.phone,
             divison: req.body.divison,
             section: req.body.section,
-            // dateOfRetirement: retirementDate
+            dateOfRetirement: retirementDate,
+            remainingRetiredTime: remainingTime
         },
 
         spouseInfo: {
@@ -201,6 +207,9 @@ router.post('/addInfoForm', async (req, res) => {
 
     try{
         const officialsData = await officialsInfo.save();
+        //console.log(moment());
+        // var retire = moment(officialsInfo.basicInfo.remainingRetiredTime);
+
         res.redirect('/addInfoForm');
     } catch(err){
         console.log(err);
@@ -344,8 +353,7 @@ router.get('/depEmp/:id', async (req, res) => {
         const officialsInfo = await OfficialsInfo.find(
             {
                 'basicInfo.department': req.params.id
-            });
-
+            })
         res.render('pages/table/officialsTable', 
         {
             output:officialsInfo
@@ -661,5 +669,25 @@ router.get('/deleteStaffs/:id', async (req, res) => {
     }
 });
 
+
+//Retirement Calculations
+
+//@route  -  GET /retirement
+router.get('/retirement', async (req, res) => {
+    try {
+        const officialsInfo = await OfficialsInfo.find({ 
+            'basicInfo.remainingRetiredTime': {
+                $lt: 180
+            } 
+        });
+        //console.log(officialsInfo);
+        res.render('pages/retirement/offRetire', {
+            output : officialsInfo,
+            moment : moment
+        })
+    } catch (err) {
+        console.log(err);
+    }
+})
 
 module.exports = router;

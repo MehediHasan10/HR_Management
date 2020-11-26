@@ -14371,7 +14371,7 @@ h6,
 .h3,
 .h4 {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.5em;
 }
 
@@ -15550,6 +15550,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   margin-top: 70px;
   padding: 30px 15px;
   min-height: calc(100vh - 123px);
+  padding-top: 0;
 }
 
 .main-panel>.footer {
@@ -15558,6 +15559,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 
 .main-panel>.navbar {
   margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .main-panel .header {
@@ -16934,8 +16936,8 @@ a .material-icons {
 label {
   font-size: 14px;
   line-height: 1.42857;
-  color: #AAAAAA;
-  font-weight: 400;
+  color: #000;
+  font-weight: 650;
 }
 
 /*           Animations              */
@@ -19563,7 +19565,7 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .dark-edition {
-  background-color: #1a2035;
+  background-color: #b4cac5;
 }
 
 .dark-edition .btn,
@@ -20449,7 +20451,7 @@ Copyright (c) 2015 Daniel Eden
 
 .dark-edition .sidebar .sidebar-background:after,
 .dark-edition .sidebar {
-  background: #1f283e;
+  background: #282b33;
   opacity: .94;
 }
 
@@ -20481,7 +20483,7 @@ Copyright (c) 2015 Daniel Eden
 
 .dark-edition .navbar:not([class*="bg-"]) .navbar-brand,
 .dark-edition .navbar:not([class*="bg-"]) .collapse .navbar-nav .nav-item .nav-link {
-  color: #a9afbbd1;
+  color: #27202bd1;
 }
 
 .dark-edition .navbar[class*="bg-"] .form-control::-moz-placeholder {
@@ -20550,7 +20552,7 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .dark-edition .card {
-  background: #202940;
+  background: #faffff;
 }
 
 .dark-edition .card .card-header.card-header-text .card-title,
@@ -20597,7 +20599,7 @@ Copyright (c) 2015 Daniel Eden
 .dark-edition .card.bg-warning,
 .dark-edition .card.card-rotate.bg-warning .front,
 .dark-edition .card.card-rotate.bg-warning .back {
-  background: linear-gradient(60deg, #f5700c, #ff9800);
+  background: linear-gradient(180deg, #7b1fa2, #913f9e);
 }
 
 .dark-edition .card .card-header-success .card-icon,
@@ -20657,7 +20659,7 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .dark-edition .card-stats .card-header .card-category:not([class*="text-"]) {
-  color: #8b92a9;
+  color: #000;
 }
 
 .dark-edition .card-stats .card-header+.card-footer {
@@ -20689,7 +20691,7 @@ Copyright (c) 2015 Daniel Eden
 .dark-edition .table>thead>tr>td,
 .dark-edition .table>tbody>tr>td,
 .dark-edition .table>tfoot>tr>td {
-  color: #8b92a9;
+  color: #000;
   border-color: rgba(180, 180, 180, 0.1);
 }
 

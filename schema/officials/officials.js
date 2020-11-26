@@ -22,8 +22,9 @@ const officials_schema = new mongoose.Schema({
             ref: 'departmentDetails'
         },
         divison: String,
-        section: String
-        // dateOfRetirement: Date
+        section: String,
+        dateOfRetirement: Date,
+        remainingRetiredTime: Number
 
     },
     spouseInfo: {
