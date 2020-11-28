@@ -7,9 +7,9 @@
             <div class="container-fluid">
 
             <!-- your content here -->
-            <div class="container" style="color:white">
-                <h2 class="text-center" style='margin-top:0.5em; font-weight:bold;'><%= output.basicInfo.employeeName %></h2>
-                <h3 class="text-center" style=' font-weight:bold;'>Designation : <%= output.basicInfo.designation %></h3> 
+            <div class="container" >
+                <h2 class="text-center" style='margin-top:0.5em; font-weight:bold;'><span class="underline--magical"><%= output.basicInfo.employeeName %></span></h2>
+                <h3 class="text-center" style=' font-weight:bold;'><span style=" color: #913f9e">Designation</span> : <%= output.basicInfo.designation %></h3> 
                 <h3 class="text-center" style=' font-weight:bold;'><%= output.basicInfo.department.departmentName %></h3> 
                 <h5 class="text-center" style=' font-weight:bold;'><%= output.basicInfo.divison %> Department , <%= output.basicInfo.section %> Section</h5>     
                 <br>
@@ -20,7 +20,7 @@
                         <h3 style="font-weight:bolder; text-align:center;">Employee Basic Information</h3>
                     </div>
 
-                    <div class="card-body" style="color:white;">
+                    <div class="card-body" style="color: black">
 
                         <div class="row">
                             <div class="col-md-4"><p> <span style="font-weight:bold;color:#ca40c8;">Employee Name: </span> <%= output.basicInfo.employeeName %></p></div>

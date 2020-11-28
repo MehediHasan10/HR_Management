@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const moment = require('moment');
 
 const OfficialsInfo = require('../schema/officials/officials');
 const OfficialsLeaveType = require('../schema/officials/leaveType');
@@ -126,7 +127,8 @@ router.get('/showLeaveInfo/:id', async (req, res) => {
         res.render('pages/leaveManagement/officials/leaveDetails',
             {
                 offInfo: officialsInfo,
-                leaveCount: officialsLeaveCount
+                leaveCount: officialsLeaveCount,
+                moment: moment
             });
       
     }catch(err){
