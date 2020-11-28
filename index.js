@@ -1,6 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
+const cookieParser = require('cookie-parser');
+const {requireAuth, checkUser} = require("./middleware/authMiddleware");
+
 
 //reference of express module
 const app = express();
@@ -8,12 +11,12 @@ const app = express();
 //parsing the json data
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 //mongo config and connection
 // const url = "mongodb+srv://el06:test1234@cluster0.a9rlb.mongodb.net/hrdb";
 const url = "mongodb://localhost:27017/hRDataBase";
-mongoose.connect(url, { 
-
+mongoose.connect(url, {
     useNewUrlParser: true,
     useFindAndModify: true,
     useUnifiedTopology: true
@@ -37,15 +40,20 @@ app.set("view engine", "ejs");
 //     res.render("pages/dashboard");
 // });
 
+//Checking the user
+app.get("*", checkUser);
+
 //bring all routes
 const hrRouter = require('./routes/hrDb');
 const leaveRouter = require('./routes/leaveDb');
 const departmentRouter = require('./routes/departmentDb');
+const authRouter = require('./routes/auth');
 
 //routes handler
 app.use('/', hrRouter);
 app.use('/leave', leaveRouter);
 app.use('/department', departmentRouter);
+app.use('/auth', authRouter);
 
 //set up the public folder
 app.use(express.static('./public'));
