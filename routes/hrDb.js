@@ -28,7 +28,8 @@ router.get('/addInfoForm',async (req, res) => {
         
         res.render('pages/forms/offInfoForm',
         {
-            output: depDetails
+            output: depDetails,
+            page_name: 'addInfoForm'
         });
     } catch(err){
         console.log(err);
