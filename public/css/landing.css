@@ -21,6 +21,16 @@ html {
     left: 0;
   }
   
+  .auth-wrap-background2 {
+    background-image: url("../images/rpgcl.jpg");
+    background-size: cover;
+    background-position: 50%;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
   .auth-center {
     -webkit-box-align: center;
             align-items: center;

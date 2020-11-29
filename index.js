@@ -19,7 +19,8 @@ const url = "mongodb://localhost:27017/hRDataBase";
 mongoose.connect(url, {
     useNewUrlParser: true,
     useFindAndModify: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex: true
 }).catch((err) => console.log(err)); //Handles initial connection error
 
 const db = mongoose.connection;

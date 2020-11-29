@@ -2,7 +2,7 @@ const router = require('express').Router();
 const jwt = require("jsonwebtoken");
 const {requireAuth, checkUser} = require("../middleware/authMiddleware");
 
-const user = require('../schema/auth/user');
+const User = require('../schema/auth/user');
 
 //handle errors
 const handleErrors = (err) => {
@@ -48,9 +48,10 @@ router.get("/signup", (req, res) => {
 
 //signup - POST
 router.post("/signup", async (req, res) => {
-    const {username, password} = req.body;
+    // console.log('hi');
+    const {email, password} = req.body;
     try {
-        const user = await User.create({username, password});
+        const user = await User.create({email, password});
         const token = createToken(user._id);
         res.cookie("jwt", token, {httpOnly:true, maxAge:maxAge*1000});
         res.status(201).json({user: user._id});

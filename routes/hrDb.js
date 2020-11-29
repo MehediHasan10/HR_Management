@@ -12,6 +12,11 @@ router.get('/', (req, res) => {
     res.render("pages/landing");
 });
 
+//@route  -  GET  /index 
+//index page
+router.get('/index', (req, res) => {
+    res.render("pages/index");
+});
 
 //Officials Information Form ------------------------------------------
 
