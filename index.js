@@ -49,12 +49,14 @@ const hrRouter = require('./routes/hrDb');
 const leaveRouter = require('./routes/leaveDb');
 const departmentRouter = require('./routes/departmentDb');
 const authRouter = require('./routes/auth');
+const orgRouter = require('./routes/organogram');
 
 //routes handler
 app.use('/', hrRouter);
 app.use('/leave', leaveRouter);
 app.use('/department', departmentRouter);
 app.use('/auth', authRouter);
+app.use('/organogram', orgRouter);
 
 //set up the public folder
 app.use(express.static('./public'));
