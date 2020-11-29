@@ -4,7 +4,7 @@ const DepDetails = require('../schema/departments/department');
 
 //route  -  GET /addDep
 router.get('/addDep', (req, res)=> {
-    res.render("pages/department/addDep");
+    res.render("pages/department/addDep",{page_name: 'addDept'});
 });
 
 //route  - POST /addDep
