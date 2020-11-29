@@ -6,11 +6,14 @@
         <%- include('../../../template/navbar') -%>
         <div class="content">
             <div class="container-fluid">
-            <!-- your content here -->
+
+                <!-- your content here -->
+                <h3 class="text-center" style='margin-top:0.2em; font-weight:bolder;'><span class="underline--magical">Edit Official's Information</span></h3>
+                <br>
 
                 <!--Start MultiStep Form -->
                 <div class="row">
-                    <div class="col-md-6 col-md-offset-3">
+                    <div class="col-md-10 col-md-offset-1">
                         <form action="/editDetails/<%= output.id %>" id="msform" method="post" role="form">
                             <!-- progressbar -->
 
@@ -63,7 +66,19 @@
                                         </div>
                                     </div>
 
-                                    
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="dep">Select Division (Must be selected)</label>
+                                            <select name="dep">
+                                                <option value="" selected hidden> Choose Division </option>
+                                                <option label="<%= output.basicInfo.department %>" value="<%= output.basicInfo.department.id %>"></option>
+
+                                                <% depDetails.forEach((entry) => { %>
+                                                    <option label="<%= entry.departmentName %>" value="<%= entry.id %>"></option>
+                                                <% }); %>
+                                            </select>
+                                        </div>
+                                    </div>
 
                                     <div class="row">
                                         <div class="col-md-4">

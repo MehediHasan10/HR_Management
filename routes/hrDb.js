@@ -344,15 +344,18 @@ router.post('/staffInfoForm', async (req, res) => {
 router.get('/officialsTable', async (req, res) => {  
     try{
         const depDetails = await DepDetails.find();
-        res.render('pages/department/showDepEmp', {
-            output : depDetails
-        });
+        res.render('pages/department/showDepEmp',        
+            {
+                output : depDetails,
+                page_name: 'officialsTable'
+            });
     } catch(err){
         console.log(err);
     }
 });
 
 //@route  -  GET /depEmp
+//This route will lead to the employee list table. Department wise. 
 router.get('/depEmp/:id', async (req, res) => {
     
     try {
@@ -362,7 +365,8 @@ router.get('/depEmp/:id', async (req, res) => {
             })
         res.render('pages/table/officialsTable', 
         {
-            output:officialsInfo
+            output:officialsInfo,
+            page_name: 'officialsTable'
         });
     } catch (err) {
         console.log(err);
@@ -389,12 +393,11 @@ router.get('/showDetails/:id', async (req, res) => {
         const detailedData = await OfficialsInfo.findById(req.params.id)
             .populate('basicInfo.department');
 
-        //console.log(detailedData);
-
         res.render('pages/actions/officials/showDetails', 
         {
             output:detailedData,
-            moment: moment
+            moment: moment,
+            page_name: 'officialsTable'
         });
     } catch (err) {
         console.log(err);
@@ -404,10 +407,13 @@ router.get('/showDetails/:id', async (req, res) => {
 //@route  -  GET /editDetails/:id
 router.get('/editDetails/:id', async (req, res) => {
     try {
-        const editData = await OfficialsInfo.findById(req.params.id);
+        const editData = await (await OfficialsInfo.findById(req.params.id)).populate('department');
+        const depDetails = await DepDetails.find();
         res.render('pages/actions/officials/editDetails', 
             {
-                output:editData
+                output: editData,
+                depDetails: depDetails,
+                page_name: 'officialsTable'
             });
     } catch (err) {
         console.log(err);
@@ -689,7 +695,8 @@ router.get('/retirement', async (req, res) => {
         //console.log(officialsInfo);
         res.render('pages/retirement/offRetire', {
             output : officialsInfo,
-            moment : moment
+            moment : moment,
+            page_name: 'retirement'
         })
     } catch (err) {
         console.log(err);

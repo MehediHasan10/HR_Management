@@ -12,7 +12,10 @@ const DepDetails = require('../schema/departments/department');
 //API for adding Leave Types (Ex: Casual leave, Sick leave...)
 router.get('/addLeaveType', (req, res) => {
     try{
-        res.render('pages/leaveManagement/officials/leaveType');
+        res.render('pages/leaveManagement/officials/leaveType',
+        {
+            page_name: 'addLeaveType'
+        });
     } catch(err){
         console.log(err);
     }
@@ -43,7 +46,8 @@ router.get('/officialsLeaveInfo', async (req, res) => {
     try{
         const depDetails = await DepDetails.find();
         res.render('pages/department/showDepEmpLeave', {
-            output : depDetails
+            output : depDetails,
+            page_name: 'officialsLeaveInfo'
         });
     } catch(err){
         console.log(err);
@@ -61,7 +65,9 @@ router.get('/depEmpLeave/:id', async (req, res) => {
 
         res.render('pages/leaveManagement/officials/leaveInfo',
             {
-                officialsInfoOutput: officialsInfo
+                officialsInfoOutput: officialsInfo,
+                page_name: 'officialsLeaveInfo'
+
             });
     } catch (err) {
         console.log(err);
@@ -83,7 +89,8 @@ router.get('/addLeaveInfo/:id', async (req, res) => {
             { 
                 offInfo : officialsInfo,
                 offLeave: officialsLeave,
-                offLeaveCount: officialsLeaveCount
+                offLeaveCount: officialsLeaveCount,
+                page_name: 'officialsLeaveInfo'
             });
         
     } catch (err) {
@@ -128,7 +135,8 @@ router.get('/showLeaveInfo/:id', async (req, res) => {
             {
                 offInfo: officialsInfo,
                 leaveCount: officialsLeaveCount,
-                moment: moment
+                moment: moment,
+                page_name: 'officialsLeaveInfo'
             });
       
     }catch(err){

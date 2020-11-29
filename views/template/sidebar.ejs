@@ -7,10 +7,8 @@
     <div class="sidebar-wrapper">
       <ul class="nav">
 
-        <li class="nav-item active">
+        <li class="nav-item <% if (page_name === 'org') { %> active <% }else{ %> '' <%}%> ">
           <a class="nav-link" href="/organogram/org">
-        <li class="nav-item ">
-          <a class="nav-link" href="javascript:void(0)">
             <i class="material-icons">dashboard</i>
             <p>Officials Dashboard</p>
           </a>
@@ -18,21 +16,21 @@
         
         <!-- your sidebar here -->
 
-        <li class="nav-item <% if (page_name === 'addDept') { %>active <% }else{ %> '' <%}%> ">
+        <li class="nav-item <% if (page_name === 'addDept') { %> active <% }else{ %> '' <%}%> ">
           <a class="nav-link" href="/department/addDep">
             <i class="material-icons">person</i>
             <p>Add Divisions</p>
           </a>
         </li>
 
-        <li class="nav-item <% if (page_name === 'addInfoForm') { %>active <% }else{ %> '' <%}%>  ">
+        <li class="nav-item <% if (page_name === 'addInfoForm') { %> active <% }else{ %> '' <%}%> ">
           <a class="nav-link" href="/addInfoForm">
             <i class="material-icons">person</i>
             <p>Add Officials info</p>
           </a>
         </li>
 
-        <li class="nav-item ">
+        <li class="nav-item <% if (page_name === 'officialsTable') { %> active <% }else{ %> '' <%}%> ">
           <a class="nav-link" href="/officialsTable">
             <i class="material-icons">content_paste</i>
             <p>List of Officials info</p>
@@ -47,14 +45,14 @@
           </a>
         </li>  -->
         
-        <li class="nav-item ">
+        <li class="nav-item <% if (page_name === 'addLeaveType') { %> active <% }else{ %> '' <%}%>">
           <a class="nav-link" href="/leave/addLeaveType">
             <i class="material-icons">library_books</i>
             <p>Add Leave Type</p>
           </a>
         </li>
         
-        <li class="nav-item ">
+        <li class="nav-item <% if (page_name === 'officialsLeaveInfo') { %> active <% }else{ %> '' <%}%>">
           <a class="nav-link" href="/leave/officialsLeaveInfo">
             <i class="material-icons">library_books</i>
             <p>Officials Leave Info</p>
@@ -76,7 +74,7 @@
           </a>
         </li> -->
 
-        <li class="nav-item ">
+        <li class="nav-item <% if (page_name === 'retirement') { %> active <% }else{ %> '' <%}%>">
           <a class="nav-link" href="/retirement">
             <i class="material-icons">notifications</i>
             <p>Retirement</p>
@@ -91,13 +89,6 @@
         </li>
 
         <hr style="border-top:3px solid rgba(255, 255, 255, 0.1)">
-
-        <li class="nav-item ">
-          <a class="nav-link" href="#">
-            <i class="material-icons">content_paste</i>
-            <p>Office Organogram</p>
-          </a>
-        </li>
         
       </ul>
     </div>
