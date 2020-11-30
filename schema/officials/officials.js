@@ -24,18 +24,19 @@ const officials_schema = new mongoose.Schema({
         divison: String,
         section: String,
         dateOfRetirement: Date,
-        remainingRetiredTime: Number
-
+        remainingRetiredTime: Number,        
+        image: String
     },
-    spouseInfo: {
-        spouseName: String,
-        spouseHomeDistrict: String,
-        spouseOccupation: String,
-        spouseDesignation: String,
-        spouseOrganization: String,
-        spouseOrganizationAddress: String,
-        spousePhoneNo: String
+    nomineeInfo: {
+        nomineeName: String,
+        nomineeHomeDistrict: String,
+        nomineeOccupation: String,
+        nomineeRelation: String,
+        nomineeOrganization: String,
+        nomineeOrganizationAddress: String,
+        nomineePhoneNo: String
     },
+    
     address: {
         present_address: String,  
         permanent_address: String

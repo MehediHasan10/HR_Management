@@ -1,10 +1,25 @@
 const router = require('express').Router();
 
 const moment = require('moment');
+const multer = require('multer');
+const path = require('path');
 
 const OfficialsInfo = require('../schema/officials/officials');
 const StaffsInfo = require('../schema/staffs/staffs');
 const DepDetails = require('../schema/departments/department');
+
+//multer setup for news image
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, './public/myUploads');
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    },
+  });  
+var upload = multer({
+    storage: storage,
+ }).single("dpUp");
 
 //@route  -  GET  / 
 //landing page
@@ -38,188 +53,197 @@ router.get('/addInfoForm',async (req, res) => {
 
 //@route  -  POST /addInfoForm
 //Form to post the employee information
-router.post('/addInfoForm', async (req, res) => {
+router.post('/addInfoForm', upload, async (req, res) => {
 
-    console.log(req.body);
-    //ChildInfo array for dynamic field                     
-    const childInformation = [];
-    for(var i = 0; i < req.body.c_name.length; i++){
-        var newEntry = {
-            child_name: req.body.c_name[i],
-            child_gender: req.body.c_gender[i],
-            child_dateOfBirth: req.body.c_dob[i]
+    const path = req.file && req.file.path;
+    if(path){
+        //console.log(req.body);
+
+        var imagePath = "/myUploads/" + req.file.filename;
+        //ChildInfo array for dynamic field                     
+        const childInformation = [];
+        for(var i = 0; i < req.body.c_name.length; i++){
+            var newEntry = {
+                child_name: req.body.c_name[i],
+                child_gender: req.body.c_gender[i],
+                child_dateOfBirth: req.body.c_dob[i]
+            }
+            childInformation.push(newEntry);
+        };
+
+        //EduInfo array for dynamic field
+        const eduInformation = [];
+        for(var i = 0; i < req.body.e_deg.length; i++) {
+            var newEntry = {
+                degree: req.body.e_deg[i],
+                group: req.body.e_grp[i],
+                institute: req.body.e_institution[i],
+                board: req.body.e_board[i],
+                results: req.body.e_result[i],
+                passing_years: req.body.pass_year[i]
+            }
+            eduInformation.push(newEntry);
+        };
+
+        //TrainingInfo array for dynamic field
+        const trainingInformation = [];
+        for(var i = 0; i < req.body.t_course.length; i++){
+            var newEntry = {
+                training_type: req.body.t_type[i],
+                course_title: req.body.t_course[i],
+                institution_name: req.body.t_institution[i],
+                country: req.body.t_country[i],
+                start_date: req.body.t_start[i],
+                end_date: req.body.t_end[i],
+                grade: req.body.t_grade[i],
+                position: req.body.t_position[i]
+            }
+            trainingInformation.push(newEntry);
+            // console.log(trainingInformation);
+        };
+
+        //PostingInfo array for dynamic field
+        const postingInfo = [];
+        for (var i = 0; i < req.body.p_deg.length; i++){
+            var newEntry = {
+                designation: req.body.p_deg[i],
+                office_name: req.body.p_office[i],
+                from_date: req.body.p_from_date[i],
+                to_date: req.body.p_to_date[i],
+                upazilla: req.body.p_upazilla[i],
+                district: req.body.p_district[i]
+            }
+            postingInfo.push(newEntry);
+        };
+
+        //PromotionInfo array for dynamic field
+        const promotionInfo = [];
+        for (var i = 0; i < req.body.pro_deg.length; i++){
+            var newEntry = {
+                promoted_designation: req.body.pro_deg[i],
+                promotion_nature: req.body.pro_nature[i],
+                promotion_date: req.body.pro_date[i],
+                GO_number: req.body.go_number[i],
+                GO_date: req.body.go_date[i]
+            }
+            promotionInfo.push(newEntry);
+        };
+
+        //Publication array for dynamic field
+        const publicationInfo = [];
+        for (var i = 0; i < req.body.pub_type.length; i++){
+            var newEntry = {
+                pub_type: req.body.pub_type[i],
+                date: req.body.pub_date[i],
+                description: req.body.pub_des[i]
+            
+            }
+            publicationInfo.push(newEntry);
+        };
+
+        //Disciplinary Action array for dynamic field
+        const disciplineInfo = [];
+        for (var i = 0; i < req.body.occurance.length; i++){
+            var newEntry = {
+                occurance: req.body.occurance[i],
+                occuring_date: req.body.occ_date[i],
+                action: req.body.occ_action[i],
+                memo_No: req.body.memo_no[i],
+                memo_date: req.body.memo_date[i]
+            
+            }
+            disciplineInfo.push(newEntry);
+        };
+
+        const retirementDate = moment(req.body.dob).add(59, 'y');
+        // var retireTime = moment(officialsInfo.basicInfo.dateOfRetirement);
+        var currentTime = moment();
+        var remainingTime = retirementDate.diff(currentTime, 'days')
+
+
+        const officialsInfo = new OfficialsInfo({
+
+            basicInfo: {
+                employeeName: req.body.emp_name,
+                fatherName: req.body.f_name,
+                motherName: req.body.m_name,
+                designation: req.body.emp_deg,
+                nationalID: req.body.n_id,
+                department: req.body.dep,
+                religion: req.body.reg,
+                gender: req.body.gen,
+                dateOfbirth: req.body.dob,
+                bloodGroup: req.body.blood,
+                homeDistrict: req.body.district,
+                maritalStatus: req.body.marital_Status,
+                email: req.body.email,
+                phone: req.body.phone,
+                divison: req.body.divison,
+                section: req.body.section,
+                dateOfRetirement: retirementDate,
+                remainingRetiredTime: remainingTime,
+                image: imagePath
+            },
+
+            nomineeInfo: {
+                nomineeName: req.body.emp_nominee_name,
+                nomineeOccupation: req.body.n_ocp,
+                nomineeRelation: req.body.n_relation,
+                nomineeOrganization: req.body.n_org,
+                nomineeOrganizationAddress: req.body.org_address,
+                nomineeHomeDistrict: req.body.n_district,
+                nomineePhoneNo: req.body.n_phone
+            },
+
+            address: {
+                //present address
+                present_address: req.body.presentAddress,
+                // permanent Address
+                permanent_address: req.body.permanentAddress
+            },
+
+            childInfo: childInformation,
+
+            firstJoinInfo:{
+                first_joining_date: req.body.j_date,
+                rank: req.body.j_rank,
+                first_designation: req.body.first_deg,
+                first_posting_district: req.body.j_district,
+                first_posting_upazilla: req.body.j_upazilla,
+                job_nature: req.body.job_nature,
+                grade: req.body.j_grade,
+                PRL_date: req.body.prl,
+                GO_date: req.body.j_go,
+                confirmation_date: req.body.confirmation_date
+            },
+
+            eduInfo: eduInformation,
+
+            trainingInfo: trainingInformation,
+
+            postingInfo: postingInfo,
+
+            promotionInfo: promotionInfo,
+
+            publicationInfo: publicationInfo,
+
+            disciplineInfo: disciplineInfo
+
+        });
+
+        try{
+            const officialsData = await officialsInfo.save();
+            //console.log(moment());
+            // var retire = moment(officialsInfo.basicInfo.remainingRetiredTime);
+
+            res.redirect('/addInfoForm');
+        } catch(err){
+            console.log(err);
         }
-        childInformation.push(newEntry);
-    };
-
-    //EduInfo array for dynamic field
-    const eduInformation = [];
-    for(var i = 0; i < req.body.e_deg.length; i++) {
-        var newEntry = {
-            degree: req.body.e_deg[i],
-            group: req.body.e_grp[i],
-            institute: req.body.e_institution[i],
-            board: req.body.e_board[i],
-            results: req.body.e_result[i],
-            passing_years: req.body.pass_year[i]
-        }
-        eduInformation.push(newEntry);
-    };
-
-    //TrainingInfo array for dynamic field
-    const trainingInformation = [];
-    for(var i = 0; i < req.body.t_course.length; i++){
-        var newEntry = {
-            training_type: req.body.t_type[i],
-            course_title: req.body.t_course[i],
-            institution_name: req.body.t_institution[i],
-            country: req.body.t_country[i],
-            start_date: req.body.t_start[i],
-            end_date: req.body.t_end[i],
-            grade: req.body.t_grade[i],
-            position: req.body.t_position[i]
-        }
-        trainingInformation.push(newEntry);
-        // console.log(trainingInformation);
-    };
-
-    //PostingInfo array for dynamic field
-    const postingInfo = [];
-    for (var i = 0; i < req.body.p_deg.length; i++){
-        var newEntry = {
-            designation: req.body.p_deg[i],
-            office_name: req.body.p_office[i],
-            from_date: req.body.p_from_date[i],
-            to_date: req.body.p_to_date[i],
-            upazilla: req.body.p_upazilla[i],
-            district: req.body.p_district[i]
-        }
-        postingInfo.push(newEntry);
-    };
-
-    //PromotionInfo array for dynamic field
-    const promotionInfo = [];
-    for (var i = 0; i < req.body.pro_deg.length; i++){
-        var newEntry = {
-            promoted_designation: req.body.pro_deg[i],
-            promotion_nature: req.body.pro_nature[i],
-            promotion_date: req.body.pro_date[i],
-            GO_number: req.body.go_number[i],
-            GO_date: req.body.go_date[i]
-        }
-        promotionInfo.push(newEntry);
-    };
-
-    //Publication array for dynamic field
-    const publicationInfo = [];
-    for (var i = 0; i < req.body.pub_type.length; i++){
-        var newEntry = {
-            pub_type: req.body.pub_type[i],
-            date: req.body.pub_date[i],
-            description: req.body.pub_des[i]
-           
-        }
-        publicationInfo.push(newEntry);
-    };
-
-    //Disciplinary Action array for dynamic field
-    const disciplineInfo = [];
-    for (var i = 0; i < req.body.occurance.length; i++){
-        var newEntry = {
-            occurance: req.body.occurance[i],
-            occuring_date: req.body.occ_date[i],
-            action: req.body.occ_action[i],
-            memo_No: req.body.memo_no[i],
-            memo_date: req.body.memo_date[i]
-           
-        }
-        disciplineInfo.push(newEntry);
-    };
-
-    const retirementDate = moment(req.body.dob).add(59, 'y');
-    // var retireTime = moment(officialsInfo.basicInfo.dateOfRetirement);
-    var currentTime = moment();
-    var remainingTime = retirementDate.diff(currentTime, 'days')
-
-
-    const officialsInfo = new OfficialsInfo({
-
-        basicInfo: {
-            employeeName: req.body.emp_name,
-            fatherName: req.body.f_name,
-            motherName: req.body.m_name,
-            designation: req.body.emp_deg,
-            nationalID: req.body.n_id,
-            department: req.body.dep,
-            religion: req.body.reg,
-            gender: req.body.gen,
-            dateOfbirth: req.body.dob,
-            bloodGroup: req.body.blood,
-            homeDistrict: req.body.district,
-            maritalStatus: req.body.marital_Status,
-            email: req.body.email,
-            phone: req.body.phone,
-            divison: req.body.divison,
-            section: req.body.section,
-            dateOfRetirement: retirementDate,
-            remainingRetiredTime: remainingTime
-        },
-
-        spouseInfo: {
-            spouseName: req.body.emp_spouse_name,
-            spouseOccupation: req.body.s_ocp,
-            spouseDesignation: req.body.s_deg,
-            spouseOrganization: req.body.s_org,
-            spouseOrganizationAddress: req.body.org_address,
-            spouseHomeDistrict: req.body.s_district,
-            spousePhoneNo: req.body.s_phone
-        },
-
-        address: {
-            //present address
-            present_address: req.body.presentAddress,
-            // permanent Address
-            permanent_address: req.body.permanentAddress
-        },
-
-        childInfo: childInformation,
-
-        firstJoinInfo:{
-            first_joining_date: req.body.j_date,
-            rank: req.body.j_rank,
-            first_designation: req.body.first_deg,
-            first_posting_district: req.body.j_district,
-            first_posting_upazilla: req.body.j_upazilla,
-            job_nature: req.body.job_nature,
-            grade: req.body.j_grade,
-            PRL_date: req.body.prl,
-            GO_date: req.body.j_go,
-            confirmation_date: req.body.confirmation_date
-        },
-
-        eduInfo: eduInformation,
-
-        trainingInfo: trainingInformation,
-
-        postingInfo: postingInfo,
-
-        promotionInfo: promotionInfo,
-
-        publicationInfo: publicationInfo,
-
-        disciplineInfo: disciplineInfo
-
-    });
-
-    try{
-        const officialsData = await officialsInfo.save();
-        //console.log(moment());
-        // var retire = moment(officialsInfo.basicInfo.remainingRetiredTime);
-
-        res.redirect('/addInfoForm');
-    } catch(err){
-        console.log(err);
+    } else {
+        console.log("File not uploaded successfully");
     }
+    
 });
 
 //Staffs Information Form ---------------------------------------------
@@ -413,7 +437,8 @@ router.get('/editDetails/:id', async (req, res) => {
             {
                 output: editData,
                 depDetails: depDetails,
-                page_name: 'officialsTable'
+                page_name: 'officialsTable',
+                moment: moment
             });
     } catch (err) {
         console.log(err);

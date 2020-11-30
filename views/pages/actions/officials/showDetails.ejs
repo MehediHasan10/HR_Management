@@ -8,11 +8,19 @@
 
             <!-- your content here -->
             <div class="container" >
-                <h2 class="text-center" style='margin-top:0.5em; font-weight:bold;'><span class="underline--magical"><%= output.basicInfo.employeeName %></span></h2>
-                <h3 class="text-center" style=' font-weight:bold;'><span style=" color: #913f9e">Designation</span> : <%= output.basicInfo.designation %></h3> 
-                <h3 class="text-center" style=' font-weight:bold;'><%= output.basicInfo.department.departmentName %></h3> 
-                <h5 class="text-center" style=' font-weight:bold;'><%= output.basicInfo.divison %> Department , <%= output.basicInfo.section %> Section</h5>     
-                <br>
+                <div class="row">
+                    <div class="col-md-4 ">
+                        <img class="img-fluid" id="test" style="height:200px; width:150px; border: 1px solid #ddd;
+                        border-radius: 4px; padding: 5px;" src="<%= output.basicInfo.image %>" alt="">
+                    </div>
+                    <div class="col-md-5">
+                        <h2 class="text-center" style='margin-top:0.5em; font-weight:bold;'><span class="underline--magical"><%= output.basicInfo.employeeName %></span></h2>
+                        <h3 class="text-center" style=' font-weight:bold;'><span style=" color: #913f9e">Designation</span> : <%= output.basicInfo.designation %></h3> 
+                        <h3 class="text-center" style=' font-weight:bold;'><%= output.basicInfo.department.departmentName %></h3> 
+                        <h5 class="text-center" style=' font-weight:bold;'><%= output.basicInfo.divison %> Department , <%= output.basicInfo.section %> Section</h5>     
+                        <br>
+                    </div>
+                </div>                                
 
                 <!-- Employee Basic Information -->
                 <div class="card">
@@ -49,25 +57,25 @@
                     </div> 
                 </div>                 
 
-                <!-- Spouse Information -->
+                <!-- Nominee Information -->
                 <div class="card" style="margin-top:70px">
                     <div class="card-header card-header-primary">
-                        <h3 style="font-weight:bolder; text-align: center;">Employee's Spouse Information</h3>
+                        <h3 style="font-weight:bolder; text-align: center;">Employee's Nominee Information</h3>
                     </div>
 
-                    <div class="card-body" style="color:white;">
+                    <div class="card-body" style="color:black;">
                         <div class="row">
-                            <div class="col-md-4"><p><span style="font-weight:bold;color:#ca40c8;">Spouse Name: </span><%= output.spouseInfo.spouseName %></p></div>
-                            <div class="col-md-4"><p><span style="font-weight:bold;color:#ca40c8;">Home District: </span><%= output.spouseInfo.spouseHomeDistrict %></p></div>
-                            <div class="col-md-4"><p><span style="font-weight:bold;color:#ca40c8;">Phone: </span><%= output.spouseInfo.spousePhoneNo %></p></div>
+                            <div class="col-md-4"><p><span style="font-weight:bold;color:#ca40c8;">Nominee Name: </span><%= output.nomineeInfo.nomineeName %></p></div>
+                            <div class="col-md-4"><p><span style="font-weight:bold;color:#ca40c8;">Home District: </span><%= output.nomineeInfo.nomineeHomeDistrict %></p></div>
+                            <div class="col-md-4"><p><span style="font-weight:bold;color:#ca40c8;">Phone: </span><%= output.nomineeInfo.nomineePhoneNo %></p></div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4"><p><span style="font-weight:bold;color:#ca40c8;">Occupation: </span><%= output.spouseInfo.spouseOccupation %></p></div>
-                            <div class="col-md-4"><p><span style="font-weight:bold;color:#ca40c8;">Designation: </span><%= output.spouseInfo.spouseDesignation %></p></div>
-                            <div class="col-md-4"><p><span style="font-weight:bold;color:#ca40c8;">Organization: </span><%= output.spouseInfo.spouseOrganization %></p></div>
+                            <div class="col-md-4"><p><span style="font-weight:bold;color:#ca40c8;">Occupation: </span><%= output.nomineeInfo.nomineeOccupation %></p></div>
+                            <div class="col-md-4"><p><span style="font-weight:bold;color:#ca40c8;">Nominee Relation: </span><%= output.nomineeInfo.nomineeRelation %></p></div>
+                            <div class="col-md-4"><p><span style="font-weight:bold;color:#ca40c8;">Organization: </span><%= output.nomineeInfo.nomineeOrganization %></p></div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12"><p><span style="font-weight:bold;color:#ca40c8;">Organization Address: </span><%= output.spouseInfo.spouseOrganizationAddress %></p></div>
+                            <div class="col-md-12"><p><span style="font-weight:bold;color:#ca40c8;">Organization Address: </span><%= output.nomineeInfo.nomineeOrganizationAddress %></p></div>
                         </div>
                     </div>
                 </div>
@@ -78,7 +86,7 @@
                         <h3 style="font-weight:bolder; text-align: center;">Address Information</h3>
                     </div>
 
-                    <div class="card-body" style="color:white;">
+                    <div class="card-body" style="color:black;">
                         <div class="row">
                             <div class="col-md-12">
                                 <p><span style="font-weight:bold;color:#ca40c8;">Present Address: </span><%= output.address.present_address %></p>
@@ -97,7 +105,7 @@
                     <div class="card-header card-header-primary">
                         <h3 style="font-weight:bolder; text-align: center;">Employee's Child Information</h3>
                     </div>
-                    <div class="card-body" style="color:white;">
+                    <div class="card-body" style="color:black;">
                         
                         <% output.childInfo.forEach((entry) => { %>
                             <div class="row">
@@ -122,7 +130,7 @@
                     <div class="card-header card-header-primary">
                         <h3 style="font-weight:bolder; text-align: center;">First Joining Information</h3>
                     </div>
-                    <div class="card-body" style="color:white;">
+                    <div class="card-body" style="color:black;">
                         <div class="row">          
                             <div class="col-md-4">
                                 <p><span style="font-weight:bold;color:#ca40c8;">First Joining Date: </span><%= moment(output.firstJoinInfo.first_joining_date).format('DD-MMM-YYYY') %></p>
@@ -169,7 +177,7 @@
                     <div class="card-header card-header-primary">
                         <h3 style="font-weight:bolder; text-align: center;">Employee's Education Information</h3>
                     </div>
-                    <div class="card-body" style="color:white;">
+                    <div class="card-body" style="color:black;">
                         <% output.eduInfo.forEach((entry) => { %>
 
                             <div class="row"> 
@@ -208,7 +216,7 @@
                     <div class="card-header card-header-primary">
                         <h3 style="font-weight:bolder; text-align: center;">Employee's Training Information</h3>
                     </div>
-                    <div class="card-body" style="color:white;">
+                    <div class="card-body" style="color:black;">
 
                         <% output.trainingInfo.forEach((entry) => { %>
 
@@ -252,7 +260,7 @@
                     <div class="card-header card-header-primary">
                         <h3 style="font-weight:bolder; text-align: center;">Employee's Posting Information</h3>
                     </div>
-                    <div class="card-body" style="color:white;">
+                    <div class="card-body" style="color:black;">
 
                         <% output.postingInfo.forEach((entry) => { %> 
                             <div class="row">  
@@ -290,7 +298,7 @@
                     <div class="card-header card-header-primary">
                         <h3 style="font-weight:bolder; text-align: center;">Employee's Promotion Information</h3>
                     </div>
-                    <div class="card-body" style="color:white;">
+                    <div class="card-body" style="color:black;">
 
                         <% output.promotionInfo.forEach((entry) => { %> 
                             <div class="row">                                        
@@ -322,7 +330,7 @@
                     <div class="card-header card-header-primary">
                         <h3 style="font-weight:bolder; text-align: center;">Employee's Publication Information</h3>
                     </div>
-                    <div class="card-body" style="color:white;">
+                    <div class="card-body" style="color:black;">
 
                         <% output.publicationInfo.forEach((entry) => { %>
                             <div class="row">  
@@ -348,7 +356,7 @@
                     <div class="card-header card-header-primary">
                         <h3 style="font-weight:bolder; text-align: center;">Employee's Disciplinary Information</h3>
                     </div>
-                    <div class="card-body" style="color:white;">
+                    <div class="card-body" style="color:black;">
 
                         <% output.disciplineInfo.forEach((entry) => { %>
                             <div class="row">                                              
