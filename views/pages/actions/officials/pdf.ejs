@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News PDF</title>
+
+    <style>
+        .flex-container {
+            display: flex;
+
+            justify-content: center
+        }
+        .center {
+            text-align: center;
+        }
+        .inline-block-child {
+            display: inline-block;
+        }
+        table, td, th {
+            border: 1px solid black;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+
+<div style="margin-top: 5px; padding-top: 5px; padding-bottom: 5px; background-color: #ffffffa6;" class="center">
+    <div class="container" >
+        <h2 class="text-center" style='margin-top:0.5em; font-weight:bold;'><span class="underline--magical"><%= output.basicInfo.employeeName %></span></h2>
+        <h3 class="text-center" style=' font-weight:bold;'><span style=" color: #913f9e">Designation</span> : <%= output.basicInfo.designation %></h3>
+        <h3 class="text-center" style=' font-weight:bold;'><%= output.basicInfo.department.departmentName %></h3>
+        <h5 class="text-center" style=' font-weight:bold;'><%= output.basicInfo.divison %> Department , <%= output.basicInfo.section %> Section</h5>
+        <br>
+
+        <!-- Employee Basic Information -->
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h3 style="font-weight:bolder; text-align:center;">Employee Basic Information</h3>
+            </div>
+
+            <div class="card-body" style="color: black">
+
+                <div class="row">
+                    <div class="col-md-4"><p> <span style="font-weight:bold;color:#ca40c8;">Employee Name: </span> <%= output.basicInfo.employeeName %></p></div>
+                    <div class="col-md-4"><p><span style="font-weight:bold;color:#ca40c8;">Father's Name: </span> <%= output.basicInfo.fatherName %></p></div>
+                    <div class="col-md-4"><p><span style="font-weight:bold;color:#ca40c8;">Mother's Name: </span> <%= output.basicInfo.motherName %></p></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><p><span style="font-weight:bold;color:#ca40c8;">Designation: </span> <%= output.basicInfo.designation %></p></div>
+                    <div class="col-md-4"><p><span style="font-weight:bold;color:#ca40c8;">Religion: </span> <%= output.basicInfo.religion %></p></div>
+                    <div class="col-md-4"><p><span style="font-weight:bold;color:#ca40c8;">Gender: </span> <%= output.basicInfo.gender %></p></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><p><span style="font-weight:bold;color:#ca40c8;">Date of Birth: </span> <%= moment(output.basicInfo.dateOfbirth).format('DD-MMM-YYYY') %></p></div>
+                    <div class="col-md-4"><p><span style="font-weight:bold;color:#ca40c8;">Home District: </span> <%= output.basicInfo.homeDistrict %></p></div>
+                    <div class="col-md-4"> <p><span style="font-weight:bold;color:#ca40c8;;">Marital Status: </span> <%= output.basicInfo.maritalStatus %></p></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><p><span style="font-weight:bold;color:#ca40c8;">Email: </span> <%= output.basicInfo.email %></p></div>
+                    <div class="col-md-4"><p><span style="font-weight:bold;color:#ca40c8;">Phone: </span> <%= output.basicInfo.phone %></p></div>
+                    <div class="col-md-4"><p><span style="font-weight:bold;color:#ca40c8;">Blood Group: </span> <%= output.basicInfo.bloodGroup %></p></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><p><span style="font-weight:bold;color:#ca40c8;">National ID: </span> <%= output.basicInfo.nationalID %></p></div>
+                    <div class="col-md-4"><p><span style="font-weight:bold;color:#ca40c8;">Date of Retirement: </span> <%= moment(output.basicInfo.dateOfRetirement).format('DD-MMM-YYYY') %></p></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Spouse Information -->
+        <div class="card" style="margin-top:70px">
+            <div class="card-header card-header-primary">
+                <h3 style="font-weight:bolder; text-align: center;">Employee's Spouse Information</h3>
+            </div>
+
+            <div class="card-body" style="color:white;">
+                <div class="row">
+                    <div class="col-md-4"><p><span style="font-weight:bold;color:#ca40c8;">Spouse Name: </span><%= output.spouseInfo.spouseName %></p></div>
+                    <div class="col-md-4"><p><span style="font-weight:bold;color:#ca40c8;">Home District: </span><%= output.spouseInfo.spouseHomeDistrict %></p></div>
+                    <div class="col-md-4"><p><span style="font-weight:bold;color:#ca40c8;">Phone: </span><%= output.spouseInfo.spousePhoneNo %></p></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><p><span style="font-weight:bold;color:#ca40c8;">Occupation: </span><%= output.spouseInfo.spouseOccupation %></p></div>
+                    <div class="col-md-4"><p><span style="font-weight:bold;color:#ca40c8;">Designation: </span><%= output.spouseInfo.spouseDesignation %></p></div>
+                    <div class="col-md-4"><p><span style="font-weight:bold;color:#ca40c8;">Organization: </span><%= output.spouseInfo.spouseOrganization %></p></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12"><p><span style="font-weight:bold;color:#ca40c8;">Organization Address: </span><%= output.spouseInfo.spouseOrganizationAddress %></p></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Address -->
+        <div class="card" style="margin-top:70px">
+            <div class="card-header card-header-primary">
+                <h3 style="font-weight:bolder; text-align: center;">Address Information</h3>
+            </div>
+
+            <div class="card-body" style="color:white;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p><span style="font-weight:bold;color:#ca40c8;">Present Address: </span><%= output.address.present_address %></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p><span style="font-weight:bold;color:#ca40c8;">Permanent Address: </span><%= output.address.permanent_address %></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Child Info -->
+        <div class="card" style="margin-top:70px">
+            <div class="card-header card-header-primary">
+                <h3 style="font-weight:bolder; text-align: center;">Employee's Child Information</h3>
+            </div>
+            <div class="card-body" style="color:white;">
+
+                <% output.childInfo.forEach((entry) => { %>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">Child Name: </span><%= entry.child_name %></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">Gender: </span><%= entry.child_gender %></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">Date of Birth: </span><%= moment(entry.child_dateOfBirth).format('DD-MMM-YYYY') %></p>
+                        </div>
+                    </div>
+                <% }); %>
+
+            </div>
+        </div>
+
+
+        <!-- First Joining Information -->
+        <div class="card" style="margin-top:70px">
+            <div class="card-header card-header-primary">
+                <h3 style="font-weight:bolder; text-align: center;">First Joining Information</h3>
+            </div>
+            <div class="card-body" style="color:white;">
+                <div class="row">
+                    <div class="col-md-4">
+                        <p><span style="font-weight:bold;color:#ca40c8;">First Joining Date: </span><%= moment(output.firstJoinInfo.first_joining_date).format('DD-MMM-YYYY') %></p>
+                    </div>
+                    <div class="col-md-4">
+                        <p><span style="font-weight:bold;color:#ca40c8;">Rank: </span><%= output.firstJoinInfo.rank %></p>
+                    </div>
+                    <div class="col-md-4">
+                        <p><span style="font-weight:bold;color:#ca40c8;">First Designation: </span><%= output.firstJoinInfo.first_designation %></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <p><span style="font-weight:bold;color:#ca40c8;">First Posting District: </span><%= output.firstJoinInfo.first_posting_district %></p>
+                    </div>
+                    <div class="col-md-4">
+                        <p><span style="font-weight:bold;color:#ca40c8;">First Posting Upazilla: </span><%= output.firstJoinInfo.first_posting_upazilla %></p>
+                    </div>
+                    <div class="col-md-4">
+                        <p><span style="font-weight:bold;color:#ca40c8;">Job Nature: </span><%= output.firstJoinInfo.job_nature %></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <p><span style="font-weight:bold;color:#ca40c8;">Grade: </span><%= output.firstJoinInfo.grade %></p>
+                    </div>
+                    <div class="col-md-4">
+                        <p><span style="font-weight:bold;color:#ca40c8;">PRL Date: </span><%= moment(output.firstJoinInfo.PRL_date).format('DD-MMM-YYYY') %></p>
+                    </div>
+                    <div class="col-md-4">
+                        <p><span style="font-weight:bold;color:#ca40c8;">GO Date: </span><%= moment(output.firstJoinInfo.GO_date).format('DD-MMM-YYYY') %></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p><span style="font-weight:bold;color:#ca40c8;">Confirmation Date: </span><%= moment(output.firstJoinInfo.confirmation_date).format('DD-MMM-YYYY') %></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education Information -->
+        <div class="card" style="margin-top:70px">
+            <div class="card-header card-header-primary">
+                <h3 style="font-weight:bolder; text-align: center;">Employee's Education Information</h3>
+            </div>
+            <div class="card-body" style="color:white;">
+                <% output.eduInfo.forEach((entry) => { %>
+
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">Degree: </span><%= entry.degree %></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">Group: </span><%= entry.group %></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">Institute: </span><%= entry.institute %></p>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">Board: </span><%= entry.board %></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">Results: </span><%= entry.results %></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">Passing Years: </span><%= entry.passing_years %></p>
+                        </div>
+
+                    </div>
+                <% }); %>
+            </div>
+
+        </div>
+
+        <!-- Training Information -->
+        <div class="card" style="margin-top:70px">
+            <div class="card-header card-header-primary">
+                <h3 style="font-weight:bolder; text-align: center;">Employee's Training Information</h3>
+            </div>
+            <div class="card-body" style="color:white;">
+
+                <% output.trainingInfo.forEach((entry) => { %>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">Training Type: </span><%= entry.training_type %></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">Course Title: </span><%= entry.course_title %></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">Institute: </span><%= entry.institution_name %></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">Country: </span><%= entry.country %></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">Starting Date: </span><%= moment(entry.start_date).format('DD-MMM-YYYY') %></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">Ending Date: </span><%= moment(entry.end_date).format('DD-MMM-YYYY') %></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">Grade: </span><%= entry.grade %></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">Position: </span><%= entry.position %></p>
+                        </div>
+                    </div>
+                <% }); %>
+
+            </div>
+        </div>
+
+        <!-- Posting Information -->
+        <div class="card" style="margin-top:70px">
+            <div class="card-header card-header-primary">
+                <h3 style="font-weight:bolder; text-align: center;">Employee's Posting Information</h3>
+            </div>
+            <div class="card-body" style="color:white;">
+
+                <% output.postingInfo.forEach((entry) => { %>
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">Designation: </span><%= entry.designation %></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">Office Name: </span><%= entry.office_name %></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">From Date: </span><%= moment(entry.from_date).format('DD-MMM-YYYY') %></p>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">To Date: </span><%= moment(entry.to_date).format('DD-MMM-YYYY') %></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">District: </span><%= entry.district %></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">Upazilla: </span><%= entry.upazilla %></p>
+                        </div>
+
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+
+
+        <!-- Promotion Information -->
+        <div class="card" style="margin-top:70px">
+            <div class="card-header card-header-primary">
+                <h3 style="font-weight:bolder; text-align: center;">Employee's Promotion Information</h3>
+            </div>
+            <div class="card-body" style="color:white;">
+
+                <% output.promotionInfo.forEach((entry) => { %>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">Designation: </span><%= entry.promoted_designation %></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">Promotion Nature: </span><%= entry.promotion_nature %></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">Promotion Date: </span><%= moment(entry.promotion_date).format('DD-MMM-YYYY') %></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">G.0. Number: </span><%= entry.GO_number %></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">G.O. Date: </span><%= moment(entry.GO_date).format('DD-MMM-YYYY') %></p>
+                        </div>
+                    </div>
+                <% }); %>
+
+            </div>
+        </div>
+
+        <!-- Publication Information -->
+        <div class="card" style="margin-top:70px">
+            <div class="card-header card-header-primary">
+                <h3 style="font-weight:bolder; text-align: center;">Employee's Publication Information</h3>
+            </div>
+            <div class="card-body" style="color:white;">
+
+                <% output.publicationInfo.forEach((entry) => { %>
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">Publication Type: </span><%= entry.pub_type %></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">Publication Date: </span><%= moment(entry.date).format('DD-MMM-YYYY') %></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">Description: </span><%= entry.description %></p>
+                        </div>
+
+                    </div>
+                <% }); %>
+
+            </div>
+        </div>
+
+        <!-- Disciplinary Information -->
+        <div class="card" style="margin-top:70px">
+            <div class="card-header card-header-primary">
+                <h3 style="font-weight:bolder; text-align: center;">Employee's Disciplinary Information</h3>
+            </div>
+            <div class="card-body" style="color:white;">
+
+                <% output.disciplineInfo.forEach((entry) => { %>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">Occurance: </span><%= entry.occurance %></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">Occurance Date: </span><%= moment(entry.occuring_date).format('DD-MMM-YYYY') %></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">Action: </span><%= entry.action %></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">Memo No: </span><%= entry.memo_No %></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><span style="font-weight:bold;color:#ca40c8;">Memo Date: </span><%= moment(entry.memo_date).format('DD-MMM-YYYY') %></p>
+                        </div>
+                    </div>
+                <% }); %>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

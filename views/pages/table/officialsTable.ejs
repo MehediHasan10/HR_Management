@@ -10,6 +10,7 @@
               <!-- your content here -->
                 <div class="container-fluid">
                     <h3 class="text-center" style='font-weight:bolder;'><span class="underline--magical">Officials Information Table</span></h3>
+                    <a href="/generatePdf/<%= departmentId %>" class="btn btn-primary">Download PDF</a>
                     <br>
                     
                     <% if(output.length > 0) { %>
@@ -39,6 +40,7 @@
                                         <td><%= entry.basicInfo.section %></td>
                                         <td><%= entry.basicInfo.phone %></td>
                                         <td class="text-center">
+                                            <a href="/employeeDetails/pdf/<%= entry.id %>" class="btn btn-success" style="text-decoration:none;"><i class="fa fa-download"></i> PDF </a>
                                             <a href="/showDetails/<%= entry.id %>" class="btn btn-success" style="text-decoration:none;"><i class="fa fa-search-plus"></i> Open </a>
                                             <a href="/editDetails/<%= entry.id %>" class="btn btn-primary" style="text-decoration:none;"> <i class="fa fa-edit"></i> Edit </a>
                                             <a href="/deleteOfficials/<%= entry.id %>" class="btn btn-danger"  style="text-decoration:none;"> <i class="fa fa-trash"></i> Delete </a>
