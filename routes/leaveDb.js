@@ -4,7 +4,7 @@ const moment = require('moment');
 const OfficialsInfo = require('../schema/officials/officials');
 const OfficialsLeaveType = require('../schema/officials/leaveType');
 const OfficialsLeaveCount = require('../schema/officials/leaveCount');
-const DepDetails = require('../schema/departments/department');
+const DivDetails = require('../schema/organogram/division');
 
 //---------------------Officials Leave Type----------------------------------- 
 
@@ -41,12 +41,12 @@ router.post('/addLeaveType', async (req,res) => {
 //-----------------------Officials Leave Count---------------------------------- 
 
 //route  -  GET /officialsLeaveInfo
-//This will get us to the "department" page to choose which dep's employee leave you're looking for.
+//This will get us to the "division" page to choose which dep's employee leave you're looking for.
 router.get('/officialsLeaveInfo', async (req, res) => {
     try{
-        const depDetails = await DepDetails.find();
-        res.render('pages/department/showDepEmpLeave', {
-            output : depDetails,
+        const divDetails = await DivDetails.find();
+        res.render('pages/division/showDivEmpLeave', {
+            output : divDetails,
             page_name: 'officialsLeaveInfo'
         });
     } catch(err){
@@ -56,11 +56,11 @@ router.get('/officialsLeaveInfo', async (req, res) => {
 
 //route  -  GET /depEmpLeave
 // Department wise employee list (table).
-router.get('/depEmpLeave/:id', async (req, res) => {
+router.get('/divEmpLeave/:id', async (req, res) => {
     try {
         const officialsInfo = await OfficialsInfo.find(
             {
-                'basicInfo.department': req.params.id
+                'basicInfo.division': req.params.id
             });
 
         res.render('pages/leaveManagement/officials/leaveInfo',

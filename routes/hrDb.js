@@ -9,7 +9,7 @@ let ejs = require("ejs");
 
 const OfficialsInfo = require('../schema/officials/officials');
 const StaffsInfo = require('../schema/staffs/staffs');
-const DepDetails = require('../schema/departments/department');
+const DivDetails = require('../schema/organogram/division');
 
 //multer setup for news image
 var storage = multer.diskStorage({
@@ -42,11 +42,11 @@ router.get('/index', (req, res) => {
 //Form to post the employee information
 router.get('/addInfoForm',async (req, res) => {
     try{
-        const depDetails = await DepDetails.find();
+        const divDetails = await DivDetails.find();
         
         res.render('pages/forms/offInfoForm',
         {
-            output: depDetails,
+            output: divDetails,
             page_name: 'addInfoForm'
         });
     } catch(err){
@@ -60,7 +60,7 @@ router.post('/addInfoForm', upload, async (req, res) => {
 
     const path = req.file && req.file.path;
     if(path){
-        //console.log(req.body);
+        console.log(req.body);
 
         var imagePath = "/myUploads/" + req.file.filename;
         //ChildInfo array for dynamic field                     
@@ -172,7 +172,6 @@ router.post('/addInfoForm', upload, async (req, res) => {
                 motherName: req.body.m_name,
                 designation: req.body.emp_deg,
                 nationalID: req.body.n_id,
-                department: req.body.dep,
                 religion: req.body.reg,
                 gender: req.body.gen,
                 dateOfbirth: req.body.dob,
@@ -181,7 +180,8 @@ router.post('/addInfoForm', upload, async (req, res) => {
                 maritalStatus: req.body.marital_Status,
                 email: req.body.email,
                 phone: req.body.phone,
-                divison: req.body.divison,
+                division: req.body.division,
+                department: req.body.department,
                 section: req.body.section,
                 dateOfRetirement: retirementDate,
                 remainingRetiredTime: remainingTime,
@@ -370,10 +370,10 @@ router.post('/staffInfoForm', async (req, res) => {
 //This route will lead to the RPGCL Division page 
 router.get('/officialsTable', async (req, res) => {  
     try{
-        const depDetails = await DepDetails.find();
-        res.render('pages/department/showDepEmp',        
+        const divDetails = await DivDetails.find();
+        res.render('pages/division/showDivEmp',        
             {
-                output : depDetails,
+                output : divDetails,
                 page_name: 'officialsTable'
             });
     } catch(err){
@@ -382,18 +382,18 @@ router.get('/officialsTable', async (req, res) => {
 });
 
 //@route  -  GET /depEmp
-//This route will lead to the employee list table. Department wise. 
-router.get('/depEmp/:id', async (req, res) => {
+//This route will lead to the employee list table. Division wise. 
+router.get('/divEmp/:id', async (req, res) => {
     
     try {
         const officialsInfo = await OfficialsInfo.find(
             {
-                'basicInfo.department': req.params.id
+                'basicInfo.division': req.params.id
             })
         res.render('pages/table/officialsTable', 
         {
             output:officialsInfo,
-            departmentId: req.params.id,
+            divisionId: req.params.id,
             page_name: 'officialsTable'
         });
     } catch (err) {
@@ -407,7 +407,7 @@ router.get('/generatePdf/:id', async (req,res) => {
     try{
         const officialsInfo = await OfficialsInfo.find(
             {
-                'basicInfo.department': req.params.id
+                'basicInfo.division': req.params.id
             })
         ejs.renderFile(path.join(__dirname, '../views/pages/table/', "pdf.ejs"), {output:officialsInfo, dirname:__dirname}, (err, data) => {
 
@@ -447,7 +447,7 @@ router.get('/generatePdf/:id', async (req,res) => {
 //This route is to create a PDF of the Individual Employee page (Employee Details).
 router.get('/employeeDetails/pdf/:id',async(req,res)=>{
     try{
-        const detailedData = await OfficialsInfo.findById(req.params.id).populate('basicInfo.department');
+        const detailedData = await OfficialsInfo.findById(req.params.id).populate('basicInfo.division');
 
         ejs.renderFile(path.join(__dirname, '../views/pages/actions/officials/', "pdf.ejs"), {output:detailedData, moment: moment, dirname:__dirname}, (err, data) => {
 
@@ -498,10 +498,11 @@ router.get('/staffsTable', async (req, res) => {
 //Officials Actions  ------------------------------------------------------------
 
 //@route  -  GET /showDetails/:id
+//This route will show employee's individual detailed information
 router.get('/showDetails/:id', async (req, res) => {
     try {
         const detailedData = await OfficialsInfo.findById(req.params.id)
-            .populate('basicInfo.department');
+            .populate('basicInfo.division');
 
         res.render('pages/actions/officials/showDetails', 
         {
@@ -517,12 +518,13 @@ router.get('/showDetails/:id', async (req, res) => {
 //@route  -  GET /editDetails/:id
 router.get('/editDetails/:id', async (req, res) => {
     try {
-        const editData = await (await OfficialsInfo.findById(req.params.id)).populate('department');
-        const depDetails = await DepDetails.find();
+        const editData = await (await OfficialsInfo.findById(req.params.id))
+            .populate('basicInfo.division');
+        const divDetails = await DivDetails.find();
         res.render('pages/actions/officials/editDetails', 
             {
                 output: editData,
-                depDetails: depDetails,
+                divDetails: divDetails,
                 page_name: 'officialsTable',
                 moment: moment
             });
@@ -532,6 +534,7 @@ router.get('/editDetails/:id', async (req, res) => {
 });
 
 //@route  -  POST /editDetails/:id
+//*** This route needs to be corrected ***/
 router.post('/editDetails/:id', async (req, res) => {
     try {
         const editData = await OfficialsInfo.findById(req.params.id);

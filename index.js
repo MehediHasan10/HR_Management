@@ -47,14 +47,14 @@ app.get("*", checkUser);
 //bring all routes
 const hrRouter = require('./routes/hrDb');
 const leaveRouter = require('./routes/leaveDb');
-const departmentRouter = require('./routes/departmentDb');
+const divisionRouter = require('./routes/divisionDb');
 const authRouter = require('./routes/auth');
 const orgRouter = require('./routes/organogram');
 
 //routes handler
 app.use('/', hrRouter);
 app.use('/leave', leaveRouter);
-app.use('/department', departmentRouter);
+app.use('/division', divisionRouter);
 app.use('/auth', authRouter);
 app.use('/organogram', orgRouter);
 

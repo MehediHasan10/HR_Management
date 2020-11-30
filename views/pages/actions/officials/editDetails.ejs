@@ -69,19 +69,19 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <label for="dep">Select Division (Must be selected)</label>
-                                            <select name="dep">
+                                            <select name="div">
                                                 <option value="" selected hidden> Choose Division </option>
-                                                <option label="<%= output.basicInfo.department %>" value="<%= output.basicInfo.department.id %>"></option>
+                                                <option label="<%= output.basicInfo.division %>" value="<%= output.basicInfo.division.id %>"></option>
 
                                                 <% depDetails.forEach((entry) => { %>
-                                                    <option label="<%= entry.departmentName %>" value="<%= entry.id %>"></option>
+                                                    <option label="<%= entry.divisionName %>" value="<%= entry.id %>"></option>
                                                 <% }); %>
                                             </select>
                                         </div>
 
                                         <div class="col-md-4">
-                                            <label for="divison">Select Department</label>
-                                            <select name="divison" value="<%= output.basicInfo.divison %>">
+                                            <label for="department">Select Department</label>
+                                            <select name="department" value="<%= output.basicInfo.department %>">
                                                 <option value="" selected hidden>Choose Department</option>
                                                 <option value="Human Resource">Human Resource</option>
                                                 <option value="Establishment">Establishment</option>

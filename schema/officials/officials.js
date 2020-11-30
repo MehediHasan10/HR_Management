@@ -17,11 +17,11 @@ const officials_schema = new mongoose.Schema({
         maritalStatus: String,
         email: String,
         phone: String,
-        department: {
+        division: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'departmentDetails'
+            ref: 'divisiontDetails'
         },
-        divison: String,
+        department: String,
         section: String,
         dateOfRetirement: Date,
         remainingRetiredTime: Number,        
@@ -36,7 +36,7 @@ const officials_schema = new mongoose.Schema({
         nomineeOrganizationAddress: String,
         nomineePhoneNo: String
     },
-    
+
     address: {
         present_address: String,  
         permanent_address: String
