@@ -16,14 +16,14 @@ const staffs_schema = new mongoose.Schema({
         email: String,
         phone: String
     },
-    spouseInfo: {
-        spouseName: String,
-        spouseHomeDistrict: String,
-        spouseOccupation: String,
-        spouseDesignation: String,
-        spouseOrganization: String,
-        spouseOrganizationAddress: String,
-        spousePhoneNo: String
+    nomineeInfo: {
+        nomineeName: String,
+        nomineeHomeDistrict: String,
+        nomineeOccupation: String,
+        nomineeRelation: String,
+        nomineeOrganization: String,
+        nomineeOrganizationAddress: String,
+        nomineePhoneNo: String
     },
     address: {
         present_address: String,  
