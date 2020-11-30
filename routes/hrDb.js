@@ -1,6 +1,10 @@
 const router = require('express').Router();
 
 const moment = require('moment');
+const path = require("path");
+
+let pdf = require("html-pdf");
+let ejs = require("ejs");
 
 const OfficialsInfo = require('../schema/officials/officials');
 const StaffsInfo = require('../schema/staffs/staffs');
@@ -366,10 +370,89 @@ router.get('/depEmp/:id', async (req, res) => {
         res.render('pages/table/officialsTable', 
         {
             output:officialsInfo,
+            departmentId: req.params.id,
             page_name: 'officialsTable'
         });
     } catch (err) {
         console.log(err);
+    }
+})
+
+router.get('/generatePdf/:id', async (req,res) => {
+    try{
+        const officialsInfo = await OfficialsInfo.find(
+            {
+                'basicInfo.department': req.params.id
+            })
+        ejs.renderFile(path.join(__dirname, '../views/pages/table/', "pdf.ejs"), {output:officialsInfo, dirname:__dirname}, (err, data) => {
+
+            if (err) {
+                res.send(err);
+            } else {
+                var assesPath = path.join(__dirname,'../public/');
+                // console.log(assesPath);
+                assesPath = assesPath.replace(new RegExp(/\\/g), '/');
+
+                var options = {
+                    "height": "11.25in",
+                    "width": "18.5in",
+                    "header": {
+                        "height": "20mm",
+                    },
+                    "footer": {
+                        "height": "20mm",
+                    },
+                    "base": "file:///" + assesPath
+                };
+
+                pdf.create(data, options).toStream(function (err, stream) {
+                    if (err) return res.send(err);
+                    res.type('pdf');
+                    stream.pipe(res);
+                });
+            }
+        });
+    }
+    catch (e) {
+        console.log(e)
+    }
+})
+
+router.get('/employeeDetails/pdf/:id',async(req,res)=>{
+    try{
+        const detailedData = await OfficialsInfo.findById(req.params.id).populate('basicInfo.department');
+
+        ejs.renderFile(path.join(__dirname, '../views/pages/actions/officials/', "pdf.ejs"), {output:detailedData, moment: moment, dirname:__dirname}, (err, data) => {
+
+            if (err) {
+                res.send(err);
+            } else {
+                var assesPath = path.join(__dirname,'../public/');
+                // console.log(assesPath);
+                assesPath = assesPath.replace(new RegExp(/\\/g), '/');
+
+                var options = {
+                    "height": "11.25in",
+                    "width": "18.5in",
+                    "header": {
+                        "height": "20mm",
+                    },
+                    "footer": {
+                        "height": "20mm",
+                    },
+                    "base": "file:///" + assesPath
+                };
+
+                pdf.create(data, options).toStream(function (err, stream) {
+                    if (err) return res.send(err);
+                    res.type('pdf');
+                    stream.pipe(res);
+                });
+            }
+        });
+    }
+    catch (e) {
+        console.log(e)
     }
 })
 
