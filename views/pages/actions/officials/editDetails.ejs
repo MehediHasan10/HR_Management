@@ -68,12 +68,12 @@
 
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label for="dep">Select Division (Must be selected)</label>
+                                            <label for="div">Select Division (Must be selected)</label>
                                             <select name="div">
                                                 <option value="" selected hidden> Choose Division </option>
                                                 <option label="<%= output.basicInfo.division %>" value="<%= output.basicInfo.division.id %>"></option>
 
-                                                <% depDetails.forEach((entry) => { %>
+                                                <% divDetails.forEach((entry) => { %>
                                                     <option label="<%= entry.divisionName %>" value="<%= entry.id %>"></option>
                                                 <% }); %>
                                             </select>
@@ -160,7 +160,7 @@
 
                                         <div class="col-md-4">
                                             <label for="dob">Date of Birth</label>
-                                            <input type="date" name="dob"  value="<%= moment(output.basicInfo.dateOfbirth).format('DD-MMM-YYYY') %>"/>
+                                            <input type="date" name="dob"  value="<%= output.basicInfo.dateOfbirth %>"/>
                                         </div>
                                     </div>
 
@@ -230,37 +230,37 @@
 
                                 <div class="text-left">
 
-                                    <label for="emp_spouse_name">Employee Spouse Name</label>
-                                    <input type="text" name="emp_spouse_name" value="<%= output.spouseInfo.spouseName %>"/>
+                                    <label for="emp_nominee_name">Employee Spouse Name</label>
+                                    <input type="text" name="emp_nominee_name" value="<%= output.nomineeInfo.nomineeName %>"/>
 
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label for="s_ocp">Employee Spouse Occupation</label>
-                                            <input type="text" name="s_ocp" value="<%= output.spouseInfo.spouseOccupation %>"/>
+                                            <label for="n_ocp">Employee Spouse Occupation</label>
+                                            <input type="text" name="n_ocp" value="<%= output.nomineeInfo.nomineeOccupation %>"/>
                                         </div>
 
                                         <div class="col-md-6">
-                                            <label for="s_deg">Employee Spouse Designation</label>
-                                            <input type="text" name="s_deg" value="<%= output.spouseInfo.spouseDesignation %>" />
+                                            <label for="n_relation">Employee Spouse Designation</label>
+                                            <input type="text" name="n_relation" value="<%= output.nomineeInfo.nomineeRelation %>" />
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label for="s_org">Employee Spouse Organization</label>
-                                            <input type="text" name="s_org" value="<%= output.spouseInfo.spouseOrganization %>" />
+                                            <label for="n_org">Employee Spouse Organization</label>
+                                            <input type="text" name="n_org" value="<%= output.nomineeInfo.nomineeOrganization %>" />
                                         </div>
 
                                         <div class="col-md-6">
                                             <label for="org_address">Organization Address</label>
-                                            <input type="text" name="org_address" value="<%= output.spouseInfo.spouseOrganizationAddress %>"/>
+                                            <input type="text" name="org_address" value="<%= output.nomineeInfo.nomineeOrganizationAddress %>"/>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label for="s_district">Spouse Home District</label>
-                                            <select name="s_district" value="<%= output.spouseInfo.spouseHomeDistrict %>">
+                                            <label for="n_district">Spouse Home District</label>
+                                            <select name="n_district" value="<%= output.nomineeInfo.nomineeHomeDistrict %>">
                                                 
                                                 <option value="কক্সবাজার">কক্সবাজার</option>
                                                 <option value="কিশোরগঞ্জ">কিশোরগঞ্জ</option>
@@ -270,8 +270,8 @@
                                         </div>
 
                                         <div class="col-md-6">
-                                            <label for="s_phone">Personal Phone Number</label>
-                                            <input type="text" name="s_phone" value="<%= output.spouseInfo.spousePhoneNo %>">
+                                            <label for="n_phone">Personal Phone Number</label>
+                                            <input type="text" name="n_phone" value="<%= output.nomineeInfo.nomineePhoneNo %>">
                                         </div>
                                     </div>
                                 </div>

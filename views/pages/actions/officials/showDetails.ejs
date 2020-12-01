@@ -105,9 +105,8 @@
                     <div class="card-header card-header-primary">
                         <h3 style="font-weight:bolder; text-align: center;">Employee's Child Information</h3>
                     </div>
-                    <div class="card-body" style="color:black;">
-                        
-                        <% output.childInfo.forEach((entry) => { %>
+                    <% output.childInfo.forEach((entry) => { %>
+                        <div class="card-body" style="color:black;">                
                             <div class="row">
                                 <div class="col-md-4">
                                     <p><span style="font-weight:bold;color:#ca40c8;">Child Name: </span><%= entry.child_name %></p>
@@ -118,12 +117,10 @@
                                 <div class="col-md-4">
                                     <p><span style="font-weight:bold;color:#ca40c8;">Date of Birth: </span><%= moment(entry.child_dateOfBirth).format('DD-MMM-YYYY') %></p>
                                 </div>
-                            </div>
-                        <% }); %>
-                        
-                    </div>
+                            </div>                            
+                        </div>                        
+                    <% }); %>   
                 </div>
-
 
                 <!-- First Joining Information -->
                 <div class="card" style="margin-top:70px">
@@ -177,9 +174,8 @@
                     <div class="card-header card-header-primary">
                         <h3 style="font-weight:bolder; text-align: center;">Employee's Education Information</h3>
                     </div>
-                    <div class="card-body" style="color:black;">
-                        <% output.eduInfo.forEach((entry) => { %>
-
+                    <% output.eduInfo.forEach((entry) => { %>
+                        <div class="card-body" style="color:black;">                        
                             <div class="row"> 
                                                 
                                 <div class="col-md-4">
@@ -206,8 +202,8 @@
                                 </div> 
                                                             
                             </div>
-                        <% }); %> 
-                    </div>
+                        </div>
+                    <% }); %>   
                         
                 </div>
 
@@ -216,10 +212,9 @@
                     <div class="card-header card-header-primary">
                         <h3 style="font-weight:bolder; text-align: center;">Employee's Training Information</h3>
                     </div>
-                    <div class="card-body" style="color:black;">
 
-                        <% output.trainingInfo.forEach((entry) => { %>
-
+                    <% output.trainingInfo.forEach((entry) => { %>
+                        <div class="card-body" style="color:black;">
                             <div class="row">                    
                                 <div class="col-md-4">
                                     <p><span style="font-weight:bold;color:#ca40c8;">Training Type: </span><%= entry.training_type %></p>
@@ -250,9 +245,9 @@
                                     <p><span style="font-weight:bold;color:#ca40c8;">Position: </span><%= entry.position %></p>
                                 </div>                                                                                                
                             </div>
-                        <% }); %>
-
-                    </div>
+                        </div>
+                    <% }); %>
+                    
                 </div>
 
                 <!-- Posting Information -->
@@ -260,9 +255,8 @@
                     <div class="card-header card-header-primary">
                         <h3 style="font-weight:bolder; text-align: center;">Employee's Posting Information</h3>
                     </div>
-                    <div class="card-body" style="color:black;">
-
-                        <% output.postingInfo.forEach((entry) => { %> 
+                    <% output.postingInfo.forEach((entry) => { %>
+                        <div class="card-body" style="color:black;">                         
                             <div class="row">  
                                     
                                 <div class="col-md-4">
@@ -288,8 +282,8 @@
                                 </div>                                
                                                             
                             </div>
-                        <% }); %> 
-                    </div>
+                        </div>
+                    <% }); %> 
                 </div>
 
                 
@@ -298,9 +292,9 @@
                     <div class="card-header card-header-primary">
                         <h3 style="font-weight:bolder; text-align: center;">Employee's Promotion Information</h3>
                     </div>
-                    <div class="card-body" style="color:black;">
-
-                        <% output.promotionInfo.forEach((entry) => { %> 
+                    <% output.promotionInfo.forEach((entry) => { %>
+                        <div class="card-body" style="color:black;">
+                        
                             <div class="row">                                        
                                 <div class="col-md-4">
                                     <p><span style="font-weight:bold;color:#ca40c8;">Designation: </span><%= entry.promoted_designation %></p>
@@ -319,10 +313,10 @@
                                 <div class="col-md-4">
                                     <p><span style="font-weight:bold;color:#ca40c8;">G.O. Date: </span><%= moment(entry.GO_date).format('DD-MMM-YYYY') %></p>
                                 </div>                                                                                                                                     
-                            </div>                                
-                        <% }); %>
+                            </div>  
 
-                    </div>
+                        </div>
+                    <% }); %>
                 </div>
 
                 <!-- Publication Information -->
@@ -356,9 +350,10 @@
                     <div class="card-header card-header-primary">
                         <h3 style="font-weight:bolder; text-align: center;">Employee's Disciplinary Information</h3>
                     </div>
-                    <div class="card-body" style="color:black;">
+                    <% output.disciplineInfo.forEach((entry) => { %>
+                        <div class="card-body" style="color:black;">
 
-                        <% output.disciplineInfo.forEach((entry) => { %>
+                        
                             <div class="row">                                              
                                 <div class="col-md-4">
                                     <p><span style="font-weight:bold;color:#ca40c8;">Occurance: </span><%= entry.occurance %></p>
@@ -378,9 +373,9 @@
                                     <p><span style="font-weight:bold;color:#ca40c8;">Memo Date: </span><%= moment(entry.memo_date).format('DD-MMM-YYYY') %></p>
                                 </div>                                                                                                                                   
                             </div>
-                        <% }); %>
-
-                    </div>
+                        
+                        </div>
+                    <% }); %>
                 </div>
             </div>
             <!-- Content End Here -->

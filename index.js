@@ -14,8 +14,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 //mongo config and connection
-// const url = "mongodb+srv://el06:test1234@cluster0.a9rlb.mongodb.net/hrdb";
-const url = "mongodb://localhost:27017/hRDataBase";
+const url = "mongodb+srv://el06:test1234@cluster0.a9rlb.mongodb.net/hrmSoftwareRPGCL";
+// const url = "mongodb://localhost:27017/hRDataBase";
 mongoose.connect(url, {
     useNewUrlParser: true,
     useFindAndModify: true,

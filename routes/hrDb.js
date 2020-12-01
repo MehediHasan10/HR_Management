@@ -410,121 +410,248 @@ router.get('/editDetails/:id', async (req, res) => {
 
 //@route  -  POST /editDetails/:id
 //*** This route needs to be corrected ***/
-router.post('/editDetails/:id', async (req, res) => {
-    try {
-        const editData = await OfficialsInfo.findById(req.params.id);
+router.post('/editDetails/:id', upload, async (req, res) => {
+    const path = req.file && req.file.path;
 
-        // Basic Info
-        editData.basicInfo.employeeName = req.body.emp_name;
-        editData.basicInfo.fatherName = req.body.f_name;
-        editData.basicInfo.motherName = req.body.m_name;
-        editData.basicInfo.designation = req.body.emp_deg;
-        editData.basicInfo.nationalID = req.body.n_id;
-        // editData.basicInfo.department = req.body.dep;
-        editData.basicInfo.religion = req.body.reg;
-        editData.basicInfo.gender = req.body.gen;
-        editData.basicInfo.dateOfbirth = req.body.dob;
-        editData.basicInfo.bloodGroup = req.body.blood;
-        editData.basicInfo.homeDistrict = req.body.district;
-        editData.basicInfo.maritalStatus = req.body.marital_Status;
-        editData.basicInfo.email = req.body.email;
-        editData.basicInfo.phone = req.body.phone;
-
-        // Spouse Info
-        editData.spouseInfo.spouseName = req.body.emp_spouse_name;
-        editData.spouseInfo.spouseOccupation = req.body.s_ocp;
-        editData.spouseInfo.spouseDesignation = req.body.s_deg;
-        editData.spouseInfo.spouseOrganization = req.body.s_org;
-        editData.spouseInfo.spouseOrganizationAddress = req.body.org_address;
-        editData.spouseInfo.spouseHomeDistrict = req.body.s_district;
-        editData.spouseInfo.spousePhoneNo = req.body.s_phone;
-
-        // Address Information
-        editData.address.present_address = req.body.presentAddress;
-        editData.address.permanent_address = req.body.permanentAddress;
-
-        //Child Information
-        editData.childInfo.forEach((entry) => {
-            entry.child_name = req.body.c_name;
-            entry.child_gender = req.body.c_gender;
-            entry.child_dateOfBirth = req.body.c_dob;
-        });
-
-        //First Joining Info
-        editData.firstJoinInfo.first_joining_date = req.body.j_date;
-        editData.firstJoinInfo.rank = req.body.j_rank;
-        editData.firstJoinInfo.first_designation = req.body.first_deg;
-        editData.firstJoinInfo.first_posting_district = req.body.j_district;
-        editData.firstJoinInfo.first_posting_upazilla = req.body.j_upazilla;
-        editData.firstJoinInfo.job_nature = req.body.j_nature;
-        editData.firstJoinInfo.grade = req.body.j_grade;
-        editData.firstJoinInfo.PRL_date = req.body.prl;
-        editData.firstJoinInfo.GO_date = req.body.j_go;
-        editData.firstJoinInfo.confirmation_date = req.body.confirmation_date;
-
-        //Education Information
-        editData.eduInfo.forEach((entry) => {
-            entry.degree = req.body.e_deg;
-            entry.group =req.body.e_grp;
-            entry.institute = req.body.e_institution;
-            entry.board = req.body.e_board;
-            entry.results = req.body.e_result;
-            entry.passing_years = req.body.pass_year;
-        });
-
-        //Training Information
-        editData.trainingInfo.forEach((entry) => {
-            entry.training_type = req.body.t_type;
-            entry.course_title = req.body.t_course;
-            entry.institution_name = req.body.t_institution;
-            entry.country = req.body.t_country;
-            entry.start_date = req.body.t_start;
-            entry.end_date = req.body.t_end;
-            entry.grade = req.body.t_grade;
-            entry.position = req.body.t_position;
-        });
-
-        //Posting Information
-        editData.postingInfo.forEach((entry) => {
-            entry.designation = req.body.p_deg;
-            entry.office_name = req.body.p_office;
-            entry.from_date = req.body.p_from_date;
-            entry.to_date = req.body.p_to_date;
-            entry.upazilla = req.body.p_upazilla;
-            entry.district = req.body.p_district;
-        });
-
-        // Promotion Info
-        editData.promotionInfo.forEach((entry) => {
-            entry.promoted_designation = req.body.pro_deg;
-            entry.promotion_nature = req.body.pro_nature;
-            entry.promotion_date = req.body.pro_date;
-            entry.GO_date = req.body.go_date;
-            entry.GO_number = req.body.go_number;
-        });
-
-        // Publication Information
-        editData.publicationInfo.forEach((entry) => {
-            entry.pub_type = req.body.pub_type;
-            entry.date = req.body.pub_date;
-            entry.description = req.body.pub_des;
-        });
-
-        //Discipline Information
-        editData.disciplineInfo.forEach((entry) => {
-            entry.occurance = req.body.occurance;
-            entry.occuring_date = req.body.occ_date;
-            entry.action = req.body.occ_action;
-            entry.memo_No = req.body.memo_no;
-            entry.memo_date = req.body.memo_date;
-        });
-
-        const editDataById = await editData.save();
-
-        res.redirect('/officialsTable');
-    } catch (err) {
-        console.log(err);
+    if(path){
+        try {
+            const editData = await OfficialsInfo.findById(req.params.id);
+    
+            // Basic Info
+            editData.basicInfo.employeeName = req.body.emp_name;
+            editData.basicInfo.fatherName = req.body.f_name;
+            editData.basicInfo.motherName = req.body.m_name;
+            editData.basicInfo.designation = req.body.emp_deg;
+            editData.basicInfo.nationalID = req.body.n_id;        
+            editData.basicInfo.religion = req.body.reg;
+            editData.basicInfo.gender = req.body.gen;
+            editData.basicInfo.dateOfbirth = req.body.dob;
+            editData.basicInfo.bloodGroup = req.body.blood;
+            editData.basicInfo.homeDistrict = req.body.district;
+            editData.basicInfo.maritalStatus = req.body.marital_Status;
+            editData.basicInfo.email = req.body.email;
+            editData.basicInfo.phone = req.body.phone;
+            editData.basicInfo.division = req.body.division;
+            editData.basicInfo.department = req.body.department;
+            editData.basicInfo.section = req.body.section;
+            editData.basicInfo.dateOfRetirement = req.body.retirementDate;
+            editData.basicInfo.image = req.body.imagePath;
+    
+            // Nominee Info
+            editData.nomineeInfo.nomineeName = req.body.emp_nominee_name;
+            editData.spouseInfo.spouseOccupation = req.body.s_ocp;
+            editData.spouseInfo.spouseDesignation = req.body.s_deg;
+            editData.spouseInfo.spouseOrganization = req.body.s_org;
+            editData.spouseInfo.spouseOrganizationAddress = req.body.org_address;
+            editData.spouseInfo.spouseHomeDistrict = req.body.s_district;
+            editData.spouseInfo.spousePhoneNo = req.body.s_phone;
+    
+            // Address Information
+            editData.address.present_address = req.body.presentAddress;
+            editData.address.permanent_address = req.body.permanentAddress;
+    
+            //Child Information
+            editData.childInfo.forEach((entry) => {
+                entry.child_name = req.body.c_name;
+                entry.child_gender = req.body.c_gender;
+                entry.child_dateOfBirth = req.body.c_dob;
+            });
+    
+            //First Joining Info
+            editData.firstJoinInfo.first_joining_date = req.body.j_date;
+            editData.firstJoinInfo.rank = req.body.j_rank;
+            editData.firstJoinInfo.first_designation = req.body.first_deg;
+            editData.firstJoinInfo.first_posting_district = req.body.j_district;
+            editData.firstJoinInfo.first_posting_upazilla = req.body.j_upazilla;
+            editData.firstJoinInfo.job_nature = req.body.j_nature;
+            editData.firstJoinInfo.grade = req.body.j_grade;
+            editData.firstJoinInfo.PRL_date = req.body.prl;
+            editData.firstJoinInfo.GO_date = req.body.j_go;
+            editData.firstJoinInfo.confirmation_date = req.body.confirmation_date;
+    
+            //Education Information
+            editData.eduInfo.forEach((entry) => {
+                entry.degree = req.body.e_deg;
+                entry.group =req.body.e_grp;
+                entry.institute = req.body.e_institution;
+                entry.board = req.body.e_board;
+                entry.results = req.body.e_result;
+                entry.passing_years = req.body.pass_year;
+            });
+    
+            //Training Information
+            editData.trainingInfo.forEach((entry) => {
+                entry.training_type = req.body.t_type;
+                entry.course_title = req.body.t_course;
+                entry.institution_name = req.body.t_institution;
+                entry.country = req.body.t_country;
+                entry.start_date = req.body.t_start;
+                entry.end_date = req.body.t_end;
+                entry.grade = req.body.t_grade;
+                entry.position = req.body.t_position;
+            });
+    
+            //Posting Information
+            editData.postingInfo.forEach((entry) => {
+                entry.designation = req.body.p_deg;
+                entry.office_name = req.body.p_office;
+                entry.from_date = req.body.p_from_date;
+                entry.to_date = req.body.p_to_date;
+                entry.upazilla = req.body.p_upazilla;
+                entry.district = req.body.p_district;
+            });
+    
+            // Promotion Info
+            editData.promotionInfo.forEach((entry) => {
+                entry.promoted_designation = req.body.pro_deg;
+                entry.promotion_nature = req.body.pro_nature;
+                entry.promotion_date = req.body.pro_date;
+                entry.GO_date = req.body.go_date;
+                entry.GO_number = req.body.go_number;
+            });
+    
+            // Publication Information
+            editData.publicationInfo.forEach((entry) => {
+                entry.pub_type = req.body.pub_type;
+                entry.date = req.body.pub_date;
+                entry.description = req.body.pub_des;
+            });
+    
+            //Discipline Information
+            editData.disciplineInfo.forEach((entry) => {
+                entry.occurance = req.body.occurance;
+                entry.occuring_date = req.body.occ_date;
+                entry.action = req.body.occ_action;
+                entry.memo_No = req.body.memo_no;
+                entry.memo_date = req.body.memo_date;
+            });
+    
+            const editDataById = await editData.save();
+    
+            res.redirect('/officialsTable');
+        } catch (err) {
+            console.log(err);
+        }
+    } else {
+        try {
+            const editData = await OfficialsInfo.findById(req.params.id);
+    
+            // Basic Info
+            editData.basicInfo.employeeName = req.body.emp_name;
+            editData.basicInfo.fatherName = req.body.f_name;
+            editData.basicInfo.motherName = req.body.m_name;
+            editData.basicInfo.designation = req.body.emp_deg;
+            editData.basicInfo.nationalID = req.body.n_id;        
+            editData.basicInfo.religion = req.body.reg;
+            editData.basicInfo.gender = req.body.gen;
+            editData.basicInfo.dateOfbirth = req.body.dob;
+            editData.basicInfo.bloodGroup = req.body.blood;
+            editData.basicInfo.homeDistrict = req.body.district;
+            editData.basicInfo.maritalStatus = req.body.marital_Status;
+            editData.basicInfo.email = req.body.email;
+            editData.basicInfo.phone = req.body.phone;
+            editData.basicInfo.division = req.body.division;
+            editData.basicInfo.department = req.body.department;
+            editData.basicInfo.section = req.body.section;
+            editData.basicInfo.dateOfRetirement = req.body.retirementDate;            
+    
+            // Spouse Info
+            editData.spouseInfo.spouseName = req.body.emp_spouse_name;
+            editData.spouseInfo.spouseOccupation = req.body.s_ocp;
+            editData.spouseInfo.spouseDesignation = req.body.s_deg;
+            editData.spouseInfo.spouseOrganization = req.body.s_org;
+            editData.spouseInfo.spouseOrganizationAddress = req.body.org_address;
+            editData.spouseInfo.spouseHomeDistrict = req.body.s_district;
+            editData.spouseInfo.spousePhoneNo = req.body.s_phone;
+    
+            // Address Information
+            editData.address.present_address = req.body.presentAddress;
+            editData.address.permanent_address = req.body.permanentAddress;
+    
+            //Child Information
+            editData.childInfo.forEach((entry) => {
+                entry.child_name = req.body.c_name;
+                entry.child_gender = req.body.c_gender;
+                entry.child_dateOfBirth = req.body.c_dob;
+            });
+    
+            //First Joining Info
+            editData.firstJoinInfo.first_joining_date = req.body.j_date;
+            editData.firstJoinInfo.rank = req.body.j_rank;
+            editData.firstJoinInfo.first_designation = req.body.first_deg;
+            editData.firstJoinInfo.first_posting_district = req.body.j_district;
+            editData.firstJoinInfo.first_posting_upazilla = req.body.j_upazilla;
+            editData.firstJoinInfo.job_nature = req.body.j_nature;
+            editData.firstJoinInfo.grade = req.body.j_grade;
+            editData.firstJoinInfo.PRL_date = req.body.prl;
+            editData.firstJoinInfo.GO_date = req.body.j_go;
+            editData.firstJoinInfo.confirmation_date = req.body.confirmation_date;
+    
+            //Education Information
+            editData.eduInfo.forEach((entry) => {
+                entry.degree = req.body.e_deg;
+                entry.group =req.body.e_grp;
+                entry.institute = req.body.e_institution;
+                entry.board = req.body.e_board;
+                entry.results = req.body.e_result;
+                entry.passing_years = req.body.pass_year;
+            });
+    
+            //Training Information
+            editData.trainingInfo.forEach((entry) => {
+                entry.training_type = req.body.t_type;
+                entry.course_title = req.body.t_course;
+                entry.institution_name = req.body.t_institution;
+                entry.country = req.body.t_country;
+                entry.start_date = req.body.t_start;
+                entry.end_date = req.body.t_end;
+                entry.grade = req.body.t_grade;
+                entry.position = req.body.t_position;
+            });
+    
+            //Posting Information
+            editData.postingInfo.forEach((entry) => {
+                entry.designation = req.body.p_deg;
+                entry.office_name = req.body.p_office;
+                entry.from_date = req.body.p_from_date;
+                entry.to_date = req.body.p_to_date;
+                entry.upazilla = req.body.p_upazilla;
+                entry.district = req.body.p_district;
+            });
+    
+            // Promotion Info
+            editData.promotionInfo.forEach((entry) => {
+                entry.promoted_designation = req.body.pro_deg;
+                entry.promotion_nature = req.body.pro_nature;
+                entry.promotion_date = req.body.pro_date;
+                entry.GO_date = req.body.go_date;
+                entry.GO_number = req.body.go_number;
+            });
+    
+            // Publication Information
+            editData.publicationInfo.forEach((entry) => {
+                entry.pub_type = req.body.pub_type;
+                entry.date = req.body.pub_date;
+                entry.description = req.body.pub_des;
+            });
+    
+            //Discipline Information
+            editData.disciplineInfo.forEach((entry) => {
+                entry.occurance = req.body.occurance;
+                entry.occuring_date = req.body.occ_date;
+                entry.action = req.body.occ_action;
+                entry.memo_No = req.body.memo_no;
+                entry.memo_date = req.body.memo_date;
+            });
+    
+            const editDataById = await editData.save();
+    
+            res.redirect('/officialsTable');
+        } catch (err) {
+            console.log(err);
+        }
     }
+    
 });
 
 //@route  -  GET /DELETE /:id
