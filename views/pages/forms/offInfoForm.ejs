@@ -318,10 +318,10 @@
 
                                 <div class="text-left" id="dynamic_field">
                                     <label for="c_name">Child Name</label>
-                                    <input type="text" name="c_name"/>
+                                    <input type="text" name="c_name[]"/>
 
                                     <label for="c_gender">Gender</label>
-                                    <select name="c_gender">
+                                    <select name="c_gender[]">
                                         <option value="" selected hidden>Choose a Gender</option>
                                         <option value="Male" >Male</option>
                                         <option value="Female" >Female</option>
@@ -329,7 +329,7 @@
                                     </select>
 
                                     <label for="c_dob">Date of Birth</label>
-                                    <input type="date" name="c_dob"/>
+                                    <input type="date" name="c_dob[]"/>
                                 </div>
 
                                 <button type="button" name="addChild" id="addChild" class="btn btn-success">Add More child Info</button>
@@ -675,7 +675,7 @@
         $('#addChild').click(function(){  
             i++;  
             $('#dynamic_field').append(
-                '<div id="row'+i+'"><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove" style="float:right;">X</button><br><label for="c_name">Child Name</label><input type="text" name="c_name"/><label for="c_gender">Gender</label><select name="c_gender"><option value="" disabled selected hidden>Choose a Gender</option><option value="Male" >Male</option><option value="Female" >Female</option><option value="Others" >Others</option></select><label for="c_dob">Date of Birth</label><input type="date" name="c_dob"/></div>'
+                '<div id="row'+i+'"><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove" style="float:right;">X</button><br><label for="c_name">Child Name</label><input type="text" name="c_name[]"/><label for="c_gender">Gender</label><select name="c_gender[]"><option value="" disabled selected hidden>Choose a Gender</option><option value="Male" >Male</option><option value="Female" >Female</option><option value="Others" >Others</option></select><label for="c_dob">Date of Birth</label><input type="date" name="c_dob[]"/></div>'
             );  
         });  
         $(document).on('click', '.btn_remove', function(){  

@@ -10,7 +10,7 @@ const app = express();
 
 //parsing the json data
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 //mongo config and connection
