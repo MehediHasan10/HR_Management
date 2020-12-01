@@ -50,6 +50,7 @@ const leaveRouter = require('./routes/leaveDb');
 const divisionRouter = require('./routes/divisionDb');
 const authRouter = require('./routes/auth');
 const orgRouter = require('./routes/organogram');
+const staffRouter = require('./routes/staffHrDb');
 
 //routes handler
 app.use('/', hrRouter);
@@ -57,6 +58,7 @@ app.use('/leave', leaveRouter);
 app.use('/division', divisionRouter);
 app.use('/auth', authRouter);
 app.use('/organogram', orgRouter);
+app.use('/staff', staffRouter);
 
 //set up the public folder
 app.use(express.static('./public'));
