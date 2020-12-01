@@ -31,7 +31,7 @@ router.post('/addLeaveType', async (req,res) => {
 
     try{
         const leaveData = await leaveType.save()
-        res.render('pages/leaveManagement/officials/leaveType');
+        res.redirect('/leave/addLeaveType');
     } catch(err){
         console.log(err);
     }
