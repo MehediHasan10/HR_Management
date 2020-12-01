@@ -60,7 +60,7 @@ router.post('/addInfoForm', upload, async (req, res) => {
 
     const path = req.file && req.file.path;
     if(path){
-        console.log(req.body);
+        //console.log(req.body);
 
         var imagePath = "/myUploads/" + req.file.filename;
         //ChildInfo array for dynamic field                     
@@ -330,7 +330,7 @@ router.get('/generatePdf/:id', async (req,res) => {
     }
 })
 
-//@route  -  GET //employeeDetails/pdf/:id
+//@route  -  GET /employeeDetails/pdf/:id
 //This route is to create a PDF of the Individual Employee page (Employee Details).
 router.get('/employeeDetails/pdf/:id',async(req,res)=>{
     try{
@@ -347,7 +347,7 @@ router.get('/employeeDetails/pdf/:id',async(req,res)=>{
 
                 var options = {
                     "height": "11.25in",
-                    "width": "18.5in",
+                    "width": "8.5in",
                     "header": {
                         "height": "20mm",
                     },
